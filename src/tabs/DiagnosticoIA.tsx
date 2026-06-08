@@ -1,10 +1,11 @@
 import { useEffect, useRef, useState } from 'react'
-import { chamarGemini, DiagnosticoItem, DiagnosticoResponse } from '../lib/geminiClient'
+import { chamarIA, DiagnosticoItem, DiagnosticoResponse, AIConfig } from '../lib/aiClient'
 import { buildUserPrompt, SYSTEM_PROMPT, FormData } from '../lib/promptBuilder'
-import { parseMdBoletim } from '../lib/mdParser'
+import { parseMdBoletim, isSessionCompanheiro, parseSessionCompanheiro } from '../lib/mdParser'
 import { so2Molecular } from '../lib/calculadoras'
 import { guardarHistorico, EntradaHistorico } from '../lib/historico'
 import PrivacyConsentModal from '../components/PrivacyConsentModal'
+import { useI18n } from '../components/I18nProvider'
 
 const SINTOMAS = [
   'Vinagre / acetona',
@@ -106,7 +107,7 @@ function downloadMd(conteudo: string) {
 }
 
 interface Props {
-  apiKey: string
+  aiConfig: AIConfig
   onApiKey: () => void
   jurisdicao: 'ptue' | 'br'
   initialForm?: Partial<FormData>
@@ -115,6 +116,7 @@ interface Props {
 }
 
 function DiagCard({ d, jur }: { d: DiagnosticoItem; jur: 'ptue' | 'br' }) {
+  const { t } = useI18n()
   const [open, setOpen] = useState(true)
   return (
     <div className="card border-stone-700">
@@ -149,7 +151,7 @@ function DiagCard({ d, jur }: { d: DiagnosticoItem; jur: 'ptue' | 'br' }) {
         <div className="mt-4 space-y-3 border-t border-stone-800 pt-4">
           {d.compostos_marcadores.length > 0 && (
             <div>
-              <p className="section-title">Compostos marcadores</p>
+              <p className="section-title">{t('diag.result.marcadores')}</p>
               <div className="flex flex-wrap gap-1.5">
                 {d.compostos_marcadores.map((c, i) => (
                   <span key={i} className="text-xs bg-stone-800 border border-stone-700 text-stone-300 px-2 py-1 rounded-md font-mono">
@@ -161,19 +163,19 @@ function DiagCard({ d, jur }: { d: DiagnosticoItem; jur: 'ptue' | 'br' }) {
           )}
 
           <div>
-            <p className="section-title">Causa</p>
+            <p className="section-title">{t('diag.result.causa')}</p>
             <p className="text-sm text-stone-300">{d.causa}</p>
           </div>
 
           <div>
-            <p className="section-title">Confirmação analítica</p>
+            <p className="section-title">{t('diag.result.confirmacao')}</p>
             <div className="space-y-1.5">
               <p className="text-sm text-stone-300">
-                <span className="text-stone-500 text-xs mr-1">Principal:</span>
+                <span className="text-stone-500 text-xs mr-1">{t('diag.result.metodo_principal')}:</span>
                 {d.confirmacao_analitica.metodo_principal}
               </p>
               <p className="text-sm text-stone-300">
-                <span className="text-stone-500 text-xs mr-1">Rápido:</span>
+                <span className="text-stone-500 text-xs mr-1">{t('diag.result.metodo_rapido')}:</span>
                 {d.confirmacao_analitica.metodo_rapido}
               </p>
             </div>
@@ -181,25 +183,26 @@ function DiagCard({ d, jur }: { d: DiagnosticoItem; jur: 'ptue' | 'br' }) {
 
           <div>
             <p className="section-title">
-              Correção — {jur === 'ptue' ? '🇵🇹 PT/UE' : '🇧🇷 Brasil'}
+              {t('diag.result.correcao')} — {jur === 'ptue' ? '🇵🇹 PT/UE' : '🇧🇷 Brasil'}
             </p>
             <p className="text-sm text-stone-300">{d.correcao}</p>
           </div>
 
           {d.proibicoes && (
             <div className="alert-err">
-              <span className="font-medium">⚠ Proibições:</span> {d.proibicoes}
+              <span className="font-medium">⚠ {t('diag.result.proibicoes', { jur: jur === 'ptue' ? 'PT/UE' : 'BR' })}:</span> {d.proibicoes}
             </div>
           )}
 
-          <p className="legal-ref">Ref. legal: {d.referencia_legal}</p>
+          <p className="legal-ref">{t('diag.result.legal')}: {d.referencia_legal}</p>
         </div>
       )}
     </div>
   )
 }
 
-export default function DiagnosticoIA({ apiKey, onApiKey, jurisdicao, initialForm, historicoInicial, onNovoDiagnostico }: Props) {
+export default function DiagnosticoIA({ aiConfig, onApiKey, jurisdicao, initialForm, historicoInicial, onNovoDiagnostico }: Props) {
+  const { t } = useI18n()
   const fileRef = useRef<HTMLInputElement>(null)
   const [form, setForm] = useState<FormData>(() => ({
     tipo: historicoInicial?.formSnapshot.tipo ?? initialForm?.tipo ?? 'Tinto seco',
@@ -245,25 +248,44 @@ export default function DiagnosticoIA({ apiKey, onApiKey, jurisdicao, initialFor
     }))
   }
 
+  const applyParsed = (parsed: ReturnType<typeof parseMdBoletim>, label: string) => {
+    setForm((f) => ({
+      ...f,
+      tipo: parsed.tipo ?? f.tipo,
+      tav: parsed.tav ?? f.tav,
+      ph: parsed.ph ?? f.ph,
+      so2Livre: parsed.so2Livre ?? f.so2Livre,
+      so2Total: parsed.so2Total ?? f.so2Total,
+      av: parsed.av ?? f.av,
+      acidezTotal: parsed.acidezTotal ?? f.acidezTotal,
+      esr: parsed.esr ?? f.esr,
+    }))
+    setImportMsg(`✅ Importado: ${label}`)
+    setTimeout(() => setImportMsg(null), 4000)
+  }
+
   const handleImportMd = async (file: File) => {
     try {
       const texto = await file.text()
+
+      // Tenta JSON do companheiro primeiro
+      if (file.name.endsWith('.json')) {
+        const raw = JSON.parse(texto)
+        if (isSessionCompanheiro(raw)) {
+          const parsed = parseSessionCompanheiro(raw)
+          applyParsed(parsed, parsed.amostra || parsed.lote || file.name)
+          return
+        }
+        setImportMsg('⚠ Ficheiro JSON não reconhecido como sessão do Companheiro.')
+        setTimeout(() => setImportMsg(null), 4000)
+        return
+      }
+
+      // .md boletim
       const parsed = parseMdBoletim(texto)
-      setForm((f) => ({
-        ...f,
-        tipo: parsed.tipo ?? f.tipo,
-        tav: parsed.tav ?? f.tav,
-        ph: parsed.ph ?? f.ph,
-        so2Livre: parsed.so2Livre ?? f.so2Livre,
-        so2Total: parsed.so2Total ?? f.so2Total,
-        av: parsed.av ?? f.av,
-        acidezTotal: parsed.acidezTotal ?? f.acidezTotal,
-        esr: parsed.esr ?? f.esr,
-      }))
-      setImportMsg(`Importado: ${parsed.amostra || parsed.lote || file.name}`)
-      setTimeout(() => setImportMsg(null), 4000)
+      applyParsed(parsed, parsed.amostra || parsed.lote || file.name)
     } catch {
-      setImportMsg('Erro ao importar o ficheiro.')
+      setImportMsg('❌ Erro ao importar o ficheiro.')
       setTimeout(() => setImportMsg(null), 4000)
     }
   }
@@ -273,7 +295,7 @@ export default function DiagnosticoIA({ apiKey, onApiKey, jurisdicao, initialFor
     setError(null)
     setResult(null)
     try {
-      const res = await chamarGemini(apiKey, SYSTEM_PROMPT, buildUserPrompt({ ...form, jurisdicao: jur }))
+      const res = await chamarIA(aiConfig, SYSTEM_PROMPT, buildUserPrompt({ ...form, jurisdicao: jur }))
       setResult(res)
       guardarHistorico({
         jurisdicao: jur,
@@ -292,7 +314,7 @@ export default function DiagnosticoIA({ apiKey, onApiKey, jurisdicao, initialFor
   }
 
   const handleSubmit = () => {
-    if (!apiKey) { onApiKey(); return }
+    if (!aiConfig.apiKey) { onApiKey(); return }
     if (!privacyConsent()) { setShowPrivacy(true); return }
     runDiagnosis()
   }
@@ -318,14 +340,14 @@ export default function DiagnosticoIA({ apiKey, onApiKey, jurisdicao, initialFor
           type="button"
           onClick={() => fileRef.current?.click()}
           className="btn-ghost text-xs flex items-center gap-2"
-          title="Importar boletim .md exportado pelo Vinho-Lab Companheiro"
+          title="Importar boletim .md ou sessão .json do Vinho-Lab Companheiro"
         >
-          📄 Importar boletim (.md)
+          {t('diag.import')}
         </button>
         <input
           ref={fileRef}
           type="file"
-          accept=".md,text/markdown"
+          accept=".md,.json,text/markdown,application/json"
           className="hidden"
           onChange={(e) => {
             const f = e.target.files?.[0]
@@ -340,37 +362,37 @@ export default function DiagnosticoIA({ apiKey, onApiKey, jurisdicao, initialFor
 
       {/* Contexto do vinho */}
       <div className="card">
-        <p className="section-title">Contexto do vinho</p>
+        <p className="section-title">{t('diag.section.context')}</p>
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
           <div className="col-span-2 sm:col-span-2">
-            <label className="label">Tipo</label>
+            <label className="label">{t('diag.field.tipo')}</label>
             <select value={form.tipo} onChange={(e) => setForm({ ...form, tipo: e.target.value })}>
-              {TIPOS.map((t) => <option key={t}>{t}</option>)}
+              {TIPOS.map((tp) => <option key={tp}>{tp}</option>)}
             </select>
           </div>
           <div className="col-span-2 sm:col-span-2">
-            <label className="label">Fase</label>
+            <label className="label">{t('diag.field.fase')}</label>
             <select value={form.fase} onChange={(e) => setForm({ ...form, fase: e.target.value })}>
               {FASES.map((f) => <option key={f}>{f}</option>)}
             </select>
           </div>
           <div>
-            <label className="label">TAV (% vol)</label>
+            <label className="label">{t('diag.field.tav')}</label>
             <input type="number" step="0.1" min="7" max="17" placeholder="13.5"
               value={form.tav} onChange={(e) => setForm({ ...form, tav: e.target.value })} />
           </div>
           <div>
-            <label className="label">pH</label>
+            <label className="label">{t('diag.field.ph')}</label>
             <input type="number" step="0.01" min="2.8" max="4.5" placeholder="3.65"
               value={form.ph} onChange={(e) => setForm({ ...form, ph: e.target.value })} />
           </div>
           <div>
-            <label className="label">SO₂ livre (mg/L)</label>
+            <label className="label">{t('diag.field.so2livre')}</label>
             <input type="number" step="1" min="0" placeholder="28"
               value={form.so2Livre} onChange={(e) => setForm({ ...form, so2Livre: e.target.value })} />
           </div>
           <div>
-            <label className="label">SO₂ total (mg/L)</label>
+            <label className="label">{t('diag.field.so2total')}</label>
             <input type="number" step="1" min="0" placeholder="85"
               value={form.so2Total} onChange={(e) => setForm({ ...form, so2Total: e.target.value })} />
           </div>
@@ -403,20 +425,20 @@ export default function DiagnosticoIA({ apiKey, onApiKey, jurisdicao, initialFor
 
       {/* Parâmetros analíticos */}
       <div className="card">
-        <p className="section-title">Parâmetros analíticos <span className="text-stone-500 normal-case font-normal">(opcional)</span></p>
+        <p className="section-title">{t('diag.section.analiticos')} <span className="text-stone-500 normal-case font-normal">{t('diag.section.analiticos.opt')}</span></p>
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
           <div>
-            <label className="label">AV (mEq/L)</label>
+            <label className="label">{t('diag.field.av')}</label>
             <input type="number" step="0.1" placeholder="12"
               value={form.av} onChange={(e) => setForm({ ...form, av: e.target.value })} />
           </div>
           <div>
-            <label className="label">Acidez total (mEq/L)</label>
+            <label className="label">{t('diag.field.at')}</label>
             <input type="number" step="0.5" placeholder="65"
               value={form.acidezTotal} onChange={(e) => setForm({ ...form, acidezTotal: e.target.value })} />
           </div>
           <div>
-            <label className="label">ESR (g/L)</label>
+            <label className="label">{t('diag.field.esr')}</label>
             <input type="number" step="0.1" placeholder="22"
               value={form.esr} onChange={(e) => setForm({ ...form, esr: e.target.value })} />
           </div>
@@ -425,7 +447,7 @@ export default function DiagnosticoIA({ apiKey, onApiKey, jurisdicao, initialFor
 
       {/* Sintomas */}
       <div className="card">
-        <p className="section-title">Sintomas sensoriais e físicos</p>
+        <p className="section-title">{t('diag.section.sintomas')}</p>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-3">
           {SINTOMAS.map((s) => (
             <label key={s} className="flex items-center gap-2.5 cursor-pointer group">
@@ -440,17 +462,17 @@ export default function DiagnosticoIA({ apiKey, onApiKey, jurisdicao, initialFor
           ))}
         </div>
         <div>
-          <label className="label">Outro sintoma</label>
-          <input type="text" placeholder="Descreva sintoma adicional..."
+          <label className="label">{t('diag.sintoma.outro')}</label>
+          <input type="text" placeholder={t('diag.sintoma.outro.placeholder')}
             value={form.sintomaOutro} onChange={(e) => setForm({ ...form, sintomaOutro: e.target.value })} />
         </div>
       </div>
 
       {/* Ação */}
-      {!apiKey && (
+      {!aiConfig.apiKey && (
         <div className="alert-warn">
-          🔑 Configure a chave API Gemini antes de diagnosticar.{' '}
-          <button onClick={onApiKey} className="underline">Configurar agora</button>
+          {t('diag.warn.nokey')}{' '}
+          <button onClick={onApiKey} className="underline">{t('diag.warn.nokey.link')}</button>
         </div>
       )}
 
@@ -459,18 +481,19 @@ export default function DiagnosticoIA({ apiKey, onApiKey, jurisdicao, initialFor
         disabled={loading || (form.sintomas.length === 0 && !form.sintomaOutro.trim())}
         className="btn-primary w-full py-3 text-base"
       >
-        {loading ? '⏳ A analisar…' : `🤖 Diagnosticar com Gemini — ${jur === 'ptue' ? 'PT/UE' : 'Brasil'}`}
+        {loading ? t('diag.btn.loading') : t('diag.btn.diagnosticar', { jur: jur === 'ptue' ? 'PT/UE' : 'Brasil' })}
       </button>
 
       {/* Aviso de privacidade inline */}
       <div className="flex items-start gap-2.5 text-xs text-stone-500 leading-relaxed">
         <span className="shrink-0 mt-0.5">🔒</span>
         <p>
-          Os parâmetros analíticos e sintomas são enviados à API Google Gemini para processamento.
-          Nome da amostra, lote e responsável <strong className="text-stone-400">nunca são enviados</strong>.
+          {t('diag.privacy.text').split('**nunca são enviados**')[0]}
+          <strong className="text-stone-400">nunca são enviados</strong>
+          {t('diag.privacy.text').split('**nunca são enviados**')[1] ?? ''}.
           {privacyConsent()
-            ? <span className="text-green-600 ml-1">Consentimento dado para esta sessão.</span>
-            : <span className="ml-1">Será solicitado consentimento antes do primeiro diagnóstico.</span>
+            ? <span className="text-green-600 ml-1">{t('diag.privacy.consent.given')}</span>
+            : <span className="ml-1">{t('diag.privacy.consent.pending')}</span>
           }
         </p>
       </div>
@@ -483,15 +506,24 @@ export default function DiagnosticoIA({ apiKey, onApiKey, jurisdicao, initialFor
         <div className="space-y-4 animate-[fadeIn_0.3s_ease]">
           <div className="flex items-center justify-between">
             <h3 className="text-base font-semibold text-stone-200">
-              Diagnóstico diferencial — {jur === 'ptue' ? '🇵🇹 PT/UE' : '🇧🇷 Brasil'}
+              {t('diag.result.title', { jur: jur === 'ptue' ? '🇵🇹 PT/UE' : '🇧🇷 Brasil' })}
             </h3>
-            <button
-              onClick={() => downloadMd(exportarMd(form, result, jur))}
-              className="btn-ghost text-xs flex items-center gap-1.5"
-              title="Exportar diagnóstico como ficheiro Markdown"
-            >
-              ⬇ Exportar .md
-            </button>
+            <div className="flex gap-2">
+              <button
+                onClick={() => downloadMd(exportarMd(form, result, jur))}
+                className="btn-ghost text-xs flex items-center gap-1.5"
+                title="Exportar diagnóstico como ficheiro Markdown"
+              >
+                {t('diag.result.export.md')}
+              </button>
+              <button
+                onClick={() => window.print()}
+                className="btn-ghost text-xs flex items-center gap-1.5"
+                title="Imprimir ou guardar como PDF"
+              >
+                {t('diag.result.export.pdf')}
+              </button>
+            </div>
           </div>
 
           {result.diagnosticos.filter(Boolean).map((d) => (
@@ -500,14 +532,14 @@ export default function DiagnosticoIA({ apiKey, onApiKey, jurisdicao, initialFor
 
           {result.confirmacao_prioritaria && (
             <div className="card bg-stone-800/60">
-              <p className="section-title">Exame prioritário</p>
+              <p className="section-title">{t('diag.result.confirmacao_prio')}</p>
               <p className="text-sm text-stone-300">{result.confirmacao_prioritaria}</p>
             </div>
           )}
 
           {result.observacoes && (
             <div className="card bg-stone-800/60">
-              <p className="section-title">Observações adicionais</p>
+              <p className="section-title">{t('diag.result.observacoes')}</p>
               <p className="text-sm text-stone-300">{result.observacoes}</p>
             </div>
           )}

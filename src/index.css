@@ -81,3 +81,33 @@
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: #44403c; border-radius: 3px; }
 ::-webkit-scrollbar-thumb:hover { background: #57534e; }
+
+/* ─── Print / PDF ──────────────────────────────────────────────── */
+@media print {
+  /* Hide everything except the diagnosis result */
+  header, nav, footer,
+  [data-tab-bar], [data-no-print],
+  button, input, select, textarea { display: none !important; }
+
+  body, html { background: #fff !important; color: #111 !important; font-size: 11pt; }
+
+  .card {
+    border: 1px solid #ccc !important;
+    background: #fff !important;
+    color: #111 !important;
+    box-shadow: none !important;
+    page-break-inside: avoid;
+    margin-bottom: 12pt;
+  }
+
+  .alert-warn, .alert-ok, .alert-err {
+    border: 1px solid #999 !important;
+    background: #f9f9f9 !important;
+    color: #333 !important;
+  }
+
+  /* Make result visible even if it was below fold */
+  [data-result] { display: block !important; }
+
+  @page { margin: 18mm 20mm; }
+}

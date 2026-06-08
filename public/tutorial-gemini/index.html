@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tutorial da API Google Gemini — Como Obter e Integrar no seu Site</title>
+  <meta name="description" content="Aprenda passo a passo como conseguir sua chave de API do Google Gemini no AI Studio e integrá-la com segurança no seu site.">
+  
+  <!-- Fontes Premium (Estilo Vinho-Lab) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  
+  <!-- Fundo com Efeitos de Luz (Glowing Orbs) -->
+  <div class="glow-bg">
+    <div class="orb orb-purple"></div>
+    <div class="orb orb-blue"></div>
+  </div>
+
+  <div class="app-container">
+    
+    <!-- Cabeçalho Principal -->
+    <header class="app-header">
+      <div class="logo-area">
+        <svg class="gemini-logo" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2L14.7 9.3L22 12L14.7 14.7L12 22L9.3 14.7L2 12L9.3 9.3L12 2Z" fill="url(#wine-gradient)"/>
+          <defs>
+            <linearGradient id="wine-gradient" x1="2" y1="2" x2="22" y2="22" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#ac2249"/>
+              <stop offset="0.5" stop-color="#771c3a"/>
+              <stop offset="1" stop-color="#430a1d"/>
+            </linearGradient>
+          </defs>
+        </svg>
+        <span class="logo-text">Gemini <span class="badge">API Guide</span></span>
+      </div>
+      <div class="header-actions">
+        <a href="https://aistudio.google.com" target="_blank" rel="noopener" class="btn btn-secondary btn-sm" id="btn-visit-header">
+          Google AI Studio 
+          <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>
+        </a>
+      </div>
+    </header>
+
+    <div class="main-layout">
+      
+      <!-- Navegação Lateral (Progresso) -->
+      <aside class="sidebar-nav">
+        <div class="progress-container">
+          <div class="progress-bar-fill" id="nav-progress-bar"></div>
+        </div>
+        <nav class="steps-menu">
+          <button class="step-nav-item active" data-step="1" id="nav-step-1">
+            <span class="step-num">1</span>
+            <span class="step-label">Introdução</span>
+          </button>
+          <button class="step-nav-item" data-step="2" id="nav-step-2">
+            <span class="step-num">2</span>
+            <span class="step-label">Google AI Studio</span>
+          </button>
+          <button class="step-nav-item" data-step="3" id="nav-step-3">
+            <span class="step-num">3</span>
+            <span class="step-label">Simulador de Chave</span>
+          </button>
+          <button class="step-nav-item" data-step="4" id="nav-step-4">
+            <span class="step-num">4</span>
+            <span class="step-label">Práticas de Segurança</span>
+          </button>
+          <button class="step-nav-item" data-step="5" id="nav-step-5">
+            <span class="step-num">5</span>
+            <span class="step-label">Gerador de Código</span>
+          </button>
+        </nav>
+      </aside>
+
+      <!-- Conteúdo das Etapas -->
+      <main class="content-area">
+        
+        <!-- Cartão Principal com Glassmorphism -->
+        <article class="tutorial-card">
+          
+          <!-- ETAPA 1: INTRODUÇÃO -->
+          <section class="step-section active" id="section-step-1">
+            <div class="step-header">
+              <span class="step-badge">Passo 1 de 5</span>
+              <h1>Dê superpoderes de Inteligência Artificial ao seu site</h1>
+            </div>
+            <div class="step-body">
+              <p class="lead-text">
+                Com a API do Google Gemini, você pode conectar seu site diretamente ao modelo de IA mais avançado do Google. Crie chatbots, geradores de conteúdo, tradutores inteligentes e muito mais.
+              </p>
+              
+              <div class="info-grid">
+                <div class="info-box">
+                  <div class="info-icon purple">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                  </div>
+                  <h3>Gratuito para Começar</h3>
+                  <p>O Google AI Studio oferece uma cota gratuita generosa para testes e desenvolvimento de aplicações.</p>
+                </div>
+                
+                <div class="info-box">
+                  <div class="info-icon blue">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                  </div>
+                  <h3>Velocidade Extrema</h3>
+                  <p>O modelo <code>gemini-2.5-flash</code> foi otimizado para respostas em tempo real de altíssima velocidade.</p>
+                </div>
+              </div>
+
+              <div class="tutorial-callout">
+                <h4>O que faremos neste guia rápido?</h4>
+                <ol class="guided-list">
+                  <li>Acessar o ambiente de desenvolvimento do Google.</li>
+                  <li>Simular e criar sua chave de acesso pessoal (API Key).</li>
+                  <li>Aprender a integrar o código com segurança sem expor seus dados.</li>
+                  <li>Copiar códigos prontos para uso em seu site.</li>
+                </ol>
+              </div>
+            </div>
+          </section>
+
+          <!-- ETAPA 2: GOOGLE AI STUDIO -->
+          <section class="step-section" id="section-step-2">
+            <div class="step-header">
+              <span class="step-badge">Passo 2 de 5</span>
+              <h1>O Portal de Desenvolvimento: Google AI Studio</h1>
+            </div>
+            <div class="step-body">
+              <p>
+                Para obter uma chave de API, nós utilizamos o <strong>Google AI Studio</strong>. É uma plataforma web onde você pode testar prompts de IA rapidamente e gerenciar suas credenciais.
+              </p>
+
+              <div class="action-card-container">
+                <div class="action-card">
+                  <div class="action-details">
+                    <h3>Abra o Google AI Studio</h3>
+                    <p>Clique no botão abaixo para abrir a página oficial em uma nova aba do seu navegador.</p>
+                  </div>
+                  <a href="https://aistudio.google.com" target="_blank" rel="noopener" class="btn btn-primary btn-glow" id="btn-visit-ai-studio">
+                    Acessar o AI Studio
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>
+                  </a>
+                </div>
+              </div>
+
+              <div class="instruction-box">
+                <div class="instruction-step">
+                  <div class="inst-num">A</div>
+                  <div class="inst-text">
+                    <strong>Faça login com sua conta Google:</strong> Se você já possui um Gmail ou conta do Google Drive, pode entrar diretamente.
+                  </div>
+                </div>
+                <div class="instruction-step">
+                  <div class="inst-num">B</div>
+                  <div class="inst-text">
+                    <strong>Aceite os Termos de Serviço:</strong> Se for seu primeiro acesso, o Google solicitará que aceite os termos de uso de API da plataforma.
+                  </div>
+                </div>
+              </div>
+
+              <p class="sub-tip">
+                💡 <strong>Dica:</strong> Mantenha esta aba do tutorial aberta para poder copiar os códigos e entender as práticas de segurança no Passo 4 e 5!
+              </p>
+            </div>
+          </section>
+
+          <!-- ETAPA 3: SIMULADOR DE CHAVE -->
+          <section class="step-section" id="section-step-3">
+            <div class="step-header">
+              <span class="step-badge">Passo 3 de 5</span>
+              <h1>Como Criar a API Key (Simulador Interativo)</h1>
+            </div>
+            <div class="step-body">
+              <p>
+                Siga os passos abaixo na nossa interface simulada para aprender exatamente onde clicar no Google AI Studio real para gerar sua chave.
+              </p>
+
+              <!-- Simulador AI Studio -->
+              <div class="simulator-wrapper">
+                <div class="simulator-titlebar">
+                  <div class="sim-dots"><span></span><span></span><span></span></div>
+                  <div class="sim-url">https://aistudio.google.com</div>
+                </div>
+                
+                <div class="simulator-container" id="sim-app">
+                  
+                  <!-- Menu Lateral do AI Studio Sim -->
+                  <div class="sim-sidebar">
+                    <button class="sim-nav-btn active" id="sim-btn-get-key">
+                      <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                      Get API key
+                    </button>
+                    <button class="sim-nav-btn" disabled>
+                      <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+                      Create Prompt
+                    </button>
+                    <button class="sim-nav-btn" disabled>
+                      <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+                      Library
+                    </button>
+                  </div>
+
+                  <!-- Conteúdo do AI Studio Sim -->
+                  <div class="sim-content">
+                    
+                    <!-- Estado A: Tela de Início / Obter Chave -->
+                    <div class="sim-view active" id="sim-view-keys">
+                      <div class="sim-header">
+                        <h2>API Keys</h2>
+                        <p>Crie e gerencie chaves de API para autenticar suas solicitações nos seus projetos.</p>
+                      </div>
+                      
+                      <div class="sim-main-action">
+                        <button class="btn btn-primary btn-glow" id="sim-btn-create-key-trigger">
+                          <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                          Create API key
+                        </button>
+                      </div>
+
+                      <div class="sim-table-placeholder">
+                        <div class="placeholder-row header">
+                          <span>Nome</span>
+                          <span>Criado em</span>
+                          <span>Chave de API</span>
+                        </div>
+                        <div class="placeholder-row empty-state" id="sim-empty-state">
+                          Nenhuma chave criada ainda. Clique em "Create API key" acima.
+                        </div>
+                        <div class="placeholder-row data-row hidden" id="sim-key-row">
+                          <span>Minha Chave Gemini</span>
+                          <span id="sim-key-date">Hoje</span>
+                          <span class="masked-key-wrapper">
+                            <code id="sim-display-key">AIzaSyD...xxxx</code>
+                            <button class="btn btn-secondary btn-xs" id="sim-btn-copy-key">Copiar</button>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+
+                <!-- Modal de Criação de Chave Simulado -->
+                <div class="sim-modal-overlay hidden" id="sim-modal">
+                  <div class="sim-modal-card">
+                    <div class="sim-modal-header">
+                      <h3>Create API key</h3>
+                      <button class="sim-modal-close" id="sim-btn-modal-close">&times;</button>
+                    </div>
+                    <div class="sim-modal-body">
+                      <p>Escolha um projeto do Google Cloud existente ou crie uma chave em um novo projeto.</p>
+                      
+                      <div class="sim-form-group">
+                        <label>Projeto do Google Cloud</label>
+                        <select class="sim-select" id="sim-project-select">
+                          <option value="new">Criar chave em um novo projeto</option>
+                          <option value="existing">Meu-Projeto-Existente (Google Cloud)</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="sim-modal-footer">
+                      <button class="btn btn-secondary btn-sm" id="sim-btn-modal-cancel">Cancelar</button>
+                      <button class="btn btn-primary btn-sm" id="sim-btn-modal-create">
+                        Create API key in new project
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+              <!-- Indicador de Instrução do Simulador -->
+              <div class="simulator-guide" id="sim-guide-box">
+                <div class="guide-pulse-indicator"></div>
+                <p id="sim-guide-text">Clique no botão de cor vinho <strong>"Create API key"</strong> no simulador acima para iniciar.</p>
+              </div>
+
+            </div>
+          </section>
+
+          <!-- ETAPA 4: SEGURANÇA -->
+          <section class="step-section" id="section-step-4">
+            <div class="step-header">
+              <span class="step-badge">Passo 4 de 5</span>
+              <h1>🔒 Práticas Cruciais de Segurança</h1>
+            </div>
+            <div class="step-body">
+              <p class="lead-text">
+                Uma chave de API é como a senha do seu cofre. Se alguém tiver acesso a ela, poderá usar a cota de IA em seu nome, podendo esgotar seus limites ou gerar custos!
+              </p>
+
+              <div class="security-diagram">
+                <div class="diag-node bad">
+                  <div class="node-icon">❌</div>
+                  <h4>Método Inseguro (Direto no Front-end)</h4>
+                  <div class="node-flow">
+                    <span>Navegador do Usuário</span>
+                    <span class="arrow-danger">→ expõe chave publicamente →</span>
+                    <span>Código JS do Site</span>
+                  </div>
+                  <p class="node-desc">Qualquer pessoa pode abrir as "Ferramentas do Desenvolvedor" (F12) no navegador e roubar sua chave.</p>
+                </div>
+
+                <div class="diag-node good">
+                  <div class="node-icon">✅</div>
+                  <h4>Método Seguro (Com Servidor Intermediário)</h4>
+                  <div class="node-flow">
+                    <span>Navegador</span>
+                    <span class="arrow-success">→ requisição segura →</span>
+                    <span>Seu Servidor/Backend (Node/Python)</span>
+                    <span class="arrow-success">→ envia chave e recebe IA →</span>
+                    <span>Google Gemini API</span>
+                  </div>
+                  <p class="node-desc">A chave fica guardada em segurança no seu servidor backend (variáveis de ambiente) e nunca é enviada ao navegador do usuário.</p>
+                </div>
+              </div>
+
+              <div class="warning-alert-card">
+                <div class="alert-icon">⚠️</div>
+                <div class="alert-content">
+                  <h4>Nunca envie sua chave de API para o GitHub!</h4>
+                  <p>Robôs escaneiam repositórios públicos no GitHub a cada segundo em busca de chaves expostas. Adicione arquivos que contenham chaves (como arquivos <code>.env</code>) ao seu <code>.gitignore</code>.</p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- ETAPA 5: GERADOR DE CÓDIGO -->
+          <section class="step-section" id="section-step-5">
+            <div class="step-header">
+              <span class="step-badge">Passo 5 de 5</span>
+              <h1>Copie o Código de Integração para seu Site</h1>
+            </div>
+            <div class="step-body">
+              <p>
+                Configure seu projeto. Insira sua API Key abaixo para gerar os exemplos de código já preenchidos de forma automática!
+              </p>
+
+              <!-- Entrada da Chave para Customizar Código -->
+              <div class="key-customizer">
+                <label for="user-api-key">Insira sua API Key (opcional):</label>
+                <div class="input-with-button">
+                  <input type="text" id="user-api-key" placeholder="Cole sua chave aqui (ex: AIzaSy...)" autocomplete="off">
+                  <button class="btn btn-secondary btn-sm" id="btn-use-simulated-key">Usar chave do simulador</button>
+                </div>
+              </div>
+
+              <!-- Seleção de Linguagem/Tecnologia -->
+              <div class="code-tab-container">
+                <div class="code-tabs">
+                  <button class="tab-btn active" data-lang="node">
+                    <span class="lang-icon">🟢</span> Node.js (Recomendado)
+                  </button>
+                  <button class="tab-btn" data-lang="python">
+                    <span class="lang-icon">🐍</span> Python
+                  </button>
+                  <button class="tab-btn" data-lang="firebase">
+                    <span class="lang-icon">🔥</span> Firebase (AI Logic)
+                  </button>
+                  <button class="tab-btn" data-lang="html-js">
+                    <span class="lang-icon">🌐</span> HTML/JS (Apenas Teste Local)
+                  </button>
+                </div>
+
+                <div class="code-display-box">
+                  <div class="code-header">
+                    <span class="code-file" id="code-filename">server.js</span>
+                    <button class="btn btn-secondary btn-xs btn-copy-code" id="btn-copy-snippet">
+                      <span id="copy-text">Copiar Código</span>
+                    </button>
+                  </div>
+                  <pre><code id="code-block" class="language-javascript">...</code></pre>
+                </div>
+              </div>
+
+              <!-- Instruções adicionais de Setup com base no código ativo -->
+              <div class="setup-instructions" id="setup-notes">
+                <!-- Inserido dinamicamente via JS -->
+              </div>
+
+            </div>
+          </section>
+
+          <!-- Barra de Ações Inferior (Navegação) -->
+          <footer class="card-footer">
+            <button class="btn btn-secondary" id="btn-prev" disabled>
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+              Anterior
+            </button>
+            <div class="footer-dots" id="navigation-dots">
+              <span class="dot active" data-step="1"></span>
+              <span class="dot" data-step="2"></span>
+              <span class="dot" data-step="3"></span>
+              <span class="dot" data-step="4"></span>
+              <span class="dot" data-step="5"></span>
+            </div>
+            <button class="btn btn-primary" id="btn-next">
+              Próximo
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </button>
+          </footer>
+
+        </article>
+      </main>
+
+    </div>
+
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { EntradaHistorico, limparHistorico } from '../lib/historico'
+import { useI18n } from './I18nProvider'
 
 interface Props {
   historico: EntradaHistorico[]
@@ -14,6 +15,7 @@ function formatTS(ts: number) {
 }
 
 export default function HistoricoModal({ historico, onFechar, onCarregar, onAtualizar }: Props) {
+  const { t } = useI18n()
   const [confirmarLimpar, setConfirmarLimpar] = useState(false)
 
   const handleLimpar = () => {
@@ -27,7 +29,7 @@ export default function HistoricoModal({ historico, onFechar, onCarregar, onAtua
       <div className="bg-stone-900 border border-stone-700 rounded-2xl w-full max-w-lg max-h-[80vh] flex flex-col">
         <div className="p-5 border-b border-stone-800 flex items-center justify-between">
           <div>
-            <h2 className="text-base font-semibold text-stone-100">Histórico de diagnósticos</h2>
+            <h2 className="text-base font-semibold text-stone-100">{t('historico.title')}</h2>
             <p className="text-xs text-stone-500 mt-0.5">Sessão atual — {historico.length} entrada{historico.length !== 1 ? 's' : ''}</p>
           </div>
           <button onClick={onFechar} className="text-stone-500 hover:text-stone-200 text-xl leading-none">×</button>
@@ -35,7 +37,7 @@ export default function HistoricoModal({ historico, onFechar, onCarregar, onAtua
 
         <div className="overflow-y-auto flex-1 p-4 space-y-2">
           {historico.length === 0 && (
-            <p className="text-stone-500 text-sm text-center py-8">Nenhum diagnóstico nesta sessão.</p>
+            <p className="text-stone-500 text-sm text-center py-8">{t('historico.empty')}</p>
           )}
           {historico.map((e) => {
             const top = e.resultado.diagnosticos.find(Boolean)
@@ -63,9 +65,9 @@ export default function HistoricoModal({ historico, onFechar, onCarregar, onAtua
                   <button
                     onClick={() => { onCarregar(e); onFechar() }}
                     className="btn-ghost text-xs shrink-0"
-                    title="Reabrir este diagnóstico"
+                    title={t('historico.carregar')}
                   >
-                    Abrir
+                    {t('common.abrir')}
                   </button>
                 </div>
               </div>
@@ -78,7 +80,7 @@ export default function HistoricoModal({ historico, onFechar, onCarregar, onAtua
             <div className="flex items-center gap-2">
               <span className="text-xs text-stone-400">Confirmar limpeza?</span>
               <button onClick={handleLimpar} className="text-xs text-red-400 hover:text-red-300 underline">Sim, limpar</button>
-              <button onClick={() => setConfirmarLimpar(false)} className="text-xs text-stone-500 hover:text-stone-300">Cancelar</button>
+              <button onClick={() => setConfirmarLimpar(false)} className="text-xs text-stone-500 hover:text-stone-300">{t('api.cancel')}</button>
             </div>
           ) : (
             <button
@@ -86,10 +88,10 @@ export default function HistoricoModal({ historico, onFechar, onCarregar, onAtua
               disabled={historico.length === 0}
               className="text-xs text-stone-600 hover:text-stone-400 disabled:opacity-40"
             >
-              Limpar histórico
+              {t('historico.limpar')}
             </button>
           )}
-          <button onClick={onFechar} className="btn-ghost text-xs">Fechar</button>
+          <button onClick={onFechar} className="btn-ghost text-xs">{t('historico.fechar')}</button>
         </div>
       </div>
     </div>

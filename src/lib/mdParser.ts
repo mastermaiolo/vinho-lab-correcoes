@@ -1,4 +1,4 @@
-// Importa boletins .md exportados pelo vinho-lab-companheiro
+// Importa boletins .md e sessões .json exportados pelo vinho-lab-companheiro
 // e extrai os campos relevantes para pré-preencher o formulário de diagnóstico.
 
 export interface ParsedBoletim {
@@ -93,6 +93,70 @@ export function parseMdBoletim(conteudo: string): ParsedBoletim {
     extrairTabela(conteudo, 'ESR') ||
     extrairTabela(conteudo, 'Resíduo seco')
   resultado.esr = extrairValorNumerico(esrRaw)
+
+  return resultado
+}
+
+// ── Importador de sessão .json do vinho-lab-companheiro ───────────────────────
+
+const SESSION_KIND = 'vinho-lab/session'
+
+type Measurement = { value: number | null; unit: string }
+
+interface SessionCompanheiro {
+  kind: string
+  tipoId?: string
+  brCat?: string
+  meta?: { amostra?: string; lote?: string; data?: string }
+  measurements?: Record<string, Measurement>
+}
+
+// Mapeamento tipoId → tipo de vinho do formulário de diagnóstico
+const TIPO_MAP: Record<string, string> = {
+  tinto: 'Tinto seco',
+  mesa_tinto: 'Tinto seco',
+  bio_tinto: 'Tinto seco',
+  branco_rose: 'Branco seco',
+  mesa_branco_rose: 'Branco seco',
+  licoroso_branco: 'Branco doce',
+  licoroso_tinto: 'Tinto doce',
+  espumante: 'Espumante',
+  espumante_nq: 'Espumante',
+}
+
+function mval(m: Record<string, Measurement> | undefined, ...ids: string[]): string | undefined {
+  if (!m) return undefined
+  for (const id of ids) {
+    const v = m[id]?.value
+    if (v != null) return String(v)
+  }
+  return undefined
+}
+
+export function isSessionCompanheiro(raw: unknown): raw is SessionCompanheiro {
+  return typeof raw === 'object' && raw !== null && (raw as Record<string, unknown>).kind === SESSION_KIND
+}
+
+export function parseSessionCompanheiro(raw: SessionCompanheiro): ParsedBoletim {
+  const m = raw.measurements
+  const resultado: ParsedBoletim = {}
+
+  resultado.amostra = raw.meta?.amostra || undefined
+  resultado.lote = raw.meta?.lote || undefined
+  resultado.data = raw.meta?.data || undefined
+
+  resultado.tipo = TIPO_MAP[raw.tipoId ?? ''] ?? 'Tinto seco'
+
+  // Jurisdição: se brCat contém "mesa" ou "organico" → provavelmente BR
+  resultado.jurisdicao = raw.brCat?.includes('mesa') || raw.brCat?.includes('organico') ? 'br' : 'ptue'
+
+  resultado.tav   = mval(m, 'tav', 'alcool', 'titulo_alcoolico')
+  resultado.ph    = mval(m, 'ph')
+  resultado.so2Livre  = mval(m, 'so2_livre', 'so2livre', 'dioxido_enxofre_livre')
+  resultado.so2Total  = mval(m, 'so2_total', 'so2total', 'dioxido_enxofre_total')
+  resultado.av    = mval(m, 'acidez_volatil', 'av')
+  resultado.acidezTotal = mval(m, 'acidez_total', 'at')
+  resultado.esr   = mval(m, 'esr', 'extrato_seco', 'residuo_seco')
 
   return resultado
 }

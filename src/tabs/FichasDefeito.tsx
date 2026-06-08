@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import defeitos from '../data/defeitos.json'
+import { useI18n } from '../components/I18nProvider'
 
 interface CompostoMarcador {
   nome: string
@@ -47,6 +48,7 @@ interface Props {
 }
 
 function Ficha({ d, jur, onDiagnosticar }: { d: Defeito; jur: 'ptue' | 'br'; onDiagnosticar: (s: string[]) => void }) {
+  const { t } = useI18n()
   const [open, setOpen] = useState(false)
 
   return (
@@ -192,7 +194,7 @@ function Ficha({ d, jur, onDiagnosticar }: { d: Defeito; jur: 'ptue' | 'br'; onD
             onClick={() => onDiagnosticar(d.descritores_sensoriais ?? [])}
             className="btn-ghost text-xs w-full mt-2"
           >
-            🤖 Diagnosticar com os sintomas deste defeito →
+            {t('fichas.btn.diagnosticar')} →
           </button>
         </div>
       )}
@@ -201,6 +203,7 @@ function Ficha({ d, jur, onDiagnosticar }: { d: Defeito; jur: 'ptue' | 'br'; onD
 }
 
 export default function FichasDefeito({ jur, onDiagnosticar }: Props) {
+  const { t } = useI18n()
   const [search, setSearch] = useState('')
 
   const lista = (defeitos as unknown as Defeito[]).filter((d) => {
@@ -219,7 +222,7 @@ export default function FichasDefeito({ jur, onDiagnosticar }: Props) {
     <div className="space-y-4">
       <input
         type="text"
-        placeholder="Pesquisar defeito, descritor sensorial ou composto..."
+        placeholder={t('fichas.search')}
         value={search}
         onChange={(e) => setSearch(e.target.value)}
       />

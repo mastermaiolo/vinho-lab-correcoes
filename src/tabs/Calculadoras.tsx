@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import {
-  so2Molecular,
+  so2Molecular, so2LivreParaMolecular,
   calcSO2, ProdutoSO2, NOMES_PRODUTO_SO2, UNIDADE_PRODUTO_SO2,
   calcAcidificacao, AcidoAcidificacao, NOMES_ACIDO,
   calcDesacidificacao, AgenteDesacid, NOMES_DESACID,
@@ -57,8 +57,27 @@ function CalcSO2({ jur }: { jur: 'ptue' | 'br' }) {
           <input type="number" step="0.5" min="0.01" value={vol} onChange={e => setVol(e.target.value)} /></div>
         <div><label className="label">SO₂ livre atual (mg/L)</label>
           <input type="number" step="1" min="0" value={atual} onChange={e => setAtual(e.target.value)} /></div>
-        <div><label className="label">SO₂ livre desejado (mg/L)</label>
-          <input type="number" step="1" min="0" value={desejado} onChange={e => setDesejado(e.target.value)} /></div>
+        <div>
+          <label className="label">SO₂ livre desejado (mg/L)</label>
+          <div className="flex gap-1.5">
+            <input type="number" step="1" min="0" value={desejado} onChange={e => setDesejado(e.target.value)} className="flex-1 min-w-0" />
+            <button
+              type="button"
+              title="Sugerir SO₂ livre para atingir SO₂ molecular alvo (tintos 0,5 mg/L; brancos/rosés 0,8 mg/L)"
+              onClick={() => {
+                const phV = parseFloat(ph)
+                if (!phV) return
+                const isTinto = tipo.startsWith('tinto') || tipo.startsWith('biologico_tinto')
+                const alvoMol = isTinto ? 0.5 : 0.8
+                setDesejado(String(Math.ceil(so2LivreParaMolecular(alvoMol, phV))))
+              }}
+              className="shrink-0 px-2 py-1.5 rounded-lg border border-wine-700/50 bg-wine-900/20 text-wine-300 text-xs hover:bg-wine-900/40 transition-colors whitespace-nowrap"
+            >
+              ✨ Sugerir alvo
+            </button>
+          </div>
+          <p className="text-[10px] text-stone-500 mt-0.5">Tintos: SO₂mol=0,5 mg/L · Brancos/rosés: 0,8 mg/L</p>
+        </div>
         <div><label className="label">pH</label>
           <input type="number" step="0.01" min="2.8" max="4.5" value={ph} onChange={e => setPh(e.target.value)} /></div>
         <div><label className="label">Tipo de vinho</label>

@@ -29,19 +29,32 @@ function RefLegal({ children }: { children: React.ReactNode }) {
 
 function CorrecoesPTUE() {
   const ue = limitesUE as Record<string, unknown>
-  const so2 = ue.so2_total as Record<string, { max: number; unidade: string }>
+  const so2Raw = ue.so2_total as Record<string, unknown>
+  const so2Unit = (so2Raw?._unidade as string) ?? 'mg/L'
+  const so2Entries = so2Raw
+    ? Object.entries(so2Raw).filter(([k]) => !k.startsWith('_'))
+    : []
   const acid = ue.acidificacao as { mosto: { max: number }; vinho: { max: number }; agentes: string[]; proibidos: string[] }
   const desacid = ue.desacidificacao as { mosto: { max: number }; vinho: { max: number }; agentes: string[] }
 
   return (
     <div className="space-y-4">
-      <Section title="SO₂ Total — limites máximos (mg/L)">
-        {so2 && Object.entries(so2).map(([k, v]) => (
-          <TableRow key={k}
-            label={k.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase())}
-            value={`máx. ${v.max} ${v.unidade}`}
-          />
-        ))}
+      <Section title={`SO₂ Total — limites máximos (${so2Unit})`}>
+        {so2Entries.map(([k, v]) => {
+          const entry = v as { max?: number; incremento_max?: number; nota?: string; condicao?: string }
+          const val = entry.max != null
+            ? `máx. ${entry.max} ${so2Unit}`
+            : entry.incremento_max != null
+              ? `+${entry.incremento_max} ${so2Unit} (derroga.)`
+              : '—'
+          const extra = entry.condicao ? ` · ${entry.condicao}` : entry.nota ? ` · ${entry.nota}` : ''
+          return (
+            <TableRow key={k}
+              label={k.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase())}
+              value={val + extra}
+            />
+          )
+        })}
         <div className="bg-stone-800 rounded-lg p-3 mt-2 text-xs text-stone-400 leading-relaxed">
           <strong className="text-stone-300">SO₂ molecular recomendado ≥ 0,4 mg/L</strong><br />
           Fórmula Sudraud-Chauvet: SO₂mol = SO₂livre / (1 + 10^(pH − 1,81))<br />
@@ -115,8 +128,8 @@ function CorrecoesPTUE() {
 
 function CorrecoesBR() {
   const br = limitesBR as Record<string, unknown>
-  const tab = br.tabela_4_vinho_mesa_fino as Record<string, { min?: number; max?: number; unidade: string }>
-  const chap = br.chapitalizacao as Record<string, { permitida: boolean; limite_adicao?: number }>
+  const tabRaw = (br.tabela_4_vinho_de_mesa_e_fino ?? br.tabela_4_vinho_mesa_fino) as Record<string, unknown> | undefined
+  const chap = br.chapitalizacao as Record<string, unknown>
 
   return (
     <div className="space-y-4">
@@ -127,15 +140,42 @@ function CorrecoesBR() {
       </Section>
 
       <Section title="Parâmetros gerais (Tabela 4 — IN MAPA 14/2018)">
-        {tab && Object.entries(tab).map(([k, v]) => {
-          const label = k.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase())
-          const valor = v.min !== undefined && v.max !== undefined
-            ? `${v.min} – ${v.max} ${v.unidade}`
-            : v.min !== undefined
-              ? `mín. ${v.min} ${v.unidade}`
-              : `máx. ${v.max} ${v.unidade}`
-          return <TableRow key={k} label={label} value={valor} />
-        })}
+        {tabRaw && Object.entries(tabRaw)
+          .filter(([k]) => !k.startsWith('_'))
+          .map(([k, v]) => {
+            const entry = v as Record<string, unknown>
+            const unidade = (entry.unidade as string) ?? ''
+            const nota = entry.nota ? ` · ${entry.nota}` : ''
+            const label = k.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase())
+
+            // flat entry with min/max
+            if (entry.unidade != null) {
+              let valor: string
+              if (entry.min != null && entry.max != null)
+                valor = `${entry.min} – ${entry.max} ${unidade}`
+              else if (entry.min != null)
+                valor = `mín. ${entry.min} ${unidade}`
+              else if (entry.max != null)
+                valor = `máx. ${entry.max} ${unidade}`
+              else if (entry.max_meq_L != null)
+                valor = `máx. ${entry.max_meq_L} ${unidade}`
+              else
+                valor = unidade
+              return <TableRow key={k} label={label} value={valor + nota} />
+            }
+
+            // nested object by wine type (cinzas, ESR, metanol…)
+            const subEntries = Object.entries(entry).filter(([sk]) => !sk.startsWith('_'))
+            const parts = subEntries.map(([sk, sv]) => {
+              const s = sv as Record<string, unknown>
+              const su = (s.unidade as string) ?? ''
+              const val = s.min != null && s.max != null
+                ? `${s.min}–${s.max}`
+                : s.min != null ? `≥${s.min}` : s.max != null ? `≤${s.max}` : '—'
+              return `${sk.replace(/_/g, '/')}: ${val} ${su}`
+            })
+            return <TableRow key={k} label={label} value={parts.join(' · ') || '—'} />
+          })}
         <RefLegal>IN MAPA 14/2018, Tabela 4</RefLegal>
       </Section>
 
@@ -147,15 +187,20 @@ function CorrecoesBR() {
       </Section>
 
       <Section title="Chaptalização">
-        {chap && Object.entries(chap).map(([cat, v]) => (
-          <TableRow key={cat}
-            label={cat.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase())}
-            value={v.permitida
-              ? `✅ Até +${v.limite_adicao}% vol`
-              : '❌ Proibida'}
-            highlight={!v.permitida}
-          />
-        ))}
+        {chap && Object.entries(chap)
+          .filter(([k]) => !k.startsWith('_'))
+          .map(([cat, v]) => {
+            const entry = v as Record<string, unknown>
+            const label = cat.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase())
+            const val = entry.limite_adicao_pct_vol != null
+              ? `✅ Até +${entry.limite_adicao_pct_vol}% vol`
+              : entry.limite_adicao != null
+                ? `✅ Até +${entry.limite_adicao}% vol`
+                : entry.permitida === false
+                  ? '❌ Proibida'
+                  : String(entry.permitida ?? '—')
+            return <TableRow key={cat} label={label} value={val} highlight={entry.permitida === false} />
+          })}
         <RefLegal>IN MAPA 14/2018 · Portaria MAPA 723/2024</RefLegal>
       </Section>
 

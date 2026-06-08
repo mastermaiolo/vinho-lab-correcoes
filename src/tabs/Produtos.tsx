@@ -1,10 +1,20 @@
 import { useState } from 'react'
 import produtos from '../data/produtos_correcao.json'
+import { useI18n } from '../components/I18nProvider'
 
 type Jur = 'ptue' | 'br'
 
 interface Props {
   jur: Jur
+}
+
+interface ModoUso {
+  preparacao: string
+  antecedencia: string
+  aplicacao: string
+  fases: Record<string, string>
+  aviso_modo?: string
+  prevencao?: string
 }
 
 interface Produto {
@@ -27,6 +37,7 @@ interface Produto {
   pt_ue?: boolean | string
   brasil?: boolean | string
   fonte_ue?: string
+  modo_uso?: ModoUso
 }
 
 interface Categoria {
@@ -56,6 +67,7 @@ function BadgeJur({ ok, label }: { ok: boolean | string; label: string }) {
 }
 
 function CardProduto({ p, jur }: { id: string; p: Produto; jur: Jur }) {
+  const { t } = useI18n()
   const [open, setOpen] = useState(false)
 
   const jurOk = jur === 'ptue' ? p.pt_ue : p.brasil
@@ -70,7 +82,7 @@ function CardProduto({ p, jur }: { id: string; p: Produto; jur: Jur }) {
             {p.formula && <span className="font-mono text-xs text-stone-500">{p.formula}</span>}
             {bloqueado && (
               <span className="text-xs px-2 py-0.5 rounded-full border bg-red-900/30 text-red-300 border-red-700/30 font-medium">
-                ❌ Proibido {jur === 'ptue' ? 'PT/UE' : 'BR'}
+                {t('produtos.proibido', { jur: jur === 'ptue' ? 'PT/UE' : 'BR' })}
               </span>
             )}
           </div>
@@ -86,7 +98,7 @@ function CardProduto({ p, jur }: { id: string; p: Produto; jur: Jur }) {
           {p.descricao && <p className="text-sm text-stone-300">{p.descricao}</p>}
           {p.acção && (
             <div>
-              <p className="section-title">Mecanismo de ação</p>
+              <p className="section-title">{t('produtos.label.mecanismo')}</p>
               <p className="text-sm text-stone-300">{p.acção}</p>
             </div>
           )}
@@ -94,25 +106,25 @@ function CardProduto({ p, jur }: { id: string; p: Produto; jur: Jur }) {
           <div className="grid grid-cols-2 gap-2 text-xs">
             {p.dose_tipica_g_hL && (
               <div className="bg-stone-800 rounded-lg p-2.5">
-                <p className="text-stone-500 mb-0.5">Dose típica</p>
+                <p className="text-stone-500 mb-0.5">{t('produtos.label.dose_tipica')}</p>
                 <p className="text-stone-200 font-mono">{p.dose_tipica_g_hL} g/hL</p>
               </div>
             )}
             {p.dose_max_g_hL && (
               <div className="bg-stone-800 rounded-lg p-2.5">
-                <p className="text-stone-500 mb-0.5">Dose máxima</p>
+                <p className="text-stone-500 mb-0.5">{t('produtos.label.dose_max')}</p>
                 <p className="text-stone-200 font-mono">{p.dose_max_g_hL} g/hL</p>
               </div>
             )}
             {p.fator_so2 && (
               <div className="bg-stone-800 rounded-lg p-2.5">
-                <p className="text-stone-500 mb-0.5">Factor SO₂</p>
+                <p className="text-stone-500 mb-0.5">{t('produtos.label.fator_so2')}</p>
                 <p className="text-stone-200 font-mono">{p.fator_so2}</p>
               </div>
             )}
             {p.concentracao_g_L && (
               <div className="bg-stone-800 rounded-lg p-2.5">
-                <p className="text-stone-500 mb-0.5">Concentração</p>
+                <p className="text-stone-500 mb-0.5">{t('produtos.label.concentracao')}</p>
                 <p className="text-stone-200 font-mono">{p.concentracao_g_L} g/L</p>
               </div>
             )}
@@ -126,7 +138,7 @@ function CardProduto({ p, jur }: { id: string; p: Produto; jur: Jur }) {
 
           {(p.fase || p.fase_pt_ue || p.fase_brasil) && (
             <div>
-              <p className="section-title">Fase de aplicação</p>
+              <p className="section-title">{t('produtos.label.fase')}</p>
               <div className="flex flex-wrap gap-1">
                 {(p.fase ?? []).map((f, i) => (
                   <span key={i} className="text-xs bg-stone-800 border border-stone-700 text-stone-400 px-2 py-0.5 rounded">{f}</span>
@@ -149,6 +161,54 @@ function CardProduto({ p, jur }: { id: string; p: Produto; jur: Jur }) {
           )}
 
           {p.fonte_ue && <p className="legal-ref">{p.fonte_ue}</p>}
+
+          {p.modo_uso && (
+            <div className="border border-stone-700 rounded-xl p-3 space-y-2.5 bg-stone-900/50">
+              <p className="text-xs font-semibold text-wine-300 uppercase tracking-wide">{t('produtos.modo_uso.title')}</p>
+              <p className="text-[10px] text-amber-400/80 italic">{t('produtos.modo_uso.aviso')}</p>
+
+              <div className="space-y-2 text-xs">
+                <div>
+                  <p className="text-stone-500 font-medium mb-0.5">{t('produtos.modo_uso.preparacao')}</p>
+                  <p className="text-stone-300">{p.modo_uso.preparacao}</p>
+                </div>
+                <div>
+                  <p className="text-stone-500 font-medium mb-0.5">{t('produtos.modo_uso.antecedencia')}</p>
+                  <p className="text-stone-300">{p.modo_uso.antecedencia}</p>
+                </div>
+                <div>
+                  <p className="text-stone-500 font-medium mb-0.5">{t('produtos.modo_uso.aplicacao')}</p>
+                  <p className="text-stone-300">{p.modo_uso.aplicacao}</p>
+                </div>
+                {p.modo_uso.prevencao && (
+                <div>
+                  <p className="text-stone-500 font-medium mb-0.5">{t('produtos.modo_uso.prevencao')}</p>
+                  <p className="text-stone-300">{p.modo_uso.prevencao}</p>
+                </div>
+              )}
+
+              {Object.keys(p.modo_uso.fases).length > 0 && (
+                  <div>
+                    <p className="text-stone-500 font-medium mb-1">{t('produtos.modo_uso.por_fase')}</p>
+                    <div className="space-y-1.5">
+                      {Object.entries(p.modo_uso.fases).map(([fase, nota]) => (
+                        <div key={fase} className="bg-stone-800/60 rounded-lg px-2.5 py-1.5">
+                          <p className="text-stone-400 text-[10px] uppercase tracking-wide mb-0.5">{fase.replace(/_/g, ' ')}</p>
+                          <p className="text-stone-300">{nota}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              {p.modo_uso.aviso_modo && (
+                <div className="alert-warn text-xs">
+                  ⚠ {p.modo_uso.aviso_modo}
+                </div>
+              )}
+            </div>
+          )}
         </div>
       )}
     </div>
@@ -156,6 +216,7 @@ function CardProduto({ p, jur }: { id: string; p: Produto; jur: Jur }) {
 }
 
 export default function Produtos({ jur }: Props) {
+  const { t } = useI18n()
   const [search, setSearch] = useState('')
   const [cat, setCat] = useState<string | null>(null)
 
@@ -179,7 +240,7 @@ export default function Produtos({ jur }: Props) {
       <div className="flex flex-col sm:flex-row gap-3">
         <input
           type="text"
-          placeholder="Pesquisar produto, fórmula, mecanismo..."
+          placeholder={t('produtos.search')}
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           className="flex-1"
@@ -191,7 +252,7 @@ export default function Produtos({ jur }: Props) {
               cat === null ? 'border-wine-600 text-wine-300 bg-wine-900/30' : 'border-stone-700 text-stone-400 hover:text-stone-200'
             }`}
           >
-            Todos
+            {t('produtos.filter.todos')}
           </button>
           {catKeys.map((k) => (
             <button

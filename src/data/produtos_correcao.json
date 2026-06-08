@@ -5,11 +5,26 @@
       "so2_gasoso": {
         "nome": "Dióxido de enxofre gasoso",
         "formula": "SO₂",
-        "fator_so2": 1.000,
+        "fator_so2": 1.0,
         "dose_tipica_g_hL": "5–20",
-        "fase": ["mosto", "vinho"],
+        "fase": [
+          "mosto",
+          "vinho"
+        ],
         "pt_ue": true,
-        "brasil": true
+        "brasil": true,
+        "modo_uso": {
+          "preparacao": "Não requer preparação prévia. Utilizar diretamente do cilindro via equipamento de sulfitagem (sulfitômetro ou dosificador com rotâmetro).",
+          "antecedencia": "Imediato — apenas verificar pressão do cilindro e calibração do dosificador.",
+          "aplicacao": "Injetar diretamente no mosto ou vinho por tubo mergulhador, preferencialmente durante trasfega ou em câmara fechada. Quantidade controlada por rotâmetro (g/hL). Utilizar sempre EPI (máscara com filtro para gases ácidos). Verificar SO₂ livre 24 h após tratamento.",
+          "fases": {
+            "fermentação": "Adição no início ou sobre uva/mosto antes de inoculação de LSA. Cuidado: SO₂ excessivo inibe a levedura — respeitar tempo de espera de 24–48 h antes de inocular.",
+            "estágio": "Adição controlada durante trasfegas para manter SO₂ livre adequado ao pH.",
+            "pre_engarrafamento": "Ajuste final de SO₂ livre 1–2 dias antes de engarrafar. Calcular a dose em função do SO₂ molecular desejado."
+          },
+          "aviso_modo": "Gás tóxico — nunca utilizar em espaços confinados sem ventilação forçada. Limite de exposição: 0,5 ppm (TLV-TWA).",
+          "prevencao": "Adição sistemática durante trasfegas (mesmo sem defeito detetado) para repor perdas de SO₂ livre por volatilização. Sulfitagem preventiva na chegada da uva (5–8 g/hL sobre a cuba) para inibir oxidação e microflora selvagem antes de inocular LSA."
+        }
       },
       "metabissulfito_potassio": {
         "nome": "Metabissulfito de potássio",
@@ -17,27 +32,69 @@
         "fator_so2": 0.572,
         "descricao": "57,2 g de K₂S₂O₅ libertam 32,7 g de SO₂ activo",
         "dose_equivalente_calculo": "dose_so2_g / 0.572 = dose_k2s2o5_g",
-        "fase": ["mosto", "vinho"],
+        "fase": [
+          "mosto",
+          "vinho"
+        ],
         "pt_ue": true,
-        "brasil": true
+        "brasil": true,
+        "modo_uso": {
+          "preparacao": "Dissolver em pequena porção de vinho ou água (proporção 1:10 a 1:20 em peso/volume). Agitar até dissolução completa. Preparar imediatamente antes de usar — não guardar solução preparada por mais de 2 h.",
+          "antecedencia": "15–30 minutos antes da adição.",
+          "aplicacao": "Adicionar a solução lentamente ao vinho/mosto com agitação suave contínua (sem arejamento excessivo). Para grandes volumes, adicionar em vários pontos do depósito ou durante a trasfega. Verificar SO₂ livre 24 h depois e ajustar se necessário.",
+          "fases": {
+            "fermentação": "Adição sobre a uva ou mosto antes de inocular. Respeitar dose (5–8 g/hL) e aguardar 24–48 h antes de inocular LSA.",
+            "pos_fermentacao": "Adição durante primeira trasfega para proteger o vinho de oxidação.",
+            "estágio": "Adições regulares (a cada 2–4 meses conforme perdas por volatilização) para manter SO₂ livre alvo.",
+            "pre_engarrafamento": "Ajuste final 2–3 dias antes de engarrafar. Medir SO₂ livre após 24 h e recalcular se necessário."
+          },
+          "aviso_modo": "Produto irritante — usar EPI (luvas, óculos). Conservar em recipiente hermético, ao abrigo da humidade e luz. Produto em pó absorve humidade e perde eficácia.",
+          "prevencao": "Sulfitagem preventiva de mosto na vindima (5–8 g/hL). Adições regulares a cada 2–4 meses durante o estágio para manter SO₂ livre no alvo (calcular sempre em função do pH). Proteção de barricas vazias: solução a 5% para fumigação interior."
+        }
       },
       "bissulfito_potassio": {
         "nome": "Bissulfito de potássio",
         "formula": "KHSO₃",
         "fator_so2": 0.538,
         "dose_equivalente_calculo": "dose_so2_g / 0.538 = dose_khso3_g",
-        "fase": ["mosto", "vinho"],
+        "fase": [
+          "mosto",
+          "vinho"
+        ],
         "pt_ue": true,
-        "brasil": true
+        "brasil": true,
+        "modo_uso": {
+          "preparacao": "Dissolver em água ou vinho na proporção 1:10. Agitar até dissolução completa. Usar imediatamente após preparação.",
+          "antecedencia": "15–30 minutos antes da adição.",
+          "aplicacao": "Adicionar ao vinho/mosto com agitação suave. Processo idêntico ao metabissulfito. Verificar SO₂ livre 24 h após adição.",
+          "fases": {
+            "fermentação": "Adição pré-fermentativa sobre mosto. Aguardar 24–48 h antes de inocular.",
+            "estágio": "Manutenção periódica de SO₂ livre durante estágio.",
+            "pre_engarrafamento": "Ajuste final de SO₂ livre."
+          },
+          "aviso_modo": "Produto irritante — usar EPI. Em pH baixo liberta SO₂ livre imediatamente — ter cuidado com inalação durante a preparação.",
+          "prevencao": "Uso preventivo idêntico ao metabissulfito de potássio — alternativa para quem prefere produto já parcialmente ionizado. Adições periódicas de manutenção durante estágio."
+        }
       },
       "so2_solucao_6pct": {
         "nome": "Solução aquosa SO₂ 6%",
         "concentracao_g_L": 60,
-        "fator_so2": 0.060,
+        "fator_so2": 0.06,
         "descricao": "1 mL de solução 6% = 0,06 g de SO₂; 1 L = 60 g",
         "uso_tipico": "dosagem manual em pequenas quantidades",
         "pt_ue": true,
-        "brasil": true
+        "brasil": true,
+        "modo_uso": {
+          "preparacao": "Produto pronto a usar (60 g SO₂/L). Não requer preparação prévia.",
+          "antecedencia": "Imediato — verificar concentração da solução e calibrar seringa/doseador volumétrico.",
+          "aplicacao": "Dosar com seringa graduada ou doseador peristáltico. Adicionar diretamente ao vinho com agitação. Útil para adições de precisão em pequenos volumes (até 1000 L) ou para tratamento individual de barricas (1–2 mL por barrica de 225 L = 0,26–0,52 g SO₂).",
+          "fases": {
+            "estágio": "Aplicação ideal em barricas — 1 mL/barrica de 225 L a cada 2–3 meses, conforme evolução do SO₂.",
+            "pre_engarrafamento": "Pequenos ajustes de SO₂ livre em lotes de pequeno volume."
+          },
+          "aviso_modo": "Conservar em local fresco e escuro. Verificar sempre a concentração da solução antes de dosar — soluções antigas podem perder concentração por volatilização.",
+          "prevencao": "Reposição preventiva de SO₂ livre em barricas: 1–2 mL/barrica de 225 L a cada 2–3 meses. Adição sistemática de pequenas doses de precisão em lotes de pequeno volume durante estágio."
+        }
       }
     },
     "formula_so2_molecular": {
@@ -45,15 +102,33 @@
       "objectivo_mg_L": 0.4,
       "descricao": "SO₂ molecular activo; é a fracção antimicrobiana; objectivo mínimo: 0,4 mg/L",
       "tabela_ph": {
-        "3.0": { "so2_livre_para_0.4_molecular": 6.6 },
-        "3.2": { "so2_livre_para_0.4_molecular": 10.5 },
-        "3.4": { "so2_livre_para_0.4_molecular": 16.6 },
-        "3.5": { "so2_livre_para_0.4_molecular": 20.9 },
-        "3.6": { "so2_livre_para_0.4_molecular": 26.3 },
-        "3.7": { "so2_livre_para_0.4_molecular": 33.2 },
-        "3.8": { "so2_livre_para_0.4_molecular": 41.8 },
-        "3.9": { "so2_livre_para_0.4_molecular": 52.6 },
-        "4.0": { "so2_livre_para_0.4_molecular": 66.2 }
+        "3.0": {
+          "so2_livre_para_0.4_molecular": 6.6
+        },
+        "3.2": {
+          "so2_livre_para_0.4_molecular": 10.5
+        },
+        "3.4": {
+          "so2_livre_para_0.4_molecular": 16.6
+        },
+        "3.5": {
+          "so2_livre_para_0.4_molecular": 20.9
+        },
+        "3.6": {
+          "so2_livre_para_0.4_molecular": 26.3
+        },
+        "3.7": {
+          "so2_livre_para_0.4_molecular": 33.2
+        },
+        "3.8": {
+          "so2_livre_para_0.4_molecular": 41.8
+        },
+        "3.9": {
+          "so2_livre_para_0.4_molecular": 52.6
+        },
+        "4.0": {
+          "so2_livre_para_0.4_molecular": 66.2
+        }
       }
     }
   },
@@ -66,11 +141,26 @@
         "mm_g_mol": 150.09,
         "meq_por_g_L": 13.3,
         "descricao": "Principal acidificante autorizado UE e Brasil; mais estável no vinho",
-        "fase": ["mosto", "vinho"],
+        "fase": [
+          "mosto",
+          "vinho"
+        ],
         "pt_ue": true,
         "brasil": true,
-        "dose_max_g_L_mosto_ue": 1.50,
-        "dose_max_g_L_vinho_ue": 2.50
+        "dose_max_g_L_mosto_ue": 1.5,
+        "dose_max_g_L_vinho_ue": 2.5,
+        "modo_uso": {
+          "preparacao": "Dissolver em pequena porção de vinho (NUNCA em água pura — risco de cristalização imediata de tartarato de cálcio). Proporção recomendada: 1 parte de ácido para 5–10 partes de vinho. Agitar até dissolução completa.",
+          "antecedencia": "30–60 minutos antes da adição. Preparar imediatamente antes de usar.",
+          "aplicacao": "Adicionar a solução lentamente ao vinho ou mosto com agitação suave e contínua. Dividir a dose em 2–3 adições espaçadas de 24–48 h se a dose total for superior a 1,5 g/L, monitorizando pH após cada adição. Medir pH 24 h após a adição final e ajustar se necessário. Efetuar sempre prova sensorial antes e depois.",
+          "fases": {
+            "fermentação": "Adição de preferência no início da fermentação alcoólica (sobre o mosto). A levedura em atividade facilita a mistura. O ácido tartárico é estável e não é metabolizado pela levedura.",
+            "pos_fermentacao": "Pode ser adicionado após FML completa, mas verificar que a FML não está ainda em curso (o ácido málico não reage com o tartárico mas o pH mais baixo pode inibir bactérias lácticas).",
+            "pre_engarrafamento": "Adição possível, mas exige repouso mínimo de 7–14 dias antes de engarrafar para equilibrar e verificar estabilidade tartárica (eventual precipitação de KHT)."
+          },
+          "aviso_modo": "Acidificação e desacidificação são práticas exclusivas — não podem ser realizadas no mesmo vinho no mesmo ano vitícola (UE). Registar sempre a dose total adicionada para cumprimento do limite legal.",
+          "prevencao": "Uso preventivo em anos de colheita com pH previsivelmente elevado (pH uva >3,4): acidificar o mosto ainda antes da fermentação para garantir condições ideais de pH para a levedura e reduzir necessidade de SO₂. Acidificação preventiva do mosto branco antes de inoculação para proteger contra oxidação enzimática."
+        }
       },
       "acido_malico": {
         "nome": "Ácido málico",
@@ -78,9 +168,23 @@
         "mm_g_mol": 134.09,
         "meq_por_g_L": 14.9,
         "descricao": "Autorizado na UE e Brasil; atenção — pode ser metabolizado por bactérias lácticas (FML)",
-        "fase": ["mosto", "vinho"],
+        "fase": [
+          "mosto",
+          "vinho"
+        ],
         "pt_ue": true,
-        "brasil": true
+        "brasil": true,
+        "modo_uso": {
+          "preparacao": "Dissolver em água morna (40–50°C) ou diretamente no mosto. Proporção 1:10 (massa:volume). O ácido málico tem maior solubilidade que o tartárico a temperaturas mais altas.",
+          "antecedencia": "30 minutos antes da adição.",
+          "aplicacao": "Adicionar ao mosto antes do início da fermentação alcoólica (preferencial) ou durante a fermentação. Misturar bem. ATENÇÃO: o ácido málico pode ser metabolizado por bactérias lácticas durante a FML — se a FML não for desejada, garantir que o vinho está microbiologicamente estável antes de adicionar.",
+          "fases": {
+            "fermentação": "Adição preferencial no início da fermentação alcoólica, sobre o mosto.",
+            "pos_fermentacao": "Não adicionar se FML ainda não estiver completa ou se houver risco de FML espontânea."
+          },
+          "aviso_modo": "O ácido málico é metabolizado por Oenococcus oeni durante a FML — 1 g/L de ácido málico produz ~0,67 g/L de ácido láctico + CO₂. Contabilizar na acidez final esperada.",
+          "prevencao": "Adição preventiva em mostos muito pouco ácidos de regiões quentes, antes da fermentação. Em vinhos onde a FML é indesejada, a adição de ácido málico reforça a acidez mesmo que uma pequena parte seja eventualmente metabolizada."
+        }
       },
       "acido_lactico": {
         "nome": "Ácido láctico",
@@ -88,9 +192,23 @@
         "mm_g_mol": 90.08,
         "meq_por_g_L": 11.1,
         "descricao": "Autorizado na UE (desde 2008) e Brasil",
-        "fase": ["mosto", "vinho"],
+        "fase": [
+          "mosto",
+          "vinho"
+        ],
         "pt_ue": true,
-        "brasil": true
+        "brasil": true,
+        "modo_uso": {
+          "preparacao": "Produto comercial em solução aquosa (habitualmente 80–88% w/w). Diluir na proporção 1:10 em vinho ou água antes de adicionar. Não aplicar concentrado diretamente.",
+          "antecedencia": "15–30 minutos (apenas para diluição e homogeneização).",
+          "aplicacao": "Adicionar a solução diluída ao vinho com agitação suave. Medir pH 24 h após adição e ajustar. Produto mais suave organolepticamente do que o tartárico em alguns estilos.",
+          "fases": {
+            "pos_fermentacao": "Adição preferencial após FML completa, em vinho estabilizado microbiologicamente.",
+            "pre_engarrafamento": "Possível ajuste fino de acidez. Verificar estabilidade tartárica após adição."
+          },
+          "aviso_modo": "Verificar concentração da solução comercial (80–88%) antes de calcular a dose — a variação na concentração afecta significativamente a dose efectiva.",
+          "prevencao": "Adição preventiva de acidez em vinhos onde a FML já ocorreu e a acidez ficou insuficiente. Uso em regiões quentes para compensar perda de ácido tartárico e málico durante maturação."
+        }
       },
       "acido_citrico": {
         "nome": "Ácido cítrico",
@@ -98,11 +216,23 @@
         "mm_g_mol": 192.12,
         "meq_por_g_L": 15.6,
         "descricao": "PROIBIDO como acidificante na UE; AUTORIZADO no Brasil (máx. 1,0 g/L total)",
-        "fase": ["vinho"],
+        "fase": [
+          "vinho"
+        ],
         "pt_ue": false,
         "brasil": true,
         "dose_max_brasil": 1.0,
-        "aviso": "Proibido na UE como prática enológica de acidificação — apenas vestigial nas uvas é tolerado"
+        "aviso": "Proibido na UE como prática enológica de acidificação — apenas vestigial nas uvas é tolerado",
+        "modo_uso": {
+          "preparacao": "Dissolver em pequena porção de vinho ou água (1:10). Agitar até dissolução completa.",
+          "antecedencia": "15–30 minutos.",
+          "aplicacao": "Adicionar ao vinho acabado com agitação. Produto aplicado exclusivamente como agente complexante de ferro (anti-casse ferrica) ou acidificante (apenas no Brasil). Não utilizar na UE como acidificante.",
+          "fases": {
+            "pre_engarrafamento": "Uso principal no Brasil como acidificante de ajuste fino. Na UE, uso restrito a agente complexante de Fe³⁺ (0,5 g/L máx.) para prevenir casse ferrica."
+          },
+          "aviso_modo": "PROIBIDO como acidificante na UE. No Brasil, limite de 1,0 g/L total. O ácido cítrico pode ser degradado por bactérias lácticas activas a diacetilo e ácido acético — não adicionar se o vinho não estiver microbiologicamente estável.",
+          "prevencao": "Uso preventivo no Brasil: adição de ácido cítrico em mostos de regiões quentes para garantir pH <3,5 antes da fermentação. Na UE: adição preventiva de 0,3–0,5 g/L em vinhos susceptíveis a casse ferrica antes de engarrafar."
+        }
       }
     }
   },
@@ -115,30 +245,73 @@
         "mm_g_mol": 100.12,
         "fator_descida_g_L_tartarico": 0.67,
         "descricao": "0,67 g/L KHCO₃ = descida de 1,0 g/L de AT (equiv. tartárico). Reacção: KHCO₃ + HT → KHT↓ + H₂O + CO₂",
-        "fase": ["mosto", "vinho"],
+        "fase": [
+          "mosto",
+          "vinho"
+        ],
         "pt_ue": true,
         "brasil": true,
-        "dose_max_g_L_ue": 1.00
+        "dose_max_g_L_ue": 1.0,
+        "modo_uso": {
+          "preparacao": "Dissolver em água fria ou vinho (1:10 em massa:volume). Agitar até dissolução completa. Preparar imediatamente antes de usar.",
+          "antecedencia": "30–60 minutos para dissolução completa.",
+          "aplicacao": "Adicionar a solução lentamente ao vinho com agitação suave. Deixar repousar 48–72 h a baixa temperatura (idealmente 8–12°C): o KHCO₃ reage com o ácido tartárico formando KHT (bitartarato de potássio) que precipita. Trasfecar cuidadosamente para separar do depósito de KHT. Medir AT e pH após 72 h e ajustar se necessário.",
+          "fases": {
+            "fermentação": "Adição sobre mosto no início da fermentação, mas efeito menos previsível — preferir sobre vinho.",
+            "pos_fermentacao": "Momento preferencial — após FML completa, antes do frio de inverno. O frio potencia a precipitação do KHT formado.",
+            "estágio": "Possível ajuste de acidez durante o estágio, seguido de período de repouso a frio."
+          },
+          "aviso_modo": "A reação com ácido tartárico liberta CO₂ — cuidado com recipientes muito cheios (espuma). Verificar sempre pH e AT após o período de precipitação. Registar dose para cumprimento do limite legal (1,0 g/L de descida de AT).",
+          "prevencao": "Adição preventiva em mostos muito ácidos (AT >9 g/L) antes da fermentação para garantir que a acidez final não bloqueie a FML ou afete negativamente o equilíbrio gustativo."
+        }
       },
       "carbonato_calcio": {
         "nome": "Carbonato de cálcio",
         "formula": "CaCO₃",
         "mm_g_mol": 100.09,
-        "fator_descida_g_L_tartarico": 0.50,
+        "fator_descida_g_L_tartarico": 0.5,
         "descricao": "0,50 g/L CaCO₃ = descida de 1,0 g/L de AT. Pode deixar excesso de Ca²⁺ (risco de casse cálcica)",
-        "fase": ["mosto", "vinho"],
+        "fase": [
+          "mosto",
+          "vinho"
+        ],
         "pt_ue": true,
         "brasil": true,
-        "dose_max_g_L_ue": 1.00
+        "dose_max_g_L_ue": 1.0,
+        "modo_uso": {
+          "preparacao": "Pode ser adicionado seco ou como suspensão em água (1:5). Agitar antes de adicionar para ressuspender.",
+          "antecedencia": "Usar imediatamente após a preparação da suspensão.",
+          "aplicacao": "Adicionar ao vinho ou mosto com agitação vigorosa. Deixar repousar 48–72 h a baixa temperatura para precipitação do tartarato de cálcio (CaT). Trasfecar com cuidado. ATENÇÃO: o CaT precipita mais lentamente que o KHT — pode continuar a precipitar meses após a adição. Risco de casse cálcica se dose excessiva.",
+          "fases": {
+            "fermentação": "Adição sobre mosto (método clássico para mostos muito ácidos). O excesso de Ca²⁺ pode ser controlado por análise posterior.",
+            "pos_fermentacao": "Adição possível, mas risco de instabilidade cálcica deve ser avaliado (teste de estabilidade Ca²⁺)."
+          },
+          "aviso_modo": "Preferir KHCO₃ em mosto ou vinho para maior controlo. O CaCO₃ pode deixar excesso de Ca²⁺ que causa casse cálcica a longo prazo. Fazer sempre jar-test antes de tratar o lote completo.",
+          "prevencao": "Correção preventiva de acidez excessiva em mostos de colheitas frias, antes de inoculação. Uso preventivo em regiões onde a acidez natural é estruturalmente alta (altitude, clima fresco)."
+        }
       },
       "tartarato_neutro_potassio": {
         "nome": "Tartarato neutro de potássio",
         "formula": "K₂C₄H₄O₆",
         "fator_descida_g_L_tartarico": 0.85,
         "descricao": "0,85 g/L tartarato neutro de K = descida de 1,0 g/L de AT. Mais suave; não afecta mineralidade",
-        "fase": ["mosto", "vinho"],
+        "fase": [
+          "mosto",
+          "vinho"
+        ],
         "pt_ue": true,
-        "brasil": true
+        "brasil": true,
+        "modo_uso": {
+          "preparacao": "Dissolver em água morna (40–50°C) em proporção 1:10. Agitar até dissolução completa.",
+          "antecedencia": "30–60 minutos para dissolução a quente.",
+          "aplicacao": "Adicionar a solução ao vinho com agitação suave. Deixar repousar 48–72 h a baixa temperatura. A ação é mais suave e gradual que o KHCO₃. Trasfecar e verificar AT e pH.",
+          "fases": {
+            "pos_fermentacao": "Preferencial — após FML e antes de período frio para maximizar precipitação.",
+            "estágio": "Adição possível em qualquer fase do estágio."
+          },
+          "aviso_modo": "Produto com menor ação desacidificante por grama que o KHCO₃ (fator 0,85 vs 0,67). Verificar dose com base nos parâmetros analíticos reais do vinho.",
+          "prevencao": "Adição preventiva para desacidificação suave em mostos ou vinhos jovens com AT moderadamente elevada, onde se prefere uma ação gradual sem risco de sobre-desacidificação."
+        }
       }
     }
   },
@@ -155,7 +328,17 @@
         "descricao": "Adição de sacarose ao mosto para elevar o TAV potencial",
         "pt_ue": false,
         "brasil": true,
-        "aviso": "PROIBIDO em Portugal e restante Zona C da UE"
+        "aviso": "PROIBIDO em Portugal e restante Zona C da UE",
+        "modo_uso": {
+          "preparacao": "Dissolver em vinho morno (30–35°C) ou em água — NUNCA adicionar sacarose em pó diretamente ao vinho (dissolução incompleta e risco de paragem de fermentação). Proporção: dissolver em 5–10× o volume de vinho ou água. Misturar até dissolução completa.",
+          "antecedencia": "1–2 horas para dissolução e arrefecimento até temperatura do vinho.",
+          "aplicacao": "Adicionar a solução de xarope ao mosto em fermentação ativa (não em mosto inerte). Adicionar gradualmente ao longo de 24–48 h para não sobrecarregar a levedura (fermentação em 'fed-batch'). Monitorizar densidade/Brix durante a adição. Calcular o volume de solução e subtrair do volume total para não ultrapassar os limites legais.",
+          "fases": {
+            "fermentação": "Adição EXCLUSIVAMENTE durante a fermentação alcoólica ativa, nunca antes de inocular nem após a fermentação. A levedura deve estar em plena atividade."
+          },
+          "aviso_modo": "PROIBIDO em Portugal e restante Zona C da UE. No Brasil: apenas categorias Reservado (+2% vol máx.) e Reserva (+1% vol máx.). Gran Reserva e Nobre: PROIBIDO. Registar rigorosamente a dose adicionada (kg e TAV estimado) para declaração obrigatória.",
+          "prevencao": "Uso preventivo em anos frios (Brasil: Reservado/Reserva) em que a previsão de TAV natural é claramente insuficiente — decidir e dosear antes de ultrapassar 1/3 da fermentação para integração ideal."
+        }
       },
       "mcr": {
         "nome": "Mosto Concentrado Rectificado (MCR)",
@@ -166,7 +349,17 @@
         "ratio_glucose_frutose": "1:1",
         "descricao": "Mosto concentrado e purificado (pH máx. 5,0 a 25°Brix); aprox. 24 mL/L por +1% vol",
         "pt_ue": true,
-        "brasil": true
+        "brasil": true,
+        "modo_uso": {
+          "preparacao": "Produto concentrado (±700 g/L açúcares, Brix ≥61,7%). Pode ser adicionado diretamente ou diluído em pequena porção de mosto. Aquecer ligeiramente se estiver frio (viscosidade elevada dificulta dosagem).",
+          "antecedencia": "Imediato — calcular volume exacto antes de adicionar (densidade elevada, dosar em volume, não em massa).",
+          "aplicacao": "Adicionar ao mosto durante a fermentação alcoólica ativa, gradualmente ao longo de 24–48 h (fed-batch). Monitorizar densidade frequentemente. Calcular: ±24 mL/L de mosto por +1% vol de TAV. Contabilizar o volume adicionado (altera o volume total do lote — declarar volume final correto).",
+          "fases": {
+            "fermentação": "Adição durante fermentação alcoólica ativa. Pode ser usado também para ajuste de mosto antes da fermentação (pré-fermentativo)."
+          },
+          "aviso_modo": "Autorizado em PT/UE e BR. Verificar pH, acidez e outros parâmetros do MCR antes de usar — produto deve ter pH ≤5,0 a 25°Brix. A adição de MCR dilui ligeiramente a acidez — verificar AT antes e depois.",
+          "prevencao": "Enriquecimento preventivo calculado com base na análise do mosto antes ou no início da fermentação. Preferir MCR a sacarose em PT/UE — único método autorizado na Zona C."
+        }
       },
       "mc": {
         "nome": "Mosto Concentrado (MC)",
@@ -174,7 +367,17 @@
         "brix_minimo": 50.9,
         "descricao": "Mosto concentrado por calor ou vácuo; mínimo 582 g/L de açúcares; pH ~ 3",
         "pt_ue": true,
-        "brasil": true
+        "brasil": true,
+        "modo_uso": {
+          "preparacao": "Idêntico ao MCR — aquecer se necessário para reduzir viscosidade. Menor pureza que MCR (cor mais escura, pH mais baixo).",
+          "antecedencia": "Imediato.",
+          "aplicacao": "Idêntico ao MCR. Dosar em volume com base na densidade conhecida do lote. Calcular ±25 mL/L por +1% vol (valor indicativo — confirmar com análise).",
+          "fases": {
+            "fermentação": "Adição durante fermentação ativa."
+          },
+          "aviso_modo": "O MC tem cor própria (amarelo-âmbar) — pode influenciar a cor de vinhos brancos. Preferir MCR para vinhos brancos de qualidade.",
+          "prevencao": "Idêntico ao MCR em termos de timing preventivo. Usar quando o MCR não estiver disponível; verificar impacto na cor para vinhos brancos."
+        }
       }
     }
   },
@@ -186,45 +389,122 @@
         "tipo": "coloide mineral",
         "dose_tipica_g_hL": "25–150",
         "acção": "Adsorção de proteínas (catiónicas) por troca iónica com argila carregada negativamente",
-        "fase": ["mosto", "vinho"],
+        "fase": [
+          "mosto",
+          "vinho"
+        ],
         "pt_ue": true,
         "brasil": true,
-        "nota": "Sempre realizar jar-test para determinar dose mínima eficaz; excesso remove aromas"
+        "nota": "Sempre realizar jar-test para determinar dose mínima eficaz; excesso remove aromas",
+        "modo_uso": {
+          "preparacao": "OBRIGATÓRIO: hidratar em água quente (50–60°C) 12–24 h antes da aplicação. Adicionar a bentonite lentamente à água (nunca o contrário) com agitação vigorosa para evitar grumos. Proporção: 100–200 g de bentonite por litro de água (gel 10–20%). Deixar hidratar no mínimo 12 h, idealmente 24 h, com agitação ocasional.",
+          "antecedencia": "12–24 horas de hidratação OBRIGATÓRIA antes de adicionar ao vinho.",
+          "aplicacao": "Realizar sempre jar-test em laboratório (5–10 amostras com doses crescentes) para determinar a dose mínima eficaz antes de tratar o lote. Adicionar o gel diluído ao vinho durante a trasfega ou com bomba de recirculação. Agitar bem. Aguardar 7–15 dias de repouso para sedimentação. Trasfecar com cuidado — o depósito de bentonite é voluminoso. Filtrar se necessário.",
+          "fases": {
+            "fermentação": "Adição sobre mosto antes da fermentação (mosto branco) para reduzir proteínas de uva e clarificar pré-fermentativo. Facilita a fermentação.",
+            "pos_fermentacao": "Aplicação principal — após FML completa em brancos e rosés, para estabilização proteica.",
+            "pre_engarrafamento": "Último tratamento de estabilização proteica. Verificar sempre o resultado com teste de calor (80°C/30 min) antes de engarrafar."
+          },
+          "aviso_modo": "Bentonite NÃO hidratada não funciona — a hidratação é passo crítico. O excesso de bentonite remove aromas e volume de boca — usar sempre a dose mínima eficaz (jar-test). Registar dose para declaração enológica.",
+          "prevencao": "Uso preventivo em mostos brancos e rosés antes da fermentação: colagem pré-fermentativa (10–20 g/hL) para remover proteínas de uva que causariam instabilidade proteica posterior. Reduz a necessidade de tratamento pós-fermentativo e facilita a clarificação natural."
+        }
       },
       "carvao_ativado": {
         "nome": "Carvão activado oenológico",
         "dose_max_g_hL": 100,
         "acção": "Adsorção de pigmentos, off-flavors, fenóis voláteis",
-        "fase_pt_ue": ["mosto", "vinho branco", "vinho rosé"],
-        "fase_brasil": ["mosto", "vinho tinto", "vinho branco", "vinho rosé"],
+        "fase_pt_ue": [
+          "mosto",
+          "vinho branco",
+          "vinho rosé"
+        ],
+        "fase_brasil": [
+          "mosto",
+          "vinho tinto",
+          "vinho branco",
+          "vinho rosé"
+        ],
         "pt_ue": "Parcial — PROIBIDO em vinhos tintos",
         "brasil": true,
-        "aviso_ue": "Proibido em vinhos tintos na UE"
+        "aviso_ue": "Proibido em vinhos tintos na UE",
+        "modo_uso": {
+          "preparacao": "Produto em pó — pode ser adicionado diretamente ou pre-suspenso em pequena porção de vinho/água (1:10) com agitação. Usar sempre EPI (máscara para pó, luvas, óculos).",
+          "antecedencia": "Imediato — não requer hidratação prévia.",
+          "aplicacao": "Adicionar ao mosto ou vinho com agitação vigorosa durante 30–60 minutos para máximo contato. Deixar em contato 12–48 h com agitação ocasional. Filtrar com terras diatomáceas ou através de filtro prensa — o carvão não sedimenta facilmente. SEMPRE filtrar antes de engarrafar.",
+          "fases": {
+            "fermentação": "Adição sobre mosto branco para remoção de compostos fenólicos e off-flavours de origem varietal.",
+            "pos_fermentacao": "Remoção de off-flavours, pigmentos excessivos e compostos oxidados.",
+            "estágio": "Tratamento pontual de lotes com problemas de cor ou aroma."
+          },
+          "aviso_modo": "PROIBIDO em vinhos TINTOS na UE [Reg. CE 606/2009]. Autorizado em tintos no Brasil. O carvão é adsortivo não-seletivo — remove aromas varietais e compostos positivos juntamente com os indesejáveis. Usar na dose mínima necessária e sempre com jar-test prévio.",
+          "prevencao": "Uso preventivo em mostos com elevada carga fenólica (uva atacada por Botrytis, maceração prolongada em brancos) para prevenir brunissement e off-flavours antes da fermentação."
+        }
       },
       "esferas_pvi_pvp": {
         "nome": "Esferas adsorventes (PVI/PVP)",
         "acção": "Remoção selectiva de fenóis voláteis (4-etilfenol, 4-etilguaiacol)",
-        "fase": ["vinho tinto"],
+        "fase": [
+          "vinho tinto"
+        ],
         "pt_ue": true,
         "brasil": "A verificar",
-        "fonte_ue": "Reg. UE 2024/3085"
+        "fonte_ue": "Reg. UE 2024/3085",
+        "modo_uso": {
+          "preparacao": "Produto em esferas (grânulos) prontas a usar. Pesar a dose necessária. Não requer preparação prévia. Rinse com vinho ou água desionizada antes de contactar o vinho.",
+          "antecedencia": "Imediato após rinse inicial.",
+          "aplicacao": "Colocar as esferas num saco de nylon ou contentor perfurado e imergir no vinho durante o estágio em depósito, ou usar em sistema de recirculação (bomba de recirculação pelo leito de esferas). Tempo de contato recomendado: 1–4 semanas conforme concentração de etilfenóis e resultado analítico. Retirar as esferas e medir 4-EP e 4-EG por GC-MS para verificar eficácia. Podem ser reutilizadas após regeneração com solução alcoólica (seguir protocolo do fabricante).",
+          "fases": {
+            "estágio": "Aplicação principal durante estágio em barrica ou depósito — tratar o vinho antes de engarrafar após confirmação analítica de Brett."
+          },
+          "aviso_modo": "Autorizado pelo Reg. UE 2024/3085 exclusivamente para remoção de fenóis voláteis. A remoção de 4-EP e 4-EG pode atingir 40–60% — em contaminações muito graves (>1500 µg/L) pode ser insuficiente. Verificar por GC-MS antes e depois do tratamento.",
+          "prevencao": "Monitorização regular (GC-MS a cada 2–3 meses) durante o estágio em barricas de risco (barricas com histórico de Brett). Tratamento preventivo logo que 4-EP ultrapasse 150–200 µg/L — antes de atingir o limiar de perceção (300–400 µg/L)."
+        }
       },
       "quitosano": {
         "nome": "Quitosano enológico",
         "dose_max_g_hL": 10,
         "acção": "Inibição de Brettanomyces; clarificação; redução de metais; adsorção de OTA",
-        "fase": ["mosto", "vinho"],
+        "fase": [
+          "mosto",
+          "vinho"
+        ],
         "pt_ue": true,
         "brasil": true,
-        "nota": "Autorizado UE desde Reg. 2018/1629; eficaz contra B. bruxellensis e na redução de Ocratoxina A"
+        "nota": "Autorizado UE desde Reg. 2018/1629; eficaz contra B. bruxellensis e na redução de Ocratoxina A",
+        "modo_uso": {
+          "preparacao": "Dissolver em água acidulada (pH 3–4, usando ácido tartárico ou cítrico) em concentração 1–2% (10–20 g/L). Agitar até dissolução completa. Produto pode demorar 30–60 min a dissolver completamente. Filtrar se houver partículas insolúveis.",
+          "antecedencia": "1–2 horas para dissolução completa na solução acidulada.",
+          "aplicacao": "Adicionar a solução ao vinho com agitação suave. Deixar em contato 5–10 dias (ação antimicrobiana contra Brett e bactérias) com agitação ocasional. Sedimenta naturalmente — trasfecar após período de repouso. Filtração pode ser necessária. Verificar contagem microbiana após tratamento.",
+          "fases": {
+            "fermentação": "Adição ao mosto para controlo de contaminações fúngicas.",
+            "estágio": "Aplicação principal contra Brettanomyces durante estágio em barrica ou depósito.",
+            "pre_engarrafamento": "Tratamento final antimicrobiano antes de engarrafar."
+          },
+          "aviso_modo": "Máximo 10 g/hL [Reg. UE 2018/1629]. O quitosano é derivado de crustáceos — declarar na rotulagem se aplicável (alergénio). A solução em água ácida tem prazo de uso de 24–48 h — não guardar solução preparada.",
+          "prevencao": "Adição preventiva antes de encubar em barricas com histórico de contaminação por Brettanomyces. Uso preventivo em vinhos que vão estagiar longos períodos sem controlo frequente de SO₂."
+        }
       },
       "gelatina": {
         "nome": "Gelatina",
         "dose_tipica_g_hL": "1–5",
         "acção": "Colagem — flocula com taninos condensados e hidrolisáveis; clarificação de tintos; sinergia com bentonite na adsorção de OTA",
-        "fase": ["vinho"],
+        "fase": [
+          "vinho"
+        ],
         "pt_ue": true,
-        "brasil": true
+        "brasil": true,
+        "modo_uso": {
+          "preparacao": "Dissolver em água quente (60–70°C) em concentração 5–10% (50–100 g/L). Agitar até dissolução completa. Arrefecer até 30–40°C antes de adicionar ao vinho (nunca adicionar gelatina quente diretamente ao vinho frio).",
+          "antecedencia": "30–60 minutos para dissolução e arrefecimento.",
+          "aplicacao": "Adicionar a solução ao vinho arrefecido (idealmente a 10–15°C) com agitação suave. A temperatura baixa do vinho favorece a precipitação gelatina-tanino. Deixar repousar 7–14 dias. Trasfecar. Filtrar se necessário. Para melhores resultados em tintos, adicionar taninos enológicos antes da gelatina (2–3 dias antes) para auxiliar a flocculação.",
+          "fases": {
+            "pos_fermentacao": "Clarificação de tintos após FML — remove taninos excessivos e partículas em suspensão.",
+            "estágio": "Colagem de vinhos tintos durante o estágio para suavizar taninos agressivos.",
+            "pre_engarrafamento": "Clarificação final antes de filtração e engarrafamento."
+          },
+          "aviso_modo": "A gelatina é proteína de origem animal — declarar na rotulagem (alergénio potencial). Risco de sobre-colagem se dose excessiva (vinho fica instável e esvazia de corpo). Fazer sempre jar-test. Produto de origem animal — verifique se o vinho requer classificação como 'vegan-friendly'.",
+          "prevencao": "Tratamento preventivo de suavização de taninos agressivos após má maceração ou em anos com taninos verdes — aplicar durante o estágio para garantir integração antes de engarrafar."
+        }
       }
     }
   },
@@ -237,10 +517,25 @@
         "dose_max_mg_L_ue": 500,
         "acção": "Hidrólise do peptidoglicano da parede celular de bactérias Gram-positivas (bactérias lácticas)",
         "descricao": "Enzima natural da clara de ovo (Gallus domesticus) que destrói a parede de BAL (Oenococcus oeni, Lactobacillus spp., Pediococcus damnosus). Não actua sobre leveduras (Gram-negativas ou sem peptidoglicano). Utilizada para retardar ou inibir a FML, controlar Brettanomyces (indirectamente via BAL associadas), e tratar filante/graisse e picada láctica.",
-        "fase": ["mosto", "vinho"],
+        "fase": [
+          "mosto",
+          "vinho"
+        ],
         "pt_ue": true,
         "brasil": true,
-        "aviso": "Proteína de ovo — alergénio declarável obrigatório no rótulo (Directiva 2003/89/CE e equivalente BR). Não é eficaz contra leveduras ou bactérias Gram-negativas."
+        "aviso": "Proteína de ovo — alergénio declarável obrigatório no rótulo (Directiva 2003/89/CE e equivalente BR). Não é eficaz contra leveduras ou bactérias Gram-negativas.",
+        "modo_uso": {
+          "preparacao": "Dissolver em água destilada ou no próprio vinho (NUNCA em vinho com taninos elevados — risco de precipitação imediata). Concentração de trabalho: 1–2% (10–20 g/L). Agitar até dissolução completa.",
+          "antecedencia": "30–60 minutos para dissolução completa. Preparar e usar no mesmo dia.",
+          "aplicacao": "Adicionar a solução ao vinho/mosto com agitação suave e contínua. A lisozima age sobre a parede celular de bactérias Gram-positivas (Oenococcus, Lactobacillus, Pediococcus) — não tem efeito sobre leveduras nem bactérias Gram-negativas (Acetobacter). Efeito máximo em pH <4,0. Tempo de ação: 24–48 h para redução microbiana efetiva.",
+          "fases": {
+            "fermentação": "Adição no final da fermentação alcoólica para retardar ou inibir a FML — útil em vinhos brancos onde FML não é desejada. Dose: 250–500 mg/L.",
+            "pos_fermentacao": "Controlo de bactérias lácticas activas após FML indesejada. Dose: 200–300 mg/L.",
+            "estágio": "Proteção antimicrobiana durante o estágio como complemento ao SO₂."
+          },
+          "aviso_modo": "Máximo 500 mg/L [Reg. UE 2009/606]. A lisozima é proteína derivada de clara de ovo — obrigação de declaração como alergénio na rotulagem. Pode precipitar com taninos — adicionar antes da colagem tánica. Em vinhos com pH >4,0 a eficácia diminui significativamente.",
+          "prevencao": "Adição preventiva ao final da fermentação alcoólica em vinhos brancos/rosés onde a FML não é desejada — inibe Oenococcus oeni antes de este iniciar a FML. Proteção preventiva durante estágio de longa duração como complemento ao SO₂."
+        }
       },
       "dimetildicarbonato": {
         "nome": "Dimetildicarbonato (DMDC / Velcorin)",
@@ -248,10 +543,22 @@
         "dose_max_mg_L": 200,
         "acção": "Agente esterilizante — reage com grupos amino de enzimas celulares das leveduras e bactérias, causando morte celular",
         "descricao": "Agente antimicrobiano de acção rápida (activo durante 4–6 horas a 20°C), depois hidrolisa espontaneamente a CO₂ + metanol (< 2 mg/L metanol a dose máxima, dentro dos limites naturais do vinho). Eficaz contra Saccharomyces cerevisiae, Zygosaccharomyces bailii, bactérias lácticas. Aplicado imediatamente antes do engarrafamento em linha de enchimento com dosagem automática (temperatura < 20°C). Substituto da filtração esterilizante em algumas situações.",
-        "fase": ["vinho — imediatamente antes do engarrafamento"],
+        "fase": [
+          "vinho — imediatamente antes do engarrafamento"
+        ],
         "pt_ue": true,
         "brasil": false,
-        "aviso": "NÃO autorizado no Brasil (IN MAPA 14/2018 não inclui DMDC). Requer equipamento de dosagem específico. Produz metanol como subproduto de hidrólise — dentro dos limites naturais do vinho a dose máxima de 200 mg/L."
+        "aviso": "NÃO autorizado no Brasil (IN MAPA 14/2018 não inclui DMDC). Requer equipamento de dosagem específico. Produz metanol como subproduto de hidrólise — dentro dos limites naturais do vinho a dose máxima de 200 mg/L.",
+        "modo_uso": {
+          "preparacao": "Produto líquido pronto a usar (não diluir previamente). Requer equipamento de dosagem especializado (Velcorin® Doser ou equivalente) capaz de injetar com precisão na linha de engarrafamento. NÃO adicionar manualmente por derramamento.",
+          "antecedencia": "Não requer preparação prévia — usar diretamente do frasco com equipamento adequado.",
+          "aplicacao": "Injetar diretamente no vinho durante o engarrafamento via dosificador em linha, IMEDIATAMENTE antes de encher a garrafa. O DMDC hidrolisa completamente em 4–6 horas a 20°C (metanol + CO₂) — não deixa resíduo ativo no vinho engarrafado. Verificar temperatura do vinho (eficácia reduzida abaixo de 15°C). Doseador deve ser calibrado e verificado antes de cada uso.",
+          "fases": {
+            "pre_engarrafamento": "Uso EXCLUSIVO na linha de engarrafamento — único momento de aplicação. Não tem uso em depósito ou barrica."
+          },
+          "aviso_modo": "PROIBIDO no Brasil. UE: máximo 200 mg/L [Reg. CE 606/2009]. Produto tóxico em concentração pura — EPI obrigatório (fato de proteção, luvas, máscara). Requer formação específica do operador. Equipamento de dosagem deve ser certificado e calibrado regularmente. Gera metanol em hidrólise (inócuo às doses legais, mas deve ser declarado).",
+          "prevencao": "Proteção preventiva no engarrafamento de todos os vinhos com açúcar residual (meios-secos, doces) — elimina microflora residual viable que poderia causar refermentação em garrafa. Alternativa preventiva ao filtro esterilizante quando este não está disponível."
+        }
       },
       "sorbato_potassio": {
         "nome": "Sorbato de potássio",
@@ -259,10 +566,22 @@
         "dose_max_mg_L": 200,
         "acção": "Inibição do crescimento de leveduras e bolores por interferência com o metabolismo celular (inibição de enzimas desidrogenases)",
         "descricao": "Agente estabilizador microbiológico usado exclusivamente para prevenir refermentação em vinhos com açúcares residuais. Activo apenas contra leveduras e bolores — sem actividade contra bactérias lácticas. PERIGO CRÍTICO: se adicionado a vinho com bactérias lácticas activas, o ácido sórbico é degradado por Oenococcus oeni a 2-etoxi-3,5-hexadieno (defeito de gerânio, irreversível). SEMPRE usar com SO₂ adequado que iniba as BAL antes de adicionar sorbato.",
-        "fase": ["vinho — pós-FML confirmada e com SO₂ adequado"],
+        "fase": [
+          "vinho — pós-FML confirmada e com SO₂ adequado"
+        ],
         "pt_ue": true,
         "brasil": true,
-        "aviso": "PERIGO: Nunca adicionar em vinho com bactérias lácticas viáveis — causa defeito de gerânio irreversível. Usar SEMPRE em combinação com SO₂ mínimo 20–30 mg/L livre."
+        "aviso": "PERIGO: Nunca adicionar em vinho com bactérias lácticas viáveis — causa defeito de gerânio irreversível. Usar SEMPRE em combinação com SO₂ mínimo 20–30 mg/L livre.",
+        "modo_uso": {
+          "preparacao": "Dissolver em vinho (NUNCA em água — risco de precipitação). Concentração de trabalho: 5–10% (50–100 g/L) em vinho. Agitar até dissolução completa.",
+          "antecedencia": "30–60 minutos para dissolução completa.",
+          "aplicacao": "Adicionar ao vinho acabado e microbiologicamente estável (NUNCA se a FML não estiver concluída ou se houver bactérias lácticas activas). Adicionar com agitação suave. Usar SEMPRE em conjunto com SO₂ adequado (o sorbato sozinho não é fungistático suficiente). Aplicar o mais próximo possível do engarrafamento.",
+          "fases": {
+            "pre_engarrafamento": "Uso EXCLUSIVO em vinhos com açúcares residuais antes de engarrafar, para prevenir refermentação. Nunca usar durante a fermentação ou enquanto a FML possa ocorrer."
+          },
+          "aviso_modo": "PERIGO CRÍTICO: se bactérias lácticas estiverem activas no vinho, o sorbato é metabolizado a 2-etoxihexa-3,5-dieno — gosto de gerânio (defeito irreversível). Verificar SEMPRE por análise microbiológica (contagem UFC/mL) que o vinho está livre de bactérias lácticas antes de adicionar. Máximo 200 mg/L.",
+          "prevencao": "Adição preventiva exclusiva em vinhos com açúcar residual destinados a engarrafamento — previne refermentação por leveduras em garrafa. NUNCA usar de forma preventiva se houver qualquer risco de FML — usar sempre APÓS confirmação microbiológica de ausência de bactérias lácticas."
+        }
       }
     }
   },
@@ -275,40 +594,92 @@
         "dose_max_g_hL": 10,
         "acção": "Precipitação de taninos condensados e hidrolisáveis por ligação electrostática proteína-polifenol; clarificação e redução de amargor tánico",
         "descricao": "Proteína colagénica hidrolisada (origem suína ou bovina) que flocula com taninos condensados (tintos) formando aglomerados que sedimentam. Selectiva para taninos mais duros e ellagtaninos. Usada para clarificação de tintos e brancos, redução de amargor excessivo, e em combinação com bentonite para máxima clarificação. Não é adequada para remover proteínas (ao contrário da bentonite).",
-        "fase": ["vinho"],
+        "fase": [
+          "vinho"
+        ],
         "pt_ue": true,
         "brasil": true,
-        "nota": "Proteína animal — não vegana. Alergénio potencial (declaração recomendada no rótulo embora não obrigatória na UE para doses de colagem normais — verificar legislação actualizada)."
+        "nota": "Proteína animal — não vegana. Alergénio potencial (declaração recomendada no rótulo embora não obrigatória na UE para doses de colagem normais — verificar legislação actualizada).",
+        "modo_uso": {
+          "preparacao": "Dissolver em água quente (60–70°C), concentração 5–10%. Arrefecer até 30–40°C antes de adicionar.",
+          "antecedencia": "30–60 minutos.",
+          "aplicacao": "Idêntico à 'Gelatina' na clarificação. Adicionar ao vinho frio com agitação suave. Repouso 7–14 dias. Trasfecar e filtrar. Para tintos, pré-tratamento com taninos enológicos 2–3 dias antes melhora flocculação.",
+          "fases": {
+            "pos_fermentacao": "Clarificação pós-FML em tintos.",
+            "pre_engarrafamento": "Colagem final antes de filtração."
+          },
+          "aviso_modo": "Alergénio animal — declarar na rotulagem. Jar-test obrigatório. Risco de sobre-colagem.",
+          "prevencao": "Tratamento preventivo de suavização de taninos agressivos após má maceração ou em anos com taninos verdes — aplicar durante o estágio para garantir integração antes de engarrafar."
+        }
       },
       "caseina": {
         "nome": "Caseína",
         "dose_tipica_g_hL": "1–20",
         "acção": "Adsorção de compostos fenólicos oxidados, remoção de quinonas e pigmentos de escurecimento, adsorção da lacase de Botrytis",
         "descricao": "Proteína do leite que adsorve compostos de escurecimento oxidativo (quinonas, polímeros fenólicos), flavonóides amargos e remove a enzima lacase produzida por Botrytis cinerea. Especialmente útil em brancos e rosés com brunissement (escurecimento oxidativo). Não é eficaz para estabilidade proteica (não remove as proteínas termolábeis do vinho). Precipita ligeiramente a cor e não é adequada como único agente de clarificação.",
-        "fase": ["vinho"],
+        "fase": [
+          "vinho"
+        ],
         "pt_ue": true,
         "brasil": true,
-        "nota": "Proteína de leite — alergénio lactogénico declarável obrigatório no rótulo (Reg. UE 1169/2011). Não vegan/não kosher."
+        "nota": "Proteína de leite — alergénio lactogénico declarável obrigatório no rótulo (Reg. UE 1169/2011). Não vegan/não kosher.",
+        "modo_uso": {
+          "preparacao": "Dissolver a caseína em solução alcalina fraca (água com pequena adição de carbonato de K ou bicarbonato, pH ~7–8). A caseína não dissolve em meio ácido diretamente. Concentração de trabalho: 1–2% (10–20 g/L). Após dissolução, acidificar com ácido tartárico até pH ≃6,0 antes de adicionar ao vinho.",
+          "antecedencia": "1–2 horas para dissolução completa em solução alcalina.",
+          "aplicacao": "Adicionar ao vinho com agitação suave. A caseína precipita ao entrar em contato com o ambiente ácido do vinho, arrastando compostos fenólicos, quinonas e pigmentos de brunissement. Repouso 7–10 dias. Trasfecar e filtrar. Eficaz para reverter brunissement inicial em brancos e rosés.",
+          "fases": {
+            "pos_fermentacao": "Tratamento de brunissement e compostos fenólicos oxidados.",
+            "pre_engarrafamento": "Colagem final para vinhos com tendência a oxidar."
+          },
+          "aviso_modo": "Derivado do leite — alergénio obrigatório na rotulagem. Verificar residual de caseína (<0,1 mg/L recomendado) após tratamento.",
+          "prevencao": "Adição preventiva em vinhos brancos e rosés que vão estagiar vários meses em contato com o oxigénio (barricas, micro-oxigenação) para prevenir o brunissement progressivo."
+        }
       },
       "albumina_ovo": {
         "nome": "Albumina de ovo (clara de ovo)",
         "dose_tipica_g_hL": "1–10",
         "acção": "Colagem selectiva de polifenóis em vinhos tintos — selectiva para taninos mais duros e adstringentes; suaviza a estrutura tánica sem remover os taninos benéficos",
         "descricao": "Proteína da clara de ovo (ovalbumina) que precipita selectivamente os taninos poliméricos mais astringentes dos vinhos tintos. Menos agressiva que a gelatina — remove taninos duros mantendo os taninos de qualidade. Tradicional em vinhos tintos de guarda (Bordéus, Borgonha). Aplicar 2–4 semanas antes da filtração.",
-        "fase": ["vinho tinto"],
+        "fase": [
+          "vinho tinto"
+        ],
         "pt_ue": true,
         "brasil": true,
-        "nota": "Proteína de ovo — alergénio declarável obrigatório. Não vegan. Dose habitual: 1–2 claras/barrique (225 L) = ~2–4 g/hL de albumina."
+        "nota": "Proteína de ovo — alergénio declarável obrigatório. Não vegan. Dose habitual: 1–2 claras/barrique (225 L) = ~2–4 g/hL de albumina.",
+        "modo_uso": {
+          "preparacao": "Dissolver a albumina em pó em pequena quantidade de água fria com uma pitada de NaCl (facilita dissolução). Concentração 3–5%. Bater levemente para dissolver sem criar espuma excessiva.",
+          "antecedencia": "30–60 minutos para dissolução completa.",
+          "aplicacao": "Adicionar ao vinho tinto com agitação suave (não vigorosa). A albumina flocccula progressivamente com os taninos do vinho — processo muito gentil e selectivo. Repouso 10–21 dias a baixa temperatura (8–12°C melhora a precipitação). Trasfecar. Resultado: suavização de taninos agressivos sem reduzir estrutura aromática.",
+          "fases": {
+            "estágio": "Colagem de afinamento durante estágio em barrica ou depósito para suavizar taninos de película ou semente.",
+            "pre_engarrafamento": "Colagem final de tintos antes de engarrafar."
+          },
+          "aviso_modo": "Alergénio (ovo) — declarar na rotulagem. Produto muito seletivo para taninos condensados. Não é eficaz em brancos (ausência de taninos). Dose baixa recomendada (1–5 g/hL) — o excesso de albumina livre no vinho é indesejável.",
+          "prevencao": "Tratamento preventivo de suavização tánica em tintos que vão envelhecer em garrafa — aplicar 6–12 meses antes do engarrafamento para garantir integração completa dos taninos."
+        }
       },
       "isinglass": {
         "nome": "Isinglass (cola de peixe)",
         "dose_tipica_g_hL": "0,1–0,5",
         "acção": "Clarificação muito delicada por floculação de partículas em suspensão coloidal; remove turvações de levedura e proteicas em brancos e espumantes sem remover taninos",
         "descricao": "Colagénio puro extraído da bexiga natatória de peixes (esturjão, bacalhau). Precipita partículas coloidais (proteínas de levedura, proteínas de uva desnaturadas) sem alterar o perfil fenólico ou a cor. Especialmente útil em vinhos brancos com turvação coloidal ligeira e em espumantes (clarificação avant tirage). Actua a doses muito baixas — o excesso pode causar over-fining.",
-        "fase": ["vinho branco", "espumante"],
+        "fase": [
+          "vinho branco",
+          "espumante"
+        ],
         "pt_ue": true,
         "brasil": true,
-        "nota": "Proteína de peixe — alergénio declarável. Não vegan. Não aplicar em tintos (risco de over-fining e remoção de cor)."
+        "nota": "Proteína de peixe — alergénio declarável. Não vegan. Não aplicar em tintos (risco de over-fining e remoção de cor).",
+        "modo_uso": {
+          "preparacao": "Disponível em solução pré-preparada (coloidal) ou em pó. A solução pré-preparada está pronta a usar — verificar instruções do fabricante. Em pó: hidratar em água ácida (pH 3–3,5) durante 12–24 h.",
+          "antecedencia": "Imediato se em solução. 12–24 h se em pó.",
+          "aplicacao": "Adicionar ao vinho muito frio (6–10°C) com agitação suave e lenta. O isinglass é extremamente delicado e flocccula melhor a baixas temperaturas. Repouso mínimo 5–10 dias. Trasfecar com extremo cuidado — depósito muito frágil e de volume reduzido. Filtração posterior geralmente não necessária (o depósito compacta bem).",
+          "fases": {
+            "pre_engarrafamento": "Clarificação final de vinhos brancos delicados e espumantes — preserva aromas e frescura muito melhor que outros clarificantes."
+          },
+          "aviso_modo": "Derivado de peixe (bexiga natatória) — alergénio obrigatório na rotulagem. Produto de elevada perecibilidade — verificar data de validade e condições de conservação (refrigerado). Extremamente sensível à temperatura — não usar com vinho acima de 15°C.",
+          "prevencao": "Clarificação preventiva em vinhos brancos delicados e espumantes antes de engarrafar, para garantir limpidez sem risco de precipitação de partículas."
+        }
       }
     }
   },
@@ -321,10 +692,23 @@
         "dose_max_mg_L": 100,
         "acção": "Precipitação de Fe³⁺, Cu²⁺, Zn²⁺ e outros metais pesados como ferrocianetos insolúveis (Azul da Prússia e derivados)",
         "descricao": "Agente de tratamento de metais que precipita Fe (como KFe[Fe(CN)₆] — Azul da Prússia), Cu (como ferrocianeto de cobre) e outros metais por formação de sais insolúveis. Extremamente eficaz para casse férrica e casse cúprica. Uso OBRIGATÓRIO sob supervisão de oenólogo responsável. ANÁLISE OBRIGATÓRIA: cianeto livre residual no vinho final deve ser < 0,5 mg/L de HCN (método oficial OIV). Sobretratamento origina Azul da Prússia persistente no vinho (turbidez azul irreversível).",
-        "fase": ["vinho"],
+        "fase": [
+          "vinho"
+        ],
         "pt_ue": true,
         "brasil": true,
-        "aviso": "TRATAMENTO CONTROLADO: obrigatoriamente realizado por oenólogo com análise de cianeto residual < 0,5 mg/L HCN após tratamento. Sobretratamento é irreversível. Declaração obrigatória em registo de adega. Produtos de decomposição potencialmente tóxicos se não realizado correctamente."
+        "aviso": "TRATAMENTO CONTROLADO: obrigatoriamente realizado por oenólogo com análise de cianeto residual < 0,5 mg/L HCN após tratamento. Sobretratamento é irreversível. Declaração obrigatória em registo de adega. Produtos de decomposição potencialmente tóxicos se não realizado correctamente.",
+        "modo_uso": {
+          "preparacao": "ATENÇÃO — tratamento controlado: preparar solução a 5% em água destilada (50 g/L). Calcular a dose exacta a partir da análise de Fe²⁺/Fe³⁺ e Cu²⁺ do vinho (jar-test obrigatório em laboratório). A dose é calculada estequiometricamente em função dos metais a remover.",
+          "antecedencia": "Realizar jar-test laboratorial com 24–48 h de antecedência. Tratamento do lote só após confirmação da dose.",
+          "aplicacao": "OBRIGATÓRIO: tratar uma amostra representativa em jar-test antes de tratar o lote. Adicionar a solução ao vinho com agitação homogénea. Repouso 7–14 dias. Filtrar rigorosamente (o precipitado de Azul da Prússia/Azul de Berlim deve ser completamente removido). OBRIGATÓRIO: análise de cianeto residual livre (<0,5 mg/L como HCN) por laboratório acreditado antes de engarrafar. Registar todas as análises.",
+          "fases": {
+            "estágio": "Tratamento de casse cúprica ou ferrica diagnosticada — aplicar antes do período de estágio se os metais estiverem acima dos limites.",
+            "pre_engarrafamento": "Tratamento preventivo se análise revelar Fe >6 mg/L (brancos) ou Cu >0,5 mg/L."
+          },
+          "aviso_modo": "USO RESTRITO — apenas por enólogo licenciado e com registo obrigatório. Dose excessiva deixa ferrocianeto livre no vinho que em meio ácido liberta HCN (cianeto de hidrogénio — TÓXICO). Análise de HCN residual é OBRIGATÓRIA por lei antes de engarrafar [Reg. CE 606/2009]. Conservar em local seguro, longe de ácidos.",
+          "prevencao": "Tratamento preventivo de casse ferrica e cúprica antes do engarrafamento, se análise revelar Fe >6 mg/L (brancos) ou Cu >0,5 mg/L — previne deposição de metais em garrafa."
+        }
       },
       "sulfureto_potassio": {
         "nome": "Sulfureto de potássio",
@@ -332,10 +716,23 @@
         "dose_tipica_g_hL": "2–10",
         "acção": "Precipitação de Cu²⁺ como CuS insolúvel (sulfeto de cobre); tratamento de casse cúprica",
         "descricao": "Usado principalmente para reduzir cobre excessivo no vinho por precipitação de CuS. Alternativa ao ferrocianeto de potássio para casse cúprica quando os níveis de Fe são normais. RISCO: em excesso ou sem cuidado pode libertar H₂S (odor a ovo podre). Após adição, aguardar 24–48h para precipitação completa do CuS, depois filtrar. Arejar ligeiramente antes de filtrar para eliminar H₂S residual.",
-        "fase": ["vinho"],
+        "fase": [
+          "vinho"
+        ],
         "pt_ue": true,
         "brasil": true,
-        "aviso": "RISCO de H₂S residual se em excesso. Análise de cobre residual após tratamento: objectivo < 0,5 mg/L Cu. Arejar ligeiramente antes de filtrar."
+        "aviso": "RISCO de H₂S residual se em excesso. Análise de cobre residual após tratamento: objectivo < 0,5 mg/L Cu. Arejar ligeiramente antes de filtrar.",
+        "modo_uso": {
+          "preparacao": "Dissolver em água fria na concentração 1–2% (10–20 g/L). Preparar e usar imediatamente — o sulfureto em solução decompõe-se rapidamente e liberta H₂S.",
+          "antecedencia": "Imediato — não preparar com antecedência.",
+          "aplicacao": "Adicionar ao vinho com agitação suave. O sulfureto de potássio precipita Cu²⁺ como sulfureto de cobre (CuS — precipitado preto). Repouso 24–48 h. Filtrar imediatamente após precipitação (o CuS é instável se permanecer em contato com o vinho). Verificar Cu residual por SAA após filtração.",
+          "fases": {
+            "estágio": "Tratamento de casse cúprica confirmada por análise.",
+            "pre_engarrafamento": "Ajuste final de Cu residual se acima de 1 mg/L."
+          },
+          "aviso_modo": "Usar com extremo cuidado — liberta H₂S em meio ácido (odor e toxicidade). Trabalhar em espaço ventilado. A dose deve ser calculada exactamente para o Cu presente — excesso de sulfureto deixa H₂S residual no vinho. Verificar sempre Cu e H₂S no vinho final antes de engarrafar.",
+          "prevencao": "Tratamento preventivo de casse cúprica em vinhos com Cu >0,5 mg/L antes de estágio prolongado ou engarrafamento."
+        }
       },
       "acido_citrico_complexante": {
         "nome": "Ácido cítrico (agente complexante de Fe³⁺)",
@@ -344,10 +741,22 @@
         "dose_max_g_L_br": 1.0,
         "acção": "Complexação de Fe³⁺ formando citrato de ferro (III) solúvel — previne precipitação de fosfato de Fe³⁺ (casse branca) e tanato de Fe³⁺ (casse azul)",
         "descricao": "Usado como agente complexante de ferro (NÃO como acidificante na UE). O citrato de ferro permanece em solução, estabilizando o vinho contra a casse férrica. Dose máxima UE: 0,5 g/L (Reg. CE 606/2009). No Brasil é autorizado até 1,0 g/L tanto como acidificante como complexante.",
-        "fase": ["vinho"],
+        "fase": [
+          "vinho"
+        ],
         "pt_ue": "Parcial — autorizado como complexante de Fe, NÃO como acidificante; máx. 0,5 g/L",
         "brasil": true,
-        "nota": "Na UE o ácido cítrico é proibido como acidificante mas autorizado para complexação de ferro. No Brasil, autorizado para ambos os fins até 1,0 g/L."
+        "nota": "Na UE o ácido cítrico é proibido como acidificante mas autorizado para complexação de ferro. No Brasil, autorizado para ambos os fins até 1,0 g/L.",
+        "modo_uso": {
+          "preparacao": "Dissolver em pequena porção de vinho (1:10). Agitar até dissolução completa.",
+          "antecedencia": "15–30 minutos.",
+          "aplicacao": "Adicionar ao vinho acabado e microbiologicamente estável (bactérias lácticas activas degradam o ácido cítrico a diacetilo e ácido acético). O citrato forma complexo estável com Fe³⁺ (citrato de ferro em solução), prevenindo a precipitação como fosfato ou tanato. Agitar e deixar homogeneizar 24 h.",
+          "fases": {
+            "pre_engarrafamento": "Tratamento preventivo ou curativo de casse ferrica — adicionar antes de filtração final."
+          },
+          "aviso_modo": "PROIBIDO como acidificante na UE — neste contexto é usado EXCLUSIVAMENTE como agente complexante de Fe. Limite 0,5 g/L (UE) / 1,0 g/L (BR). Apenas eficaz se FML já estiver concluída e o vinho for microbiologicamente estável.",
+          "prevencao": "Adição preventiva de 0,3–0,5 g/L em vinhos com tendência a casse ferrica (Fe >5 mg/L, pH <3,5) antes de engarrafar — complexa o ferro em forma solúvel."
+        }
       },
       "goma_arabica": {
         "nome": "Goma arábica",
@@ -355,10 +764,22 @@
         "dose_max_g_hL": 30,
         "acção": "Coloide protector — estabiliza partículas coloidais em suspensão (metais, taninos, pigmentos), previne precipitação tartárica e inibição de casse metálica",
         "descricao": "Polissacarídeo natural (Acacia senegal) que actua como coloide protector, revestindo partículas e impedindo a sua agregação e precipitação. Usado para prevenir casse férrica e cúprica leves, estabilização coloidal após colagem, e melhoria da textura e persistência no vinho. Não remove metais — estabiliza coloidalmente. Não substitui a bentonite para proteínas.",
-        "fase": ["vinho"],
+        "fase": [
+          "vinho"
+        ],
         "pt_ue": true,
         "brasil": true,
-        "nota": "Adicionar no vinho já clarificado (após colagem e filtração). Não usar antes da clarificação pois dificulta a sedimentação dos flocos de colagem."
+        "nota": "Adicionar no vinho já clarificado (após colagem e filtração). Não usar antes da clarificação pois dificulta a sedimentação dos flocos de colagem.",
+        "modo_uso": {
+          "preparacao": "Disponível em solução aquosa pronta a usar (habitualmente 20–30% w/v). Não requer preparação prévia — verificar concentração da solução comercial para calcular dose correcta.",
+          "antecedencia": "Imediato.",
+          "aplicacao": "Adicionar ao vinho acabado imediatamente antes de filtrar/engarrafar, com agitação suave. A goma arábica reveste os cristais de tartarato em formação e impede o seu crescimento (coloide protetor). Também estabiliza coloides aromáticos e suaviza a sensação tática. Não filtrar por membrana fina após adição (pode ser retida).",
+          "fases": {
+            "pre_engarrafamento": "Adição final — SEMPRE o último tratamento antes do engarrafamento. Incompatível com clarificação subsequente."
+          },
+          "aviso_modo": "Não utilizar antes de qualquer clarificação ou filtração fina — a goma arábica interfere com a colagem e pode entupir filtros. É o ÚLTIMO produto a adicionar antes de engarrafar. Verificar ausência de proteínas instáveis (teste de calor) antes de adicionar.",
+          "prevencao": "Adição preventiva em todos os vinhos susceptíveis a precipitação tartárica antes de engarrafar, quando a estabilização a frio não foi completa. Uso preventivo de rotina em vinhos filtrados para proteger coloides e suavizar a estrutura."
+        }
       }
     }
   },
@@ -371,30 +792,68 @@
         "dose_max_mg_L": 100,
         "acção": "Inibição da cristalização do bitartarato de potássio (KHT) por adsorção às faces de crescimento dos cristais — bloqueia o crescimento mas não remove KHT",
         "descricao": "Polímero celulósico sintético que adsorve à superfície dos cristais de KHT em crescimento, bloqueando os sítios activos e impedindo a precipitação. Acção permanente (ao contrário do metatartarato que degrada). Rápido e económico — aplicar no vinho pronto a engarrafar. Apenas para brancos e rosés: em tintos pode causar instabilidade de cor (precipitação de polímeros tanino-antocianina).",
-        "fase": ["vinho branco", "vinho rosé"],
+        "fase": [
+          "vinho branco",
+          "vinho rosé"
+        ],
         "pt_ue": true,
         "brasil": true,
-        "aviso": "PROIBIDO em vinhos tintos na UE por risco de instabilidade de cor. Confirmar estabilidade com teste de condutividade ou mini-contact antes de aplicar. Máx. 100 mg/L."
+        "aviso": "PROIBIDO em vinhos tintos na UE por risco de instabilidade de cor. Confirmar estabilidade com teste de condutividade ou mini-contact antes de aplicar. Máx. 100 mg/L.",
+        "modo_uso": {
+          "preparacao": "Disponível em solução pronta a usar (concentração 4–8% conforme o fabricante). Não requer preparação — verificar concentração e calcular volume para dose desejada (máx. 100 mg/L).",
+          "antecedencia": "Imediato — adicionar imediatamente antes de engarrafar.",
+          "aplicacao": "Adicionar ao vinho com agitação suave imediatamente antes da filtração final e engarrafamento. O CMC adsorve-se à superfície dos cristais de KHT em formação e bloqueia os sítios activos de crescimento, impedindo a cristalização. Verificar compatibilidade com o vinho (jar-test: adicionar CMC a 0°C/48h e medir variação de condutividade).",
+          "fases": {
+            "pre_engarrafamento": "Uso EXCLUSIVO imediatamente antes de engarrafar — não tem utilidade durante o estágio."
+          },
+          "aviso_modo": "Autorizado APENAS em vinhos brancos e rosés na UE — PROIBIDO em tintos (risco de interacção com antocianinas causando precipitação de cor). No Brasil, verificar legislação em vigor. Não substituí a estabilização a frio em vinhos com supersaturação extrema de KHT.",
+          "prevencao": "Adição preventiva de rotina em brancos e rosés imediatamente antes de engarrafar, como alternativa mais eficaz ao metatartarato para prevenir precipitação de KHT — funciona a qualquer temperatura de armazenamento."
+        }
       },
       "metatartarato_potassio": {
         "nome": "Metatartarato de potássio",
         "dose_max_mg_L": 100,
         "acção": "Inibição da cristalização de KHT e CaT por interferência com os sítios de nucleação dos cristais",
         "descricao": "Éster de ácido tartárico com actividade inibidora temporária da cristalização tartárica. Eficaz contra KHT e CaT. LIMITAÇÃO IMPORTANTE: degrada progressivamente acima de 15°C, perdendo actividade em 6–12 meses em condições de armazenamento quente. Adequado apenas para vinhos com curta vida de prateleira ou armazenamento a baixas temperaturas.",
-        "fase": ["vinho"],
+        "fase": [
+          "vinho"
+        ],
         "pt_ue": true,
         "brasil": true,
-        "aviso": "Efeito temporário — degrada acima de 15°C em 6–12 meses. Não usar em vinhos de guarda ou destinados a mercados quentes sem cadeia de frio."
+        "aviso": "Efeito temporário — degrada acima de 15°C em 6–12 meses. Não usar em vinhos de guarda ou destinados a mercados quentes sem cadeia de frio.",
+        "modo_uso": {
+          "preparacao": "Disponível em pó cristalino — dissolver em água quente (60–70°C) em concentração 5–10%. Arrefecer antes de adicionar.",
+          "antecedencia": "30 minutos para dissolução.",
+          "aplicacao": "Adicionar ao vinho frio com agitação suave. O metatartarato (éster ciclico do ácido tartárico) compete com os cristais de KHT pelos sítios de crescimento, inibindo a cristalização. Efeito TEMPORÁRIO — começa a degradar-se acima de 15°C. Aplicar o mais próximo possível do engarrafamento.",
+          "fases": {
+            "pre_engarrafamento": "Adição nas últimas 24–48 h antes de engarrafar."
+          },
+          "aviso_modo": "Eficácia TEMPORÁRIA — vinhos conservados acima de 15°C ou por períodos longos podem ainda precipitar tartaratos. Não adequado para vinhos de envelhecimento ou mercados com distribuição em clima quente. Limite 100 mg/L. Preferir CMC ou manoprotéinas para estabilidade a longo prazo.",
+          "prevencao": "Uso preventivo em vinhos destinados a consumo rápido (menos de 6–12 meses após engarrafamento) que não sofreram estabilização a frio completa — previne cristais de KHT visíveis em garrafa."
+        }
       },
       "manoprotenas_levedura": {
         "nome": "Manoprotéinas de levedura",
         "dose_tipica_mg_L": "200–400",
         "acção": "Estabilização tartárica natural + melhoria da textura (volume em boca, persistência) + inibição da cristalização de KHT",
         "descricao": "Glicoproteínas extraídas da parede de células de levedura (Saccharomyces cerevisiae) por autólise enzimática. Estabilizam a precipitação tartárica por mecanismo coloidal idêntico ao CMC mas com benefícios adicionais: melhoram a textura, aumentam o volume em boca, contribuem para estabilidade proteica moderada e favorecem a integração de taninos em tintos. Autorizado UE desde Reg. 2019/934. No Brasil em avaliação pela legislação.",
-        "fase": ["vinho"],
+        "fase": [
+          "vinho"
+        ],
         "pt_ue": true,
         "brasil": "Em avaliação/verificar legislação estadual e federal",
-        "nota": "Produto derivado de leveduras — sem alergénios declaráveis. Adequado para tintos (ao contrário do CMC). Efeito estabilizador pode ser mais lento (2–4 semanas) que CMC."
+        "nota": "Produto derivado de leveduras — sem alergénios declaráveis. Adequado para tintos (ao contrário do CMC). Efeito estabilizador pode ser mais lento (2–4 semanas) que CMC.",
+        "modo_uso": {
+          "preparacao": "Disponível em forma liofilizada (pó) ou solução líquida. Em pó: rehidratar em água ou vinho (seguir instrução do fabricante — habitualmente 1:20 a temperatura ambiente, 30 min). Solução: pronta a usar.",
+          "antecedencia": "30–60 minutos se em pó.",
+          "aplicacao": "Adicionar ao vinho durante o estágio ou antes do engarrafamento com agitação suave. As manoprotéinas (polímeros de manose das leveduras) inibem a cristalização de KHT e CaT por interação com os cristais em formação. Efeito estabilizador duradouro — adequado para vinhos de envelhecimento. Também melhora a textura e o volume de boca.",
+          "fases": {
+            "estágio": "Adição durante o estágio em depósito ou barrica — além da estabilização tartárica, contribui para a integração dos aromas de madeira.",
+            "pre_engarrafamento": "Adição final de estabilização tartárica e melhoria de textura."
+          },
+          "aviso_modo": "Autorizado na UE [Reg. UE 2019/934]. No Brasil, verificar aprovação atual — situação em avaliação pela MAPA. Produto derivado de levedura Saccharomyces cerevisiae — verificar se aplicável em vinhos 'vegan'. Compatível com CMC e outros estabilizantes.",
+          "prevencao": "Adição preventiva durante o estágio em vinhos de qualidade para estabilização tartárica duradoura, integração de aromas de madeira e melhoria de textura. Alternativa de longo prazo ao CMC para vinhos de envelhecimento."
+        }
       },
       "acido_ascorbico": {
         "nome": "Ácido ascórbico (vitamina C)",
@@ -404,10 +863,22 @@
         "dose_max_mg_L_br": 150,
         "acção": "Antioxidante sinérgico com SO₂ — reduz Fe³⁺ a Fe²⁺ (previne casse férrica), reduz o-quinonas a o-difenóis (combate escurecimento oxidativo), protege aromas de oxidação",
         "descricao": "Antioxidante redutor que actua em sinergia com o SO₂: o ácido ascórbico consome o oxigénio dissolvido e reduz os compostos oxidados antes que causem dano organoléptico irreversível. OBRIGATORIAMENTE usado com SO₂ activo no vinho: sem SO₂, o ácido ascórbico gera peróxido de hidrogénio (H₂O₂) que é fortemente oxidante e agrava o defeito. Especialmente útil em brancos e rosés, no engarrafamento e em operações de trasega.",
-        "fase": ["vinho"],
+        "fase": [
+          "vinho"
+        ],
         "pt_ue": true,
         "brasil": true,
-        "aviso": "NUNCA usar sem SO₂ activo no vinho — gera H₂O₂ (oxidante forte). Dose máxima UE: 250 mg/L (Reg. CE 606/2009). Dose máxima Brasil: 150 mg/L (IN MAPA 14/2018)."
+        "aviso": "NUNCA usar sem SO₂ activo no vinho — gera H₂O₂ (oxidante forte). Dose máxima UE: 250 mg/L (Reg. CE 606/2009). Dose máxima Brasil: 150 mg/L (IN MAPA 14/2018).",
+        "modo_uso": {
+          "preparacao": "Dissolver em pequena porção de vinho (NUNCA em água pura — oxidação mais rápida). Concentração de trabalho: 5–10% (50–100 g/L). Preparar e usar imediatamente — o ácido ascórbico em solução oxida rapidamente.",
+          "antecedencia": "Imediato — preparar apenas o necessário e usar em menos de 30 minutos.",
+          "aplicacao": "REGRA CRÍTICA: NUNCA adicionar ácido ascórbico sem SO₂ adequado no vinho — isoladamente torna-se pró-oxidante (o ácido deidroascórbico formado pela oxidação do ascórbico pode gerar H₂O₂ que oxida o etanol). Adicionar ao vinho com agitação suave imediatamente antes de filtrar/engarrafar. O ascórbico consome preferencialmente o O₂ dissolvido, poupando o SO₂.",
+          "fases": {
+            "pre_engarrafamento": "Adição EXCLUSIVA imediatamente antes de engarrafar — em conjunto com SO₂ livre adequado (mínimo 25–30 mg/L). Protege contra oxidação pós-engarrafamento (bottle shock e oxidação de transporte)."
+          },
+          "aviso_modo": "NUNCA usar sem SO₂ livre adequado — torna-se pró-oxidante. Limite 250 mg/L UE / 150 mg/L BR. O ácido ascórbico NÃO substitui o SO₂ — é um co-antioxidante sinérgico. Usar solução fresca — oxidação em solução é rápida.",
+          "prevencao": "Adição preventiva sistemática em todos os vinhos brancos e rosés de qualidade imediatamente antes de engarrafar (com SO₂ livre ≥25 mg/L) — protege contra oxidação pós-engarrafamento e bottle shock durante transporte."
+        }
       }
     }
   }

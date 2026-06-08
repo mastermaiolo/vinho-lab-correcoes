@@ -1,24 +1,31 @@
+import { AIConfig, PROVIDER_LABELS } from '../lib/aiClient'
+import { useI18n } from './I18nProvider'
+import LanguageSwitcher from './LanguageSwitcher'
+
 interface Props {
   jurisdicao: 'ptue' | 'br'
   onJurisdicao: (j: 'ptue' | 'br') => void
-  apiKey: string
+  aiConfig: AIConfig
   onApiKey: () => void
   nHistorico: number
   onHistorico: () => void
 }
 
-export default function Header({ jurisdicao, onJurisdicao, apiKey, onApiKey, nHistorico, onHistorico }: Props) {
+export default function Header({ jurisdicao, onJurisdicao, aiConfig, onApiKey, nHistorico, onHistorico }: Props) {
+  const { t } = useI18n()
+  const hasKey = !!aiConfig.apiKey
   return (
     <header className="border-b border-stone-800 bg-stone-950/80 backdrop-blur-sm sticky top-0 z-40">
       <div className="max-w-5xl mx-auto px-4 h-14 flex items-center justify-between gap-4">
         <div className="flex items-center gap-2.5">
           <span className="text-xl">🍷</span>
-          <span className="font-semibold text-stone-100 hidden sm:block">Vinho-Lab Correções</span>
-          <span className="font-semibold text-stone-100 sm:hidden">VL Correções</span>
+          <span className="font-semibold text-stone-100 hidden sm:block">{t('app.title')}</span>
+          <span className="font-semibold text-stone-100 sm:hidden">{t('app.title.short')}</span>
         </div>
 
         <div className="flex items-center gap-2">
-          {/* Toggle jurisdição */}
+          <LanguageSwitcher />
+
           <div className="flex bg-stone-900 rounded-lg p-0.5 border border-stone-800">
             <button
               onClick={() => onJurisdicao('ptue')}
@@ -42,13 +49,12 @@ export default function Header({ jurisdicao, onJurisdicao, apiKey, onApiKey, nHi
             </button>
           </div>
 
-          {/* Botão histórico */}
           <button
             onClick={onHistorico}
             className="text-xs px-3 py-1.5 rounded-lg border border-stone-700 text-stone-400 hover:border-stone-500 hover:text-stone-200 transition-colors relative"
-            title="Histórico de diagnósticos desta sessão"
+            title={t('historico.title')}
           >
-            🕐 Histórico
+            🕐 {t('header.historico')}
             {nHistorico > 0 && (
               <span className="absolute -top-1.5 -right-1.5 bg-wine-700 text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-medium leading-none">
                 {nHistorico > 9 ? '9+' : nHistorico}
@@ -56,17 +62,19 @@ export default function Header({ jurisdicao, onJurisdicao, apiKey, onApiKey, nHi
             )}
           </button>
 
-          {/* Botão chave API */}
           <button
             onClick={onApiKey}
             className={`text-xs px-3 py-1.5 rounded-lg border transition-colors ${
-              apiKey
+              hasKey
                 ? 'border-green-700/50 bg-green-900/30 text-green-300 hover:bg-green-900/50'
                 : 'border-stone-700 text-stone-400 hover:border-stone-500 hover:text-stone-200'
             }`}
-            title={apiKey ? 'Chave API configurada — clique para alterar' : 'Configurar chave API Gemini'}
+            title={hasKey
+              ? t('header.configIA.title.ok', { provider: PROVIDER_LABELS[aiConfig.provider] })
+              : t('header.configIA.title.empty')
+            }
           >
-            {apiKey ? '🔑 API ok' : '🔑 API'}
+            {hasKey ? `🔑 ${PROVIDER_LABELS[aiConfig.provider]}` : t('header.configIA.empty')}
           </button>
         </div>
       </div>
