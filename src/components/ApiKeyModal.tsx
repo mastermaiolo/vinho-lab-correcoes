@@ -76,7 +76,7 @@ export default function ApiKeyModal({ current, onSave, onClose }: Props) {
         <div>
           <label className="label">{t('api.provider.label')}</label>
           <div className="grid grid-cols-2 gap-2">
-            {(['openrouter', 'gemini', 'claude', 'openai'] as AIProvider[]).map((p) => (
+            {(['gemini', 'claude', 'openai', 'openrouter'] as AIProvider[]).map((p) => (
               <button
                 key={p}
                 type="button"
@@ -87,8 +87,8 @@ export default function ApiKeyModal({ current, onSave, onClose }: Props) {
                     : 'border-stone-700 text-stone-400 hover:text-stone-200'
                 }`}
               >
-                {p === 'openrouter' && <span className="text-xs">🆓</span>}
                 {PROVIDER_LABELS[p]}
+                {p === 'openrouter' && <span className="text-[10px] text-green-400 font-medium">FREE</span>}
               </button>
             ))}
           </div>
