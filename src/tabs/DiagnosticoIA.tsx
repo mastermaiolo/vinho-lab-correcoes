@@ -2,6 +2,7 @@ import { useRef, useState } from 'react'
 import { chamarGemini, DiagnosticoItem } from '../lib/geminiClient'
 import { buildUserPrompt, SYSTEM_PROMPT, FormData } from '../lib/promptBuilder'
 import { parseMdBoletim } from '../lib/mdParser'
+import PrivacyConsentModal from '../components/PrivacyConsentModal'
 
 const SINTOMAS = [
   'Vinagre / acetona',
@@ -137,6 +138,8 @@ export default function DiagnosticoIA({ apiKey, onApiKey, jurisdicao, initialFor
   const [error, setError] = useState<string | null>(null)
   const [result, setResult] = useState<Awaited<ReturnType<typeof chamarGemini>> | null>(null)
   const [importMsg, setImportMsg] = useState<string | null>(null)
+  const [showPrivacy, setShowPrivacy] = useState(false)
+  const privacyConsent = () => sessionStorage.getItem('gemini_privacy_consent') === '1'
 
   const jur = jurisdicao
 
@@ -170,8 +173,7 @@ export default function DiagnosticoIA({ apiKey, onApiKey, jurisdicao, initialFor
     }
   }
 
-  const handleSubmit = async () => {
-    if (!apiKey) { onApiKey(); return }
+  const runDiagnosis = async () => {
     setLoading(true)
     setError(null)
     setResult(null)
@@ -185,8 +187,27 @@ export default function DiagnosticoIA({ apiKey, onApiKey, jurisdicao, initialFor
     }
   }
 
+  const handleSubmit = () => {
+    if (!apiKey) { onApiKey(); return }
+    if (!privacyConsent()) { setShowPrivacy(true); return }
+    runDiagnosis()
+  }
+
+  const handlePrivacyAccept = () => {
+    sessionStorage.setItem('gemini_privacy_consent', '1')
+    setShowPrivacy(false)
+    runDiagnosis()
+  }
+
   return (
     <div className="space-y-6">
+      {showPrivacy && (
+        <PrivacyConsentModal
+          onAccept={handlePrivacyAccept}
+          onCancel={() => setShowPrivacy(false)}
+        />
+      )}
+
       {/* Import boletim */}
       <div className="flex items-center gap-3">
         <button
@@ -312,6 +333,19 @@ export default function DiagnosticoIA({ apiKey, onApiKey, jurisdicao, initialFor
       >
         {loading ? '⏳ A analisar…' : `🤖 Diagnosticar com Gemini — ${jur === 'ptue' ? 'PT/UE' : 'Brasil'}`}
       </button>
+
+      {/* Aviso de privacidade inline */}
+      <div className="flex items-start gap-2.5 text-xs text-stone-500 leading-relaxed">
+        <span className="shrink-0 mt-0.5">🔒</span>
+        <p>
+          Os parâmetros analíticos e sintomas são enviados à API Google Gemini para processamento.
+          Nome da amostra, lote e responsável <strong className="text-stone-400">nunca são enviados</strong>.
+          {privacyConsent()
+            ? <span className="text-green-600 ml-1">Consentimento dado para esta sessão.</span>
+            : <span className="ml-1">Será solicitado consentimento antes do primeiro diagnóstico.</span>
+          }
+        </p>
+      </div>
 
       {/* Erro */}
       {error && <div className="alert-err">{error}</div>}

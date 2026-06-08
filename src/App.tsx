@@ -79,13 +79,17 @@ export default function App() {
 
       {/* Footer */}
       <footer className="border-t border-stone-800 mt-12 py-6">
-        <div className="max-w-5xl mx-auto px-4 text-xs text-stone-600 leading-relaxed">
+        <div className="max-w-5xl mx-auto px-4 text-xs text-stone-600 leading-relaxed space-y-1.5">
           <p>
             Ferramenta de apoio à decisão. Não substitui o boletim oficial emitido por laboratório autorizado nem aconselhamento enológico profissional.
           </p>
-          <p className="mt-1">
+          <p>
             Limites legais: MAPA (IN 14/2018 e alt.) · Reg. UE 1308/2013 · 2019/934 · 2024/3085 · CE 606/2009.
-            Diagnóstico assistido por Gemini API (Google). A chave API é guardada apenas em sessionStorage.
+          </p>
+          <p>
+            🔒 <strong className="text-stone-500">Privacidade:</strong> Os parâmetros analíticos enviados ao módulo de Diagnóstico IA são processados pela Google LLC (Gemini API).
+            Nome de amostra, lote e dados de identificação nunca são enviados. Consentimento solicitado antes do primeiro diagnóstico (RGPD Art. 6.º, n.º 1, al. a).
+            Chave API guardada apenas em sessionStorage — eliminada ao fechar o tab.
           </p>
         </div>
       </footer>
