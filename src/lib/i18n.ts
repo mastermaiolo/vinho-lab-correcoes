@@ -186,6 +186,9 @@ const pt: Dict = {
   'api.key.placeholder.gemini': 'AIzaSy...',
   'api.key.placeholder.claude': 'sk-ant-...',
   'api.key.placeholder.openai': 'sk-...',
+  'api.key.placeholder.openrouter': 'sk-or-v1-...',
+  'api.model.select': 'Modelo',
+  'api.link.openrouter': 'Modelos :free não têm custo monetário.',
 
   // Histórico Modal
   'historico.title': 'Histórico desta sessão',
@@ -359,6 +362,8 @@ const en: Dict = {
   'api.link.gemini': 'The free tier is sufficient for normal use.',
   'api.link.claude': 'Requires credit or subscription at Anthropic Console.',
   'api.link.openai': 'Requires credit on your OpenAI account (Pay-as-you-go).',
+  'api.link.openrouter': ':free models have no monetary cost.',
+  'api.model.select': 'Model',
   'api.tutorial': '📖 Interactive tutorial — how to get and set up the Gemini key',
 
   'historico.title': 'Session history',
@@ -530,6 +535,8 @@ const es: Dict = {
   'api.link.gemini': 'El plan gratuito (Free Tier) es suficiente para uso normal.',
   'api.link.claude': 'Requiere saldo o suscripción en Anthropic Console.',
   'api.link.openai': 'Requiere saldo en su cuenta OpenAI (Pay-as-you-go).',
+  'api.link.openrouter': 'Los modelos :free no tienen coste monetario.',
+  'api.model.select': 'Modelo',
   'api.tutorial': '📖 Tutorial interactivo — cómo obtener y configurar la clave Gemini',
 
   'historico.title': 'Historial de esta sesión',
@@ -701,6 +708,8 @@ const zh: Dict = {
   'api.link.gemini': '免费层级足以满足正常使用需求。',
   'api.link.claude': '需要Anthropic Console中的余额或订阅。',
   'api.link.openai': '需要OpenAI账户余额（按需付费）。',
+  'api.link.openrouter': ':free 模型无货币费用。',
+  'api.model.select': '模型',
   'api.tutorial': '📖 交互式教程 — 如何获取和配置Gemini密钥',
 
   'historico.title': '本次会话历史',
