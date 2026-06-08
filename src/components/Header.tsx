@@ -3,9 +3,11 @@ interface Props {
   onJurisdicao: (j: 'ptue' | 'br') => void
   apiKey: string
   onApiKey: () => void
+  nHistorico: number
+  onHistorico: () => void
 }
 
-export default function Header({ jurisdicao, onJurisdicao, apiKey, onApiKey }: Props) {
+export default function Header({ jurisdicao, onJurisdicao, apiKey, onApiKey, nHistorico, onHistorico }: Props) {
   return (
     <header className="border-b border-stone-800 bg-stone-950/80 backdrop-blur-sm sticky top-0 z-40">
       <div className="max-w-5xl mx-auto px-4 h-14 flex items-center justify-between gap-4">
@@ -39,6 +41,20 @@ export default function Header({ jurisdicao, onJurisdicao, apiKey, onApiKey }: P
               🇧🇷 Brasil
             </button>
           </div>
+
+          {/* Botão histórico */}
+          <button
+            onClick={onHistorico}
+            className="text-xs px-3 py-1.5 rounded-lg border border-stone-700 text-stone-400 hover:border-stone-500 hover:text-stone-200 transition-colors relative"
+            title="Histórico de diagnósticos desta sessão"
+          >
+            🕐 Histórico
+            {nHistorico > 0 && (
+              <span className="absolute -top-1.5 -right-1.5 bg-wine-700 text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-medium leading-none">
+                {nHistorico > 9 ? '9+' : nHistorico}
+              </span>
+            )}
+          </button>
 
           {/* Botão chave API */}
           <button

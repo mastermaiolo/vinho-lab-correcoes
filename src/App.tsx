@@ -1,19 +1,23 @@
 import { useState } from 'react'
 import Header from './components/Header'
 import ApiKeyModal from './components/ApiKeyModal'
+import HistoricoModal from './components/HistoricoModal'
 import DiagnosticoIA from './tabs/DiagnosticoIA'
 import Correcoes from './tabs/Correcoes'
 import Calculadoras from './tabs/Calculadoras'
 import FichasDefeito from './tabs/FichasDefeito'
 import Comparacao from './tabs/Comparacao'
+import Produtos from './tabs/Produtos'
+import { carregarHistorico, EntradaHistorico } from './lib/historico'
 
-type Tab = 'diagnostico' | 'correcoes' | 'calculadoras' | 'fichas' | 'comparacao'
+type Tab = 'diagnostico' | 'correcoes' | 'calculadoras' | 'fichas' | 'produtos' | 'comparacao'
 
 const TABS: { id: Tab; label: string }[] = [
   { id: 'diagnostico', label: '🤖 Diagnóstico IA' },
   { id: 'correcoes', label: '📋 Correções' },
   { id: 'calculadoras', label: '🧮 Calculadoras' },
   { id: 'fichas', label: '🔬 Fichas de Defeito' },
+  { id: 'produtos', label: '🧪 Produtos' },
   { id: 'comparacao', label: '⚖️ PT ↔ BR' },
 ]
 
@@ -22,12 +26,21 @@ export default function App() {
   const [jurisdicao, setJurisdicao] = useState<'ptue' | 'br'>('ptue')
   const [apiKey, setApiKey] = useState<string>(() => sessionStorage.getItem('gemini_api_key') ?? '')
   const [showModal, setShowModal] = useState(false)
-  const [diagInitial, setDiagInitial] = useState<{ sintomas?: string[] } | undefined>()
+  const [showHistorico, setShowHistorico] = useState(false)
+  const [historico, setHistorico] = useState<EntradaHistorico[]>(() => carregarHistorico())
+  const [diagInitial, setDiagInitial] = useState<{ sintomas?: string[]; historico?: EntradaHistorico } | undefined>()
 
   const handleDiagnosticarDeFicha = (sintomas: string[]) => {
     setDiagInitial({ sintomas })
     setTab('diagnostico')
   }
+
+  const handleCarregarHistorico = (entrada: EntradaHistorico) => {
+    setDiagInitial({ historico: entrada })
+    setTab('diagnostico')
+  }
+
+  const atualizarHistorico = () => setHistorico(carregarHistorico())
 
   return (
     <div className="min-h-screen bg-stone-950">
@@ -36,6 +49,8 @@ export default function App() {
         onJurisdicao={setJurisdicao}
         apiKey={apiKey}
         onApiKey={() => setShowModal(true)}
+        nHistorico={historico.length}
+        onHistorico={() => { setHistorico(carregarHistorico()); setShowHistorico(true) }}
       />
 
       {/* Tab bar */}
@@ -66,7 +81,9 @@ export default function App() {
             apiKey={apiKey}
             onApiKey={() => setShowModal(true)}
             jurisdicao={jurisdicao}
-            initialForm={diagInitial}
+            initialForm={diagInitial?.sintomas ? { sintomas: diagInitial.sintomas } : undefined}
+            historicoInicial={diagInitial?.historico}
+            onNovoDiagnostico={atualizarHistorico}
           />
         )}
         {tab === 'correcoes' && <Correcoes jur={jurisdicao} />}
@@ -74,6 +91,7 @@ export default function App() {
         {tab === 'fichas' && (
           <FichasDefeito jur={jurisdicao} onDiagnosticar={handleDiagnosticarDeFicha} />
         )}
+        {tab === 'produtos' && <Produtos jur={jurisdicao} />}
         {tab === 'comparacao' && <Comparacao />}
       </main>
 
@@ -98,6 +116,15 @@ export default function App() {
         <ApiKeyModal
           onSave={setApiKey}
           onClose={() => setShowModal(false)}
+        />
+      )}
+
+      {showHistorico && (
+        <HistoricoModal
+          historico={historico}
+          onFechar={() => setShowHistorico(false)}
+          onCarregar={handleCarregarHistorico}
+          onAtualizar={atualizarHistorico}
         />
       )}
     </div>

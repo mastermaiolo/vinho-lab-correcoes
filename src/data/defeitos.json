@@ -17,7 +17,13 @@
         "nota": "Contribui para o aroma pungente quando associado ao ácido acético"
       }
     ],
-    "descritores_sensoriais": ["vinagre", "azedo", "pungente", "acetona", "aguardente"],
+    "descritores_sensoriais": [
+      "vinagre",
+      "azedo",
+      "pungente",
+      "acetona",
+      "aguardente"
+    ],
     "causa": "Bactérias acéticas aeróbias (Acetobacter aceti, A. pasteurianus) oxidam etanol a ácido acético. Bactérias lácticas heterofermentativas (Lactobacillus spp.) podem produzir AV em anaerobiose. Leveduras produzem 100–300 mg/L de AV durante fermentação normal.",
     "favorecido_por": [
       "Temperatura de fermentação >30°C",
@@ -151,7 +157,14 @@
         "descriptor": "terroso, beterraba"
       }
     ],
-    "descritores_sensoriais": ["mofo", "cartão húmido", "cortiça", "farmácia", "cogumelo", "humidade"],
+    "descritores_sensoriais": [
+      "mofo",
+      "cartão húmido",
+      "cortiça",
+      "farmácia",
+      "cogumelo",
+      "humidade"
+    ],
     "causa": "Bolores presentes na cortiça (Penicillium camemberti, Aspergillus niger, Trichoderma spp.) convertem clorofenóis (oriundos do tratamento industrial da cortiça com cloro ou fungicidas) em cloroanisóis por metilação enzimática. A contaminação pode ser também ambiental (madeiras tratadas na adega, paletes).",
     "favorecido_por": [
       "Cortiça tratada com derivados clorados",
@@ -275,7 +288,14 @@
         "descriptor": "grapefruit, maracujá (positivo em Sauvignon Blanc)"
       }
     ],
-    "descritores_sensoriais": ["ovo podre", "borracha", "repolho cozido", "cebola", "fósforos", "petróleo"],
+    "descritores_sensoriais": [
+      "ovo podre",
+      "borracha",
+      "repolho cozido",
+      "cebola",
+      "fósforos",
+      "petróleo"
+    ],
     "causa": "Formação de H₂S durante fermentação por leveduras: redução de sulfato/sulfito ou degradação de aminoácidos sulfurados (cisteína, metionina) em condições de déficit nutritivo. H₂S acumula em borras durante envelhecimento (autólise levedurar). Mercaptanos formam-se por reacção de H₂S com etanol.",
     "favorecido_por": [
       "Deficiência em nitrógeno assimilável (NFA < 120 mg/L)",
@@ -322,7 +342,12 @@
         "nota": "Composto adicional com descriptor de rato"
       }
     ],
-    "descritores_sensoriais": ["urina de rato", "rato", "biscoito de arroz queimado", "milho-pipoca rançoso"],
+    "descritores_sensoriais": [
+      "urina de rato",
+      "rato",
+      "biscoito de arroz queimado",
+      "milho-pipoca rançoso"
+    ],
     "causa": "Produzido por bactérias lácticas (Lactobacillus spp., Oenococcus oeni em algumas estirpes) e por leveduras não-Saccharomyces (Brettanomyces spp.) a partir de lisina e açúcares. Mecanismo: reacção de aminoácidos com acetaldeído.",
     "favorecido_por": [
       "Fermentação maloláctica descontrolada",
@@ -363,7 +388,12 @@
         "nota": "Terpeno natural presente em uvas (Muscat) — não confundir com o defeito"
       }
     ],
-    "descritores_sensoriais": ["gerânio", "sardinheiras", "folhas de gerânio", "floral pesado desagradável"],
+    "descritores_sensoriais": [
+      "gerânio",
+      "sardinheiras",
+      "folhas de gerânio",
+      "floral pesado desagradável"
+    ],
     "causa": "Bactérias lácticas (principalmente Oenococcus oeni) degradam o ácido sórbico (E,E-sorbato) por redução a (E,E)-hexadienol, que se etoxila espontaneamente a 2-etoxi-3,5-hexadieno. Ocorre quando se adiciona sorbato de potássio para estabilização microbiológica e o vinho sofre subsequentemente FML.",
     "favorecido_por": [
       "Adição de sorbato de potássio a vinhos que depois sofrem FML",
@@ -403,7 +433,13 @@
         "valor_refermentacao": ">1,0 g/L (borbulhamento visível)"
       }
     ],
-    "descritores_sensoriais": ["efervescência indesejada", "gás", "turvação", "depósito levedurar", "sabor alterado"],
+    "descritores_sensoriais": [
+      "efervescência indesejada",
+      "gás",
+      "turvação",
+      "depósito levedurar",
+      "sabor alterado"
+    ],
     "causa": "Leveduras viáveis residuais (Saccharomyces cerevisiae ou espécies mais resistentes como Saccharomycodes ludwigii, Zygosaccharomyces bailii) refermentam açúcares residuais após engarrafamento. Produção de CO₂ que pode causar rolha a estalar.",
     "favorecido_por": [
       "Açúcares residuais > 2 g/L no engarrafamento sem estabilização microbiológica",
@@ -494,7 +530,11 @@
         "nota": "Precipitam irreversivelmente quando aquecidas >60°C (teste de termoestabilidade)"
       }
     ],
-    "descritores_sensoriais": ["turvação branca/leitosa", "depósito branco fino", "sem alteração gustativa"],
+    "descritores_sensoriais": [
+      "turvação branca/leitosa",
+      "depósito branco fino",
+      "sem alteração gustativa"
+    ],
     "causa": "Proteínas de uva (principalmente em variedades brancas) formam agregados insolúveis quando sujeitas a calor, oxidação ou variações de pH. Mais frequente em vinhos brancos que carecem de taninos (que precipitam proteínas naturalmente).",
     "favorecido_por": [
       "Variedades brancas com alto teor proteico (Gewürztraminer, Muscat, Alvarinho)",
@@ -543,7 +583,11 @@
         "condicao": "Fe³⁺ + antocianinas/taninos após arejamento"
       }
     ],
-    "descritores_sensoriais": ["turvação branca (brancos)", "coloração azul-violeta intensa (tintos)", "sem alteração gustativa significativa"],
+    "descritores_sensoriais": [
+      "turvação branca (brancos)",
+      "coloração azul-violeta intensa (tintos)",
+      "sem alteração gustativa significativa"
+    ],
     "causa": "O ferro no vinho existe em equilíbrio Fe²⁺ (solúvel) ↔ Fe³⁺ (insolúvel). O arejamento oxida Fe²⁺ a Fe³⁺ que precipita com fosfatos (brancos) ou taninos/antocianinas (tintos). A casse ocorre tipicamente 48h após arejamento.",
     "favorecido_por": [
       "Equipamento de ferro ou ferro fundido (corrói, liberta ferro)",
@@ -583,7 +627,11 @@
         "limite_legal_BR": "máx. 1 mg/L (IN MAPA 14/2018)"
       }
     ],
-    "descritores_sensoriais": ["turvação acastanhada/avermelhada", "depósito castanho", "sabor metálico (em casos graves)"],
+    "descritores_sensoriais": [
+      "turvação acastanhada/avermelhada",
+      "depósito castanho",
+      "sabor metálico (em casos graves)"
+    ],
     "causa": "Cobre residual de equipamento (bombas, válvulas em bronze/latão) ou de tratamentos fitossanitários (calda bordalesa) precipita em condições redutoras (SO₂ elevado) como sulfeto de cobre (Cu₂S) — formação de turvação em anaerobiose.",
     "favorecido_por": [
       "Equipamento com cobre/bronze/latão",
@@ -608,5 +656,151 @@
     ],
     "reversivel": "Sim, se tratado antes do engarrafamento",
     "notas_tecnicas": "O cobre é simultaneamente: (1) defeito em excesso (casse cúprica) e (2) agente de correcção da redução (sulfato de cobre para H₂S). A dose terapêutica de CuSO₄ é 0,5–1,0 g/hL; o objectivo é ter <0,5 mg/L Cu no vinho final."
+  },
+  {
+    "id": "DEF-13",
+    "nome": "Excesso de SO₂ / Dióxido de Enxofre",
+    "categoria": "quimico",
+    "compostos_marcadores": [
+      {
+        "nome": "SO₂ livre (fracção molecular)",
+        "formula": "SO₂",
+        "limiar_percepcao": ">2 mg/L SO₂ molecular — picante, irritante; >0,8 mg/L já perceptível para sensíveis",
+        "nota": "SO₂ ligado não tem impacto sensorial relevante; apenas o SO₂ livre/molecular é percebido"
+      }
+    ],
+    "descritores_sensoriais": [
+      "enxofre",
+      "fósforo queimado",
+      "picante nasal",
+      "irritante",
+      "cabeça de fósforo"
+    ],
+    "causa": "Adição excessiva de SO₂ ou sulfuroso; SO₂ molecular excessivo em função do pH. Em vinhos com pH baixo (<3,2), mesmo doses moderadas de SO₂ livre geram concentrações moleculares elevadas. Fermentação em mosto com excesso de SO₂ pode produzir H₂S como subproduto.",
+    "favorecido_por": [
+      "pH baixo (<3,2) com SO₂ livre normal (amplifica fracção molecular)",
+      "Adição excessiva de KMS ou SO₂ gasoso",
+      "Ausência de arejamento pós-adição",
+      "Temperatura de serviço elevada (liberta SO₂ mais rapidamente)"
+    ],
+    "confirmacao_analitica": {
+      "metodo_principal": "Determinação de SO₂ livre por aspiração-oxidação (método Ripper) ou por iodometria",
+      "metodo_rapido": "SO₂ molecular calculado: SO₂mol = SO₂livre / (1 + 10^(pH-1,81)); objectivo: 0,4–0,8 mg/L"
+    },
+    "correcao": {
+      "pt_ue": "Arejamento controlado (racking com oxigenação moderada): reduz SO₂ livre em 5–15 mg/L por trasfega. Aguardar: o SO₂ livre diminui naturalmente por combinação com acetaldeído, piruvato e outros compostos carbonílicos ao longo de semanas. NÃO adicionar mais SO₂.",
+      "br": "Idêntico à UE. Limites legais: SO₂ total máximo 350 mg/L (tintos doces), 200 mg/L (brancos secos) — IN MAPA 14/2018."
+    },
+    "prevencao": [
+      "Calcular sempre o SO₂ molecular antes de adicionar: objectivo 0,4–0,8 mg/L",
+      "Usar fórmula Sudraud-Chauvet em função do pH actual",
+      "Nunca adicionar SO₂ a partir de percepção empírica — sempre calcular",
+      "Monitorização mensal de SO₂ livre em estágio"
+    ],
+    "reversivel": true,
+    "notas_tecnicas": "Um dos defeitos mais comuns por excesso de precaução enológica. Totalmente reversível com o tempo ou arejamento controlado. O SO₂ livre liga-se a compostos carbonílicos (acetaldeído, α-cetoglutarato) progressivamente."
+  },
+  {
+    "id": "DEF-14",
+    "nome": "Precipitação Tartárica (Casse Tartárica)",
+    "categoria": "fisico_quimico",
+    "compostos_marcadores": [
+      {
+        "nome": "Bitartarato de potássio (KHT)",
+        "formula": "KHC₄H₄O₆",
+        "limiar_percepcao": "N/A — cristais visíveis",
+        "nota": "Cristais brancos/incolores no fundo da garrafa ou na rolha; são inócuos e inodoros"
+      },
+      {
+        "nome": "Tartarato de cálcio (CaT)",
+        "formula": "CaC₄H₄O₆",
+        "nota": "Menos solúvel e precipita mais lentamente; pode aparecer meses após engarrafamento"
+      }
+    ],
+    "descritores_sensoriais": [
+      "cristais no fundo",
+      "depósito branco",
+      "partículas brilhantes",
+      "turvação fria"
+    ],
+    "causa": "Supersaturação em bitartarato de potássio (KHT) ou tartarato de cálcio (CaT) no vinho. O KHT é menos solúvel a baixas temperaturas — precipita ao refrigerar. CaT precipita mais a temperatura ambiente ao longo do tempo. O vinho é supersaturado quando [K⁺]×[HT⁻] > Ksp do KHT.",
+    "favorecido_por": [
+      "pH elevado (>3,5) — aumenta solubilidade do KHT mas a combinação com etanol reduz-a",
+      "Concentração elevada de potássio (>1000 mg/L)",
+      "Temperatura de serviço/armazenamento baixa",
+      "Alto teor alcoólico (etanol reduz solubilidade do KHT)",
+      "Estabilização tartárica insuficiente ou ausente"
+    ],
+    "confirmacao_analitica": {
+      "metodo_principal": "Teste de estabilidade tartárica: condutividade eléctrica antes/após refrigeração a -4°C durante 48h (variação <100 µS/cm = estável)",
+      "metodo_rapido": "Minicontato (mini-contact test): inoculação com cristais de KHT a 0°C durante 30–60 min com agitação; mede queda de condutividade"
+    },
+    "correcao": {
+      "pt_ue": "Estabilização a frio: refrigeração a -4 a -6°C (1 a 2 semanas) com filtragem posterior. Inibição com carboximetilcelulose (CMC) — Reg. UE 606/2009 com limite 100 mg/L; ou metatartarato de potássio (duração limitada). Ácido metatartárico: máx. 100 mg/L (Reg. UE 606/2009) — instável acima de 15°C. Manoprotéinas de levedura (autorizadas desde Reg. 2019/934).",
+      "br": "Estabilização a frio (idêntico). CMC: autorizado (IN MAPA 14/2018). Metatartarato: máx. 100 mg/L. Eliminação de potássio por troca iónica: autorizada no Brasil."
+    },
+    "prevencao": [
+      "Teste de estabilidade tartárica antes do engarrafamento",
+      "Estabilização a frio ou por tratamento com CMC/manoprotéinas antes de engarrafar",
+      "Controlo do pH (acidificação reduz concentração de KHT em solução)",
+      "Limitação de potássio: evitar excesso de bentonite de potássio; controlar solo/rega"
+    ],
+    "reversivel": true,
+    "notas_tecnicas": "Os cristais de KHT são absolutamente inócuos para a saúde. O defeito é exclusivamente estético/comercial. O CMC é o tratamento mais prático em vinhos brancos e rosés. Em tintos, o CMC pode interferir com a cor — preferir estabilização a frio ou manoprotéinas."
+  },
+  {
+    "id": "DEF-15",
+    "nome": "Amargor / Amertume Excessivo",
+    "categoria": "quimico",
+    "compostos_marcadores": [
+      {
+        "nome": "Quercetina e glucósidos de flavonóis",
+        "limiar_percepcao": "Variável conforme percepção individual; quercetina: ~5–20 mg/L",
+        "nota": "Extraída por contacto prolongado com películas ou madeira"
+      },
+      {
+        "nome": "Proantocianidinas oligoméricas (taninos condensados)",
+        "nota": "Catequinas e epicatequinas — taninos verdes ou hidrólise de taninos de barrica"
+      },
+      {
+        "nome": "4-Vinilguaiacol (4-VG)",
+        "formula": "C9H10O2",
+        "limiar_percepcao": "10–40 µg/L",
+        "nota": "Precursor de 4-EG (Brettanomyces); também confere amargor"
+      }
+    ],
+    "descritores_sensoriais": [
+      "amargo persistente",
+      "adstringência seca",
+      "vegetal",
+      "verde",
+      "madeira excessiva"
+    ],
+    "causa": "Extracção excessiva de compostos fenólicos amargos das películas (maceração longa ou remontagem agressiva), sementes esmagadas (prensagem excessiva), ou madeira de barrica nova (ellagitaninos em excesso). Pode também resultar de oxidação de percursores fenólicos ou de actividade de Brettanomyces (4-VG).",
+    "favorecido_por": [
+      "Maceração longa (>20 dias) em tintos",
+      "Temperatura de fermentação elevada (>30°C) durante maceração",
+      "Prensagem excessiva (fracções de prensa na assemblagem)",
+      "Barrica nova de carvalho americano (mais rica em ellagitaninos)",
+      "Uvas com maturação fenólica incompleta (sementes verdes)",
+      "Vindima precoce com sementes imaduras"
+    ],
+    "confirmacao_analitica": {
+      "metodo_principal": "Índice de polifenóis totais (IPT 280 nm); taninos por método Bate-Smith ou precipitação com sulfato de amónia",
+      "metodo_rapido": "Prova sensorial de goma gelatina (precipita taninos verdes): se reduz amargor significativamente, confirma origem tánica"
+    },
+    "correcao": {
+      "pt_ue": "Colagem com gelatina (1–5 g/hL): precipita taninos amargos. PVPP (polivinilpolipirrolidona): remove quercetina e compostos fenólicos amargos; máx. 80 g/hL. Carvão activado oenológico (brancos/rosés): reduz compostos amargos fenólicos. Assemblagem com lotes menos amargos. Estágio prolongado em barrica pode atenuar o amargor por polimerização. Aguardar: muitos amargos resolvem-se com o tempo (12–24 meses).",
+      "br": "PVPP autorizado (IN MAPA 14/2018). Gelatina: autorizada. Carvão activado: autorizado incluindo em tintos. Idêntico à UE nos restantes tratamentos."
+    },
+    "prevencao": [
+      "Controlo de maturação fenólica (semente madura: castanha, sem amargor)",
+      "Adequar tempo de maceração ao estilo pretendido",
+      "Separar fracções de prensa do free-run",
+      "Usar barrica de carvalho de segunda ou terceira utilização para vinhos mais leves",
+      "Assemblagem criteriosa de lotes"
+    ],
+    "reversivel": true,
+    "notas_tecnicas": "O amargor tánico de uvas imaturas é o tipo mais difícil de corrigir. O PVPP é eficaz mas pode reduzir cor e estrutura. A gelatina é selectiva para taninos condensados. O tempo é frequentemente o melhor remédio para amargores de origem extraída (polimerização natural de taninos)."
   }
 ]

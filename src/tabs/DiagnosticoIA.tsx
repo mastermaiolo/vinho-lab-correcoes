@@ -1,7 +1,9 @@
-import { useRef, useState } from 'react'
-import { chamarGemini, DiagnosticoItem } from '../lib/geminiClient'
+import { useEffect, useRef, useState } from 'react'
+import { chamarGemini, DiagnosticoItem, DiagnosticoResponse } from '../lib/geminiClient'
 import { buildUserPrompt, SYSTEM_PROMPT, FormData } from '../lib/promptBuilder'
 import { parseMdBoletim } from '../lib/mdParser'
+import { so2Molecular } from '../lib/calculadoras'
+import { guardarHistorico, EntradaHistorico } from '../lib/historico'
 import PrivacyConsentModal from '../components/PrivacyConsentModal'
 
 const SINTOMAS = [
@@ -26,11 +28,82 @@ const URGENCIA_COR: Record<string, string> = {
   preventiva: 'bg-green-900/40 text-green-300 border-green-700/40',
 }
 
+interface Aviso { msg: string; tipo: 'warn' | 'err' }
+
+function validarCampos(form: FormData): Aviso[] {
+  const avisos: Aviso[] = []
+  const tav = parseFloat(form.tav)
+  const ph = parseFloat(form.ph)
+  const so2 = parseFloat(form.so2Livre)
+  const av = parseFloat(form.av)
+  const at = parseFloat(form.acidezTotal)
+
+  if (form.tav && (tav < 7 || tav > 17))
+    avisos.push({ msg: `TAV ${tav}% fora do intervalo típico (7–17% vol)`, tipo: 'warn' })
+  if (form.ph && (ph < 2.8 || ph > 4.2))
+    avisos.push({ msg: `pH ${ph} fora do intervalo vinícola (2,8–4,2)`, tipo: ph > 4.5 ? 'err' : 'warn' })
+  if (form.so2Livre && so2 > 80)
+    avisos.push({ msg: `SO₂ livre ${so2} mg/L elevado — verifique se é correto`, tipo: 'warn' })
+  if (form.av && av > 25)
+    avisos.push({ msg: `AV ${av} mEq/L acima do limite legal (tinto PT/UE: 20 mEq/L)`, tipo: 'err' })
+  if (form.acidezTotal && at < 30)
+    avisos.push({ msg: `Acidez total ${at} mEq/L muito baixa — valor suspeito`, tipo: 'warn' })
+  return avisos
+}
+
+function exportarMd(form: FormData, result: DiagnosticoResponse, jur: 'ptue' | 'br'): string {
+  const linhas = [
+    `# Diagnóstico Vinho-Lab — ${jur === 'ptue' ? 'PT/UE' : 'Brasil'}`,
+    ``,
+    `**Vinho:** ${form.tipo} · ${form.fase}`,
+    `**TAV:** ${form.tav || '—'} % vol · **pH:** ${form.ph || '—'}`,
+    `**SO₂ livre:** ${form.so2Livre || '—'} mg/L · **SO₂ total:** ${form.so2Total || '—'} mg/L`,
+    form.av ? `**AV:** ${form.av} mEq/L` : '',
+    form.acidezTotal ? `**AT:** ${form.acidezTotal} mEq/L` : '',
+    form.esr ? `**ESR:** ${form.esr} g/L` : '',
+    ``,
+    `**Sintomas:** ${[...form.sintomas, form.sintomaOutro.trim()].filter(Boolean).join(', ') || '—'}`,
+    ``,
+    `---`,
+    ``,
+    `## Diagnóstico Diferencial`,
+    ``,
+    ...result.diagnosticos.filter(Boolean).map((d) => [
+      `### ${d!.posicao}. ${d!.defeito} (${d!.confianca} · ${d!.urgencia})`,
+      ``,
+      `**Causa:** ${d!.causa}`,
+      ``,
+      `**Correção (${jur === 'ptue' ? 'PT/UE' : 'BR'}):** ${d!.correcao}`,
+      d!.proibicoes ? `\n**⚠ Proibições:** ${d!.proibicoes}` : '',
+      ``,
+      `*Ref. legal: ${d!.referencia_legal}*`,
+      ``,
+    ].filter((l) => l !== '').join('\n')),
+    result.confirmacao_prioritaria ? `---\n\n**Exame prioritário:** ${result.confirmacao_prioritaria}\n` : '',
+    result.observacoes ? `**Observações:** ${result.observacoes}\n` : '',
+    `---`,
+    `*Gerado por Vinho-Lab Correções — ferramenta de apoio, não substitui aconselhamento enológico profissional.*`,
+  ]
+  return linhas.filter((l) => l !== '').join('\n')
+}
+
+function downloadMd(conteudo: string) {
+  const blob = new Blob([conteudo], { type: 'text/markdown;charset=utf-8' })
+  const url = URL.createObjectURL(blob)
+  const a = document.createElement('a')
+  a.href = url
+  a.download = `diagnostico-vinho-${new Date().toISOString().slice(0, 10)}.md`
+  a.click()
+  URL.revokeObjectURL(url)
+}
+
 interface Props {
   apiKey: string
   onApiKey: () => void
   jurisdicao: 'ptue' | 'br'
   initialForm?: Partial<FormData>
+  historicoInicial?: EntradaHistorico
+  onNovoDiagnostico: () => void
 }
 
 function DiagCard({ d, jur }: { d: DiagnosticoItem; jur: 'ptue' | 'br' }) {
@@ -118,30 +191,44 @@ function DiagCard({ d, jur }: { d: DiagnosticoItem; jur: 'ptue' | 'br' }) {
   )
 }
 
-export default function DiagnosticoIA({ apiKey, onApiKey, jurisdicao, initialForm }: Props) {
+export default function DiagnosticoIA({ apiKey, onApiKey, jurisdicao, initialForm, historicoInicial, onNovoDiagnostico }: Props) {
   const fileRef = useRef<HTMLInputElement>(null)
-  const [form, setForm] = useState<FormData>({
-    tipo: initialForm?.tipo ?? 'Tinto seco',
-    fase: initialForm?.fase ?? 'Estágio / barrica',
-    tav: initialForm?.tav ?? '',
-    ph: initialForm?.ph ?? '',
-    so2Livre: initialForm?.so2Livre ?? '',
-    av: initialForm?.av ?? '',
-    acidezTotal: initialForm?.acidezTotal ?? '',
-    so2Total: initialForm?.so2Total ?? '',
-    esr: initialForm?.esr ?? '',
-    sintomas: initialForm?.sintomas ?? [],
-    sintomaOutro: initialForm?.sintomaOutro ?? '',
+  const [form, setForm] = useState<FormData>(() => ({
+    tipo: historicoInicial?.formSnapshot.tipo ?? initialForm?.tipo ?? 'Tinto seco',
+    fase: historicoInicial?.formSnapshot.fase ?? initialForm?.fase ?? 'Estágio / barrica',
+    tav: historicoInicial?.formSnapshot.tav ?? initialForm?.tav ?? '',
+    ph: historicoInicial?.formSnapshot.ph ?? initialForm?.ph ?? '',
+    so2Livre: historicoInicial?.formSnapshot.so2Livre ?? initialForm?.so2Livre ?? '',
+    av: historicoInicial?.formSnapshot.av ?? initialForm?.av ?? '',
+    acidezTotal: historicoInicial?.formSnapshot.acidezTotal ?? initialForm?.acidezTotal ?? '',
+    so2Total: historicoInicial?.formSnapshot.so2Total ?? initialForm?.so2Total ?? '',
+    esr: historicoInicial?.formSnapshot.esr ?? initialForm?.esr ?? '',
+    sintomas: historicoInicial?.formSnapshot.sintomas ?? initialForm?.sintomas ?? [],
+    sintomaOutro: historicoInicial?.formSnapshot.sintomaOutro ?? initialForm?.sintomaOutro ?? '',
     jurisdicao,
-  })
+  }))
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
-  const [result, setResult] = useState<Awaited<ReturnType<typeof chamarGemini>> | null>(null)
+  const [result, setResult] = useState<DiagnosticoResponse | null>(() => historicoInicial?.resultado ?? null)
   const [importMsg, setImportMsg] = useState<string | null>(null)
   const [showPrivacy, setShowPrivacy] = useState(false)
   const privacyConsent = () => sessionStorage.getItem('gemini_privacy_consent') === '1'
 
+  // Sync jurisdição prop → form
+  useEffect(() => {
+    setForm((f) => ({ ...f, jurisdicao }))
+  }, [jurisdicao])
+
   const jur = jurisdicao
+
+  // SO₂ molecular em tempo real
+  const phN = parseFloat(form.ph)
+  const so2N = parseFloat(form.so2Livre)
+  const so2Mol = form.ph && form.so2Livre && phN > 0 && so2N >= 0
+    ? so2Molecular(so2N, phN)
+    : null
+
+  const avisos = validarCampos(form)
 
   const toggleSintoma = (s: string) => {
     setForm((f) => ({
@@ -180,6 +267,15 @@ export default function DiagnosticoIA({ apiKey, onApiKey, jurisdicao, initialFor
     try {
       const res = await chamarGemini(apiKey, SYSTEM_PROMPT, buildUserPrompt({ ...form, jurisdicao: jur }))
       setResult(res)
+      guardarHistorico({
+        jurisdicao: jur,
+        tipo: form.tipo,
+        fase: form.fase,
+        sintomas: form.sintomas,
+        resultado: res,
+        formSnapshot: { ...form, jurisdicao: jur },
+      })
+      onNovoDiagnostico()
     } catch (e) {
       setError(e instanceof Error ? e.message : 'Erro desconhecido.')
     } finally {
@@ -271,6 +367,30 @@ export default function DiagnosticoIA({ apiKey, onApiKey, jurisdicao, initialFor
               value={form.so2Total} onChange={(e) => setForm({ ...form, so2Total: e.target.value })} />
           </div>
         </div>
+
+        {/* SO₂ molecular em tempo real */}
+        {so2Mol !== null && (
+          <div className={`mt-3 flex items-center gap-2 text-xs px-3 py-2 rounded-lg border ${
+            so2Mol >= 0.4
+              ? 'bg-green-900/20 border-green-700/30 text-green-300'
+              : 'bg-amber-900/20 border-amber-700/30 text-amber-300'
+          }`}>
+            <span className="font-mono font-semibold">SO₂ mol: {so2Mol.toFixed(3)} mg/L</span>
+            <span className="text-stone-500">·</span>
+            <span>{so2Mol >= 0.4 ? '✅ Protecção antimicrobiana efetiva (≥0,4 mg/L)' : '⚠ Insuficiente — alvo ≥ 0,4 mg/L'}</span>
+          </div>
+        )}
+
+        {/* Avisos de validação */}
+        {avisos.length > 0 && (
+          <div className="mt-3 space-y-1.5">
+            {avisos.map((a, i) => (
+              <div key={i} className={a.tipo === 'err' ? 'alert-err' : 'alert-warn'}>
+                {a.tipo === 'err' ? '❌' : '⚠'} {a.msg}
+              </div>
+            ))}
+          </div>
+        )}
       </div>
 
       {/* Parâmetros analíticos */}
@@ -353,9 +473,18 @@ export default function DiagnosticoIA({ apiKey, onApiKey, jurisdicao, initialFor
       {/* Resultado */}
       {result && (
         <div className="space-y-4 animate-[fadeIn_0.3s_ease]">
-          <h3 className="text-base font-semibold text-stone-200">
-            Diagnóstico diferencial — {jur === 'ptue' ? '🇵🇹 PT/UE' : '🇧🇷 Brasil'}
-          </h3>
+          <div className="flex items-center justify-between">
+            <h3 className="text-base font-semibold text-stone-200">
+              Diagnóstico diferencial — {jur === 'ptue' ? '🇵🇹 PT/UE' : '🇧🇷 Brasil'}
+            </h3>
+            <button
+              onClick={() => downloadMd(exportarMd(form, result, jur))}
+              className="btn-ghost text-xs flex items-center gap-1.5"
+              title="Exportar diagnóstico como ficheiro Markdown"
+            >
+              ⬇ Exportar .md
+            </button>
+          </div>
 
           {result.diagnosticos.filter(Boolean).map((d) => (
             <DiagCard key={d!.posicao} d={d!} jur={jur} />
