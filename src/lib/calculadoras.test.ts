@@ -61,10 +61,22 @@ describe('calcAcidificacao', () => {
     expect(r.doseTotalG).toBeCloseTo(r.doseGHL * 10, 5)
   })
 
-  it('ácido málico tem fator 1,12', () => {
+  it('ácido málico tem fator 0,89', () => {
     const tart = calcAcidificacao(1, 5.0, 6.0, 'tartarico')
     const mal = calcAcidificacao(1, 5.0, 6.0, 'malico')
-    expect(mal.doseGHL).toBeCloseTo(tart.doseGHL * 1.12, 5)
+    expect(mal.doseGHL).toBeCloseTo(tart.doseGHL * 0.89, 5)
+  })
+
+  it('ácido láctico tem fator 1,36', () => {
+    const tart = calcAcidificacao(1, 5.0, 6.0, 'tartarico')
+    const lac = calcAcidificacao(1, 5.0, 6.0, 'lactico')
+    expect(lac.doseGHL).toBeCloseTo(tart.doseGHL * 1.36, 5)
+  })
+
+  it('ácido cítrico tem fator 0,93', () => {
+    const tart = calcAcidificacao(1, 5.0, 6.0, 'tartarico')
+    const cit = calcAcidificacao(1, 5.0, 6.0, 'citrico')
+    expect(cit.doseGHL).toBeCloseTo(tart.doseGHL * 0.93, 5)
   })
 })
 

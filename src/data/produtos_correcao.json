@@ -212,18 +212,202 @@
       "quitosano": {
         "nome": "Quitosano enológico",
         "dose_max_g_hL": 10,
-        "acção": "Inibição de Brettanomyces; clarificação; redução de metais",
+        "acção": "Inibição de Brettanomyces; clarificação; redução de metais; adsorção de OTA",
         "fase": ["mosto", "vinho"],
         "pt_ue": true,
-        "brasil": true
+        "brasil": true,
+        "nota": "Autorizado UE desde Reg. 2018/1629; eficaz contra B. bruxellensis e na redução de Ocratoxina A"
       },
       "gelatina": {
         "nome": "Gelatina",
         "dose_tipica_g_hL": "1–5",
-        "acção": "Colagem — flocula com taninos; clarificação de tintos",
+        "acção": "Colagem — flocula com taninos condensados e hidrolisáveis; clarificação de tintos; sinergia com bentonite na adsorção de OTA",
         "fase": ["vinho"],
         "pt_ue": true,
         "brasil": true
+      }
+    }
+  },
+  "antimicrobianos": {
+    "title": "Agentes Antimicrobianos",
+    "produtos": {
+      "lisozima": {
+        "nome": "Lisozima",
+        "dose_tipica_mg_L": "200–500",
+        "dose_max_mg_L_ue": 500,
+        "acção": "Hidrólise do peptidoglicano da parede celular de bactérias Gram-positivas (bactérias lácticas)",
+        "descricao": "Enzima natural da clara de ovo (Gallus domesticus) que destrói a parede de BAL (Oenococcus oeni, Lactobacillus spp., Pediococcus damnosus). Não actua sobre leveduras (Gram-negativas ou sem peptidoglicano). Utilizada para retardar ou inibir a FML, controlar Brettanomyces (indirectamente via BAL associadas), e tratar filante/graisse e picada láctica.",
+        "fase": ["mosto", "vinho"],
+        "pt_ue": true,
+        "brasil": true,
+        "aviso": "Proteína de ovo — alergénio declarável obrigatório no rótulo (Directiva 2003/89/CE e equivalente BR). Não é eficaz contra leveduras ou bactérias Gram-negativas."
+      },
+      "dimetildicarbonato": {
+        "nome": "Dimetildicarbonato (DMDC / Velcorin)",
+        "formula": "(CH₃OCO)₂O",
+        "dose_max_mg_L": 200,
+        "acção": "Agente esterilizante — reage com grupos amino de enzimas celulares das leveduras e bactérias, causando morte celular",
+        "descricao": "Agente antimicrobiano de acção rápida (activo durante 4–6 horas a 20°C), depois hidrolisa espontaneamente a CO₂ + metanol (< 2 mg/L metanol a dose máxima, dentro dos limites naturais do vinho). Eficaz contra Saccharomyces cerevisiae, Zygosaccharomyces bailii, bactérias lácticas. Aplicado imediatamente antes do engarrafamento em linha de enchimento com dosagem automática (temperatura < 20°C). Substituto da filtração esterilizante em algumas situações.",
+        "fase": ["vinho — imediatamente antes do engarrafamento"],
+        "pt_ue": true,
+        "brasil": false,
+        "aviso": "NÃO autorizado no Brasil (IN MAPA 14/2018 não inclui DMDC). Requer equipamento de dosagem específico. Produz metanol como subproduto de hidrólise — dentro dos limites naturais do vinho a dose máxima de 200 mg/L."
+      },
+      "sorbato_potassio": {
+        "nome": "Sorbato de potássio",
+        "formula": "C₆H₇KO₂",
+        "dose_max_mg_L": 200,
+        "acção": "Inibição do crescimento de leveduras e bolores por interferência com o metabolismo celular (inibição de enzimas desidrogenases)",
+        "descricao": "Agente estabilizador microbiológico usado exclusivamente para prevenir refermentação em vinhos com açúcares residuais. Activo apenas contra leveduras e bolores — sem actividade contra bactérias lácticas. PERIGO CRÍTICO: se adicionado a vinho com bactérias lácticas activas, o ácido sórbico é degradado por Oenococcus oeni a 2-etoxi-3,5-hexadieno (defeito de gerânio, irreversível). SEMPRE usar com SO₂ adequado que iniba as BAL antes de adicionar sorbato.",
+        "fase": ["vinho — pós-FML confirmada e com SO₂ adequado"],
+        "pt_ue": true,
+        "brasil": true,
+        "aviso": "PERIGO: Nunca adicionar em vinho com bactérias lácticas viáveis — causa defeito de gerânio irreversível. Usar SEMPRE em combinação com SO₂ mínimo 20–30 mg/L livre."
+      }
+    }
+  },
+  "colagem": {
+    "title": "Agentes de Colagem",
+    "produtos": {
+      "gelatina_colagem": {
+        "nome": "Gelatina (colagem)",
+        "dose_tipica_g_hL": "1–5",
+        "dose_max_g_hL": 10,
+        "acção": "Precipitação de taninos condensados e hidrolisáveis por ligação electrostática proteína-polifenol; clarificação e redução de amargor tánico",
+        "descricao": "Proteína colagénica hidrolisada (origem suína ou bovina) que flocula com taninos condensados (tintos) formando aglomerados que sedimentam. Selectiva para taninos mais duros e ellagtaninos. Usada para clarificação de tintos e brancos, redução de amargor excessivo, e em combinação com bentonite para máxima clarificação. Não é adequada para remover proteínas (ao contrário da bentonite).",
+        "fase": ["vinho"],
+        "pt_ue": true,
+        "brasil": true,
+        "nota": "Proteína animal — não vegana. Alergénio potencial (declaração recomendada no rótulo embora não obrigatória na UE para doses de colagem normais — verificar legislação actualizada)."
+      },
+      "caseina": {
+        "nome": "Caseína",
+        "dose_tipica_g_hL": "1–20",
+        "acção": "Adsorção de compostos fenólicos oxidados, remoção de quinonas e pigmentos de escurecimento, adsorção da lacase de Botrytis",
+        "descricao": "Proteína do leite que adsorve compostos de escurecimento oxidativo (quinonas, polímeros fenólicos), flavonóides amargos e remove a enzima lacase produzida por Botrytis cinerea. Especialmente útil em brancos e rosés com brunissement (escurecimento oxidativo). Não é eficaz para estabilidade proteica (não remove as proteínas termolábeis do vinho). Precipita ligeiramente a cor e não é adequada como único agente de clarificação.",
+        "fase": ["vinho"],
+        "pt_ue": true,
+        "brasil": true,
+        "nota": "Proteína de leite — alergénio lactogénico declarável obrigatório no rótulo (Reg. UE 1169/2011). Não vegan/não kosher."
+      },
+      "albumina_ovo": {
+        "nome": "Albumina de ovo (clara de ovo)",
+        "dose_tipica_g_hL": "1–10",
+        "acção": "Colagem selectiva de polifenóis em vinhos tintos — selectiva para taninos mais duros e adstringentes; suaviza a estrutura tánica sem remover os taninos benéficos",
+        "descricao": "Proteína da clara de ovo (ovalbumina) que precipita selectivamente os taninos poliméricos mais astringentes dos vinhos tintos. Menos agressiva que a gelatina — remove taninos duros mantendo os taninos de qualidade. Tradicional em vinhos tintos de guarda (Bordéus, Borgonha). Aplicar 2–4 semanas antes da filtração.",
+        "fase": ["vinho tinto"],
+        "pt_ue": true,
+        "brasil": true,
+        "nota": "Proteína de ovo — alergénio declarável obrigatório. Não vegan. Dose habitual: 1–2 claras/barrique (225 L) = ~2–4 g/hL de albumina."
+      },
+      "isinglass": {
+        "nome": "Isinglass (cola de peixe)",
+        "dose_tipica_g_hL": "0,1–0,5",
+        "acção": "Clarificação muito delicada por floculação de partículas em suspensão coloidal; remove turvações de levedura e proteicas em brancos e espumantes sem remover taninos",
+        "descricao": "Colagénio puro extraído da bexiga natatória de peixes (esturjão, bacalhau). Precipita partículas coloidais (proteínas de levedura, proteínas de uva desnaturadas) sem alterar o perfil fenólico ou a cor. Especialmente útil em vinhos brancos com turvação coloidal ligeira e em espumantes (clarificação avant tirage). Actua a doses muito baixas — o excesso pode causar over-fining.",
+        "fase": ["vinho branco", "espumante"],
+        "pt_ue": true,
+        "brasil": true,
+        "nota": "Proteína de peixe — alergénio declarável. Não vegan. Não aplicar em tintos (risco de over-fining e remoção de cor)."
+      }
+    }
+  },
+  "tratamento_metais": {
+    "title": "Tratamento de Metais",
+    "produtos": {
+      "ferrocianeto_potassio": {
+        "nome": "Ferrocianeto de potássio (Azul de Berlim / Blue fining)",
+        "formula": "K₄[Fe(CN)₆]·3H₂O",
+        "dose_max_mg_L": 100,
+        "acção": "Precipitação de Fe³⁺, Cu²⁺, Zn²⁺ e outros metais pesados como ferrocianetos insolúveis (Azul da Prússia e derivados)",
+        "descricao": "Agente de tratamento de metais que precipita Fe (como KFe[Fe(CN)₆] — Azul da Prússia), Cu (como ferrocianeto de cobre) e outros metais por formação de sais insolúveis. Extremamente eficaz para casse férrica e casse cúprica. Uso OBRIGATÓRIO sob supervisão de oenólogo responsável. ANÁLISE OBRIGATÓRIA: cianeto livre residual no vinho final deve ser < 0,5 mg/L de HCN (método oficial OIV). Sobretratamento origina Azul da Prússia persistente no vinho (turbidez azul irreversível).",
+        "fase": ["vinho"],
+        "pt_ue": true,
+        "brasil": true,
+        "aviso": "TRATAMENTO CONTROLADO: obrigatoriamente realizado por oenólogo com análise de cianeto residual < 0,5 mg/L HCN após tratamento. Sobretratamento é irreversível. Declaração obrigatória em registo de adega. Produtos de decomposição potencialmente tóxicos se não realizado correctamente."
+      },
+      "sulfureto_potassio": {
+        "nome": "Sulfureto de potássio",
+        "formula": "K₂S",
+        "dose_tipica_g_hL": "2–10",
+        "acção": "Precipitação de Cu²⁺ como CuS insolúvel (sulfeto de cobre); tratamento de casse cúprica",
+        "descricao": "Usado principalmente para reduzir cobre excessivo no vinho por precipitação de CuS. Alternativa ao ferrocianeto de potássio para casse cúprica quando os níveis de Fe são normais. RISCO: em excesso ou sem cuidado pode libertar H₂S (odor a ovo podre). Após adição, aguardar 24–48h para precipitação completa do CuS, depois filtrar. Arejar ligeiramente antes de filtrar para eliminar H₂S residual.",
+        "fase": ["vinho"],
+        "pt_ue": true,
+        "brasil": true,
+        "aviso": "RISCO de H₂S residual se em excesso. Análise de cobre residual após tratamento: objectivo < 0,5 mg/L Cu. Arejar ligeiramente antes de filtrar."
+      },
+      "acido_citrico_complexante": {
+        "nome": "Ácido cítrico (agente complexante de Fe³⁺)",
+        "formula": "C₆H₈O₇",
+        "dose_max_g_L_ue": 0.5,
+        "dose_max_g_L_br": 1.0,
+        "acção": "Complexação de Fe³⁺ formando citrato de ferro (III) solúvel — previne precipitação de fosfato de Fe³⁺ (casse branca) e tanato de Fe³⁺ (casse azul)",
+        "descricao": "Usado como agente complexante de ferro (NÃO como acidificante na UE). O citrato de ferro permanece em solução, estabilizando o vinho contra a casse férrica. Dose máxima UE: 0,5 g/L (Reg. CE 606/2009). No Brasil é autorizado até 1,0 g/L tanto como acidificante como complexante.",
+        "fase": ["vinho"],
+        "pt_ue": "Parcial — autorizado como complexante de Fe, NÃO como acidificante; máx. 0,5 g/L",
+        "brasil": true,
+        "nota": "Na UE o ácido cítrico é proibido como acidificante mas autorizado para complexação de ferro. No Brasil, autorizado para ambos os fins até 1,0 g/L."
+      },
+      "goma_arabica": {
+        "nome": "Goma arábica",
+        "dose_tipica_g_hL": "15–30",
+        "dose_max_g_hL": 30,
+        "acção": "Coloide protector — estabiliza partículas coloidais em suspensão (metais, taninos, pigmentos), previne precipitação tartárica e inibição de casse metálica",
+        "descricao": "Polissacarídeo natural (Acacia senegal) que actua como coloide protector, revestindo partículas e impedindo a sua agregação e precipitação. Usado para prevenir casse férrica e cúprica leves, estabilização coloidal após colagem, e melhoria da textura e persistência no vinho. Não remove metais — estabiliza coloidalmente. Não substitui a bentonite para proteínas.",
+        "fase": ["vinho"],
+        "pt_ue": true,
+        "brasil": true,
+        "nota": "Adicionar no vinho já clarificado (após colagem e filtração). Não usar antes da clarificação pois dificulta a sedimentação dos flocos de colagem."
+      }
+    }
+  },
+  "estabilizacao": {
+    "title": "Estabilização Tartárica e Antioxidante",
+    "produtos": {
+      "cmc_carboximetilcelulose": {
+        "nome": "CMC — Carboximetilcelulose",
+        "formula": "Éter de celulose e ácido glicólico",
+        "dose_max_mg_L": 100,
+        "acção": "Inibição da cristalização do bitartarato de potássio (KHT) por adsorção às faces de crescimento dos cristais — bloqueia o crescimento mas não remove KHT",
+        "descricao": "Polímero celulósico sintético que adsorve à superfície dos cristais de KHT em crescimento, bloqueando os sítios activos e impedindo a precipitação. Acção permanente (ao contrário do metatartarato que degrada). Rápido e económico — aplicar no vinho pronto a engarrafar. Apenas para brancos e rosés: em tintos pode causar instabilidade de cor (precipitação de polímeros tanino-antocianina).",
+        "fase": ["vinho branco", "vinho rosé"],
+        "pt_ue": true,
+        "brasil": true,
+        "aviso": "PROIBIDO em vinhos tintos na UE por risco de instabilidade de cor. Confirmar estabilidade com teste de condutividade ou mini-contact antes de aplicar. Máx. 100 mg/L."
+      },
+      "metatartarato_potassio": {
+        "nome": "Metatartarato de potássio",
+        "dose_max_mg_L": 100,
+        "acção": "Inibição da cristalização de KHT e CaT por interferência com os sítios de nucleação dos cristais",
+        "descricao": "Éster de ácido tartárico com actividade inibidora temporária da cristalização tartárica. Eficaz contra KHT e CaT. LIMITAÇÃO IMPORTANTE: degrada progressivamente acima de 15°C, perdendo actividade em 6–12 meses em condições de armazenamento quente. Adequado apenas para vinhos com curta vida de prateleira ou armazenamento a baixas temperaturas.",
+        "fase": ["vinho"],
+        "pt_ue": true,
+        "brasil": true,
+        "aviso": "Efeito temporário — degrada acima de 15°C em 6–12 meses. Não usar em vinhos de guarda ou destinados a mercados quentes sem cadeia de frio."
+      },
+      "manoprotenas_levedura": {
+        "nome": "Manoprotéinas de levedura",
+        "dose_tipica_mg_L": "200–400",
+        "acção": "Estabilização tartárica natural + melhoria da textura (volume em boca, persistência) + inibição da cristalização de KHT",
+        "descricao": "Glicoproteínas extraídas da parede de células de levedura (Saccharomyces cerevisiae) por autólise enzimática. Estabilizam a precipitação tartárica por mecanismo coloidal idêntico ao CMC mas com benefícios adicionais: melhoram a textura, aumentam o volume em boca, contribuem para estabilidade proteica moderada e favorecem a integração de taninos em tintos. Autorizado UE desde Reg. 2019/934. No Brasil em avaliação pela legislação.",
+        "fase": ["vinho"],
+        "pt_ue": true,
+        "brasil": "Em avaliação/verificar legislação estadual e federal",
+        "nota": "Produto derivado de leveduras — sem alergénios declaráveis. Adequado para tintos (ao contrário do CMC). Efeito estabilizador pode ser mais lento (2–4 semanas) que CMC."
+      },
+      "acido_ascorbico": {
+        "nome": "Ácido ascórbico (vitamina C)",
+        "formula": "C₆H₈O₆",
+        "dose_tipica_mg_L": "50–100",
+        "dose_max_mg_L_ue": 250,
+        "dose_max_mg_L_br": 150,
+        "acção": "Antioxidante sinérgico com SO₂ — reduz Fe³⁺ a Fe²⁺ (previne casse férrica), reduz o-quinonas a o-difenóis (combate escurecimento oxidativo), protege aromas de oxidação",
+        "descricao": "Antioxidante redutor que actua em sinergia com o SO₂: o ácido ascórbico consome o oxigénio dissolvido e reduz os compostos oxidados antes que causem dano organoléptico irreversível. OBRIGATORIAMENTE usado com SO₂ activo no vinho: sem SO₂, o ácido ascórbico gera peróxido de hidrogénio (H₂O₂) que é fortemente oxidante e agrava o defeito. Especialmente útil em brancos e rosés, no engarrafamento e em operações de trasega.",
+        "fase": ["vinho"],
+        "pt_ue": true,
+        "brasil": true,
+        "aviso": "NUNCA usar sem SO₂ activo no vinho — gera H₂O₂ (oxidante forte). Dose máxima UE: 250 mg/L (Reg. CE 606/2009). Dose máxima Brasil: 150 mg/L (IN MAPA 14/2018)."
       }
     }
   }

@@ -44,8 +44,16 @@ function validarCampos(form: FormData): Aviso[] {
     avisos.push({ msg: `pH ${ph} fora do intervalo vinícola (2,8–4,2)`, tipo: ph > 4.5 ? 'err' : 'warn' })
   if (form.so2Livre && so2 > 80)
     avisos.push({ msg: `SO₂ livre ${so2} mg/L elevado — verifique se é correto`, tipo: 'warn' })
-  if (form.av && av > 25)
-    avisos.push({ msg: `AV ${av} mEq/L acima do limite legal (tinto PT/UE: 20 mEq/L)`, tipo: 'err' })
+  
+  // Limite dinâmico de acidez volátil (AV) conforme legislação
+  const avMax = (form.jurisdicao === 'ptue' && !form.tipo.toLowerCase().includes('tinto')) ? 18 : 20
+  if (form.av && av > avMax) {
+    avisos.push({ 
+      msg: `AV ${av} mEq/L excede o limite legal de ${avMax} mEq/L para este tipo de vinho (${form.jurisdicao === 'ptue' ? 'PT/UE' : 'Brasil'})`, 
+      tipo: 'err' 
+    })
+  }
+
   if (form.acidezTotal && at < 30)
     avisos.push({ msg: `Acidez total ${at} mEq/L muito baixa — valor suspeito`, tipo: 'warn' })
   return avisos

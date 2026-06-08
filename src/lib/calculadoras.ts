@@ -46,11 +46,14 @@ export function calcSO2(
 export type AcidoAcidificacao = 'tartarico' | 'malico' | 'lactico' | 'citrico'
 
 // Fatores g/L de ácido por 1 g/L de subida em ác. tartárico equiv.
+// Ácido málico: peso equivalente 67.05 vs 75.05 do tartárico → 67.05/75.05 = 0.89
+// Ácido láctico comercial (solução 88%): (90.08 / 75.05) / 0.88 = 1.36
+// Ácido cítrico monohidratado: peso equivalente 70.05 → 70.05/75.05 = 0.93
 const FATOR_ACIDO: Record<AcidoAcidificacao, number> = {
   tartarico: 1.0,
-  malico: 1.12,
-  lactico: 1.24,
-  citrico: 1.43,
+  malico: 0.89,
+  lactico: 1.36,
+  citrico: 0.93,
 }
 
 export const NOMES_ACIDO: Record<AcidoAcidificacao, string> = {
