@@ -1,0 +1,230 @@
+{
+  "so2": {
+    "title": "Sulfuroso / SO₂",
+    "produtos": {
+      "so2_gasoso": {
+        "nome": "Dióxido de enxofre gasoso",
+        "formula": "SO₂",
+        "fator_so2": 1.000,
+        "dose_tipica_g_hL": "5–20",
+        "fase": ["mosto", "vinho"],
+        "pt_ue": true,
+        "brasil": true
+      },
+      "metabissulfito_potassio": {
+        "nome": "Metabissulfito de potássio",
+        "formula": "K₂S₂O₅",
+        "fator_so2": 0.572,
+        "descricao": "57,2 g de K₂S₂O₅ libertam 32,7 g de SO₂ activo",
+        "dose_equivalente_calculo": "dose_so2_g / 0.572 = dose_k2s2o5_g",
+        "fase": ["mosto", "vinho"],
+        "pt_ue": true,
+        "brasil": true
+      },
+      "bissulfito_potassio": {
+        "nome": "Bissulfito de potássio",
+        "formula": "KHSO₃",
+        "fator_so2": 0.538,
+        "dose_equivalente_calculo": "dose_so2_g / 0.538 = dose_khso3_g",
+        "fase": ["mosto", "vinho"],
+        "pt_ue": true,
+        "brasil": true
+      },
+      "so2_solucao_6pct": {
+        "nome": "Solução aquosa SO₂ 6%",
+        "concentracao_g_L": 60,
+        "fator_so2": 0.060,
+        "descricao": "1 mL de solução 6% = 0,06 g de SO₂; 1 L = 60 g",
+        "uso_tipico": "dosagem manual em pequenas quantidades",
+        "pt_ue": true,
+        "brasil": true
+      }
+    },
+    "formula_so2_molecular": {
+      "formula": "SO₂_mol = SO₂_livre / (1 + 10^(pH - 1.81))",
+      "objectivo_mg_L": 0.4,
+      "descricao": "SO₂ molecular activo; é a fracção antimicrobiana; objectivo mínimo: 0,4 mg/L",
+      "tabela_ph": {
+        "3.0": { "so2_livre_para_0.4_molecular": 6.6 },
+        "3.2": { "so2_livre_para_0.4_molecular": 10.5 },
+        "3.4": { "so2_livre_para_0.4_molecular": 16.6 },
+        "3.5": { "so2_livre_para_0.4_molecular": 20.9 },
+        "3.6": { "so2_livre_para_0.4_molecular": 26.3 },
+        "3.7": { "so2_livre_para_0.4_molecular": 33.2 },
+        "3.8": { "so2_livre_para_0.4_molecular": 41.8 },
+        "3.9": { "so2_livre_para_0.4_molecular": 52.6 },
+        "4.0": { "so2_livre_para_0.4_molecular": 66.2 }
+      }
+    }
+  },
+  "acidificacao": {
+    "title": "Acidificação",
+    "produtos": {
+      "acido_tartarico": {
+        "nome": "Ácido tartárico",
+        "formula": "C₄H₆O₆",
+        "mm_g_mol": 150.09,
+        "meq_por_g_L": 13.3,
+        "descricao": "Principal acidificante autorizado UE e Brasil; mais estável no vinho",
+        "fase": ["mosto", "vinho"],
+        "pt_ue": true,
+        "brasil": true,
+        "dose_max_g_L_mosto_ue": 1.50,
+        "dose_max_g_L_vinho_ue": 2.50
+      },
+      "acido_malico": {
+        "nome": "Ácido málico",
+        "formula": "C₄H₆O₅",
+        "mm_g_mol": 134.09,
+        "meq_por_g_L": 14.9,
+        "descricao": "Autorizado na UE e Brasil; atenção — pode ser metabolizado por bactérias lácticas (FML)",
+        "fase": ["mosto", "vinho"],
+        "pt_ue": true,
+        "brasil": true
+      },
+      "acido_lactico": {
+        "nome": "Ácido láctico",
+        "formula": "C₃H₆O₃",
+        "mm_g_mol": 90.08,
+        "meq_por_g_L": 11.1,
+        "descricao": "Autorizado na UE (desde 2008) e Brasil",
+        "fase": ["mosto", "vinho"],
+        "pt_ue": true,
+        "brasil": true
+      },
+      "acido_citrico": {
+        "nome": "Ácido cítrico",
+        "formula": "C₆H₈O₇",
+        "mm_g_mol": 192.12,
+        "meq_por_g_L": 15.6,
+        "descricao": "PROIBIDO como acidificante na UE; AUTORIZADO no Brasil (máx. 1,0 g/L total)",
+        "fase": ["vinho"],
+        "pt_ue": false,
+        "brasil": true,
+        "dose_max_brasil": 1.0,
+        "aviso": "Proibido na UE como prática enológica de acidificação — apenas vestigial nas uvas é tolerado"
+      }
+    }
+  },
+  "desacidificacao": {
+    "title": "Desacidificação",
+    "produtos": {
+      "bicarbonato_potassio": {
+        "nome": "Bicarbonato de potássio",
+        "formula": "KHCO₃",
+        "mm_g_mol": 100.12,
+        "fator_descida_g_L_tartarico": 0.67,
+        "descricao": "0,67 g/L KHCO₃ = descida de 1,0 g/L de AT (equiv. tartárico). Reacção: KHCO₃ + HT → KHT↓ + H₂O + CO₂",
+        "fase": ["mosto", "vinho"],
+        "pt_ue": true,
+        "brasil": true,
+        "dose_max_g_L_ue": 1.00
+      },
+      "carbonato_calcio": {
+        "nome": "Carbonato de cálcio",
+        "formula": "CaCO₃",
+        "mm_g_mol": 100.09,
+        "fator_descida_g_L_tartarico": 0.50,
+        "descricao": "0,50 g/L CaCO₃ = descida de 1,0 g/L de AT. Pode deixar excesso de Ca²⁺ (risco de casse cálcica)",
+        "fase": ["mosto", "vinho"],
+        "pt_ue": true,
+        "brasil": true,
+        "dose_max_g_L_ue": 1.00
+      },
+      "tartarato_neutro_potassio": {
+        "nome": "Tartarato neutro de potássio",
+        "formula": "K₂C₄H₄O₆",
+        "fator_descida_g_L_tartarico": 0.85,
+        "descricao": "0,85 g/L tartarato neutro de K = descida de 1,0 g/L de AT. Mais suave; não afecta mineralidade",
+        "fase": ["mosto", "vinho"],
+        "pt_ue": true,
+        "brasil": true
+      }
+    }
+  },
+  "enriquecimento": {
+    "title": "Enriquecimento",
+    "produtos": {
+      "sacarose": {
+        "nome": "Sacarose (chaptalização)",
+        "formula": "C₁₂H₂₂O₁₁",
+        "fator_alcool_tintos_g_L": 18,
+        "fator_alcool_brancos_g_L": 17,
+        "fator_oficial_ue_g_L": 16.378,
+        "aumento_volume_L_por_kg": 0.63,
+        "descricao": "Adição de sacarose ao mosto para elevar o TAV potencial",
+        "pt_ue": false,
+        "brasil": true,
+        "aviso": "PROIBIDO em Portugal e restante Zona C da UE"
+      },
+      "mcr": {
+        "nome": "Mosto Concentrado Rectificado (MCR)",
+        "concentracao_tipica_g_L": 700,
+        "ml_por_pct_vol_aproximado": 24,
+        "brix_minimo": 61.7,
+        "ph_maximo": 5.0,
+        "ratio_glucose_frutose": "1:1",
+        "descricao": "Mosto concentrado e purificado (pH máx. 5,0 a 25°Brix); aprox. 24 mL/L por +1% vol",
+        "pt_ue": true,
+        "brasil": true
+      },
+      "mc": {
+        "nome": "Mosto Concentrado (MC)",
+        "concentracao_tipica_g_L": 600,
+        "brix_minimo": 50.9,
+        "descricao": "Mosto concentrado por calor ou vácuo; mínimo 582 g/L de açúcares; pH ~ 3",
+        "pt_ue": true,
+        "brasil": true
+      }
+    }
+  },
+  "clarificacao": {
+    "title": "Clarificação e Colagem",
+    "produtos": {
+      "bentonite": {
+        "nome": "Bentonite",
+        "tipo": "coloide mineral",
+        "dose_tipica_g_hL": "25–150",
+        "acção": "Adsorção de proteínas (catiónicas) por troca iónica com argila carregada negativamente",
+        "fase": ["mosto", "vinho"],
+        "pt_ue": true,
+        "brasil": true,
+        "nota": "Sempre realizar jar-test para determinar dose mínima eficaz; excesso remove aromas"
+      },
+      "carvao_ativado": {
+        "nome": "Carvão activado oenológico",
+        "dose_max_g_hL": 100,
+        "acção": "Adsorção de pigmentos, off-flavors, fenóis voláteis",
+        "fase_pt_ue": ["mosto", "vinho branco", "vinho rosé"],
+        "fase_brasil": ["mosto", "vinho tinto", "vinho branco", "vinho rosé"],
+        "pt_ue": "Parcial — PROIBIDO em vinhos tintos",
+        "brasil": true,
+        "aviso_ue": "Proibido em vinhos tintos na UE"
+      },
+      "esferas_pvi_pvp": {
+        "nome": "Esferas adsorventes (PVI/PVP)",
+        "acção": "Remoção selectiva de fenóis voláteis (4-etilfenol, 4-etilguaiacol)",
+        "fase": ["vinho tinto"],
+        "pt_ue": true,
+        "brasil": "A verificar",
+        "fonte_ue": "Reg. UE 2024/3085"
+      },
+      "quitosano": {
+        "nome": "Quitosano enológico",
+        "dose_max_g_hL": 10,
+        "acção": "Inibição de Brettanomyces; clarificação; redução de metais",
+        "fase": ["mosto", "vinho"],
+        "pt_ue": true,
+        "brasil": true
+      },
+      "gelatina": {
+        "nome": "Gelatina",
+        "dose_tipica_g_hL": "1–5",
+        "acção": "Colagem — flocula com taninos; clarificação de tintos",
+        "fase": ["vinho"],
+        "pt_ue": true,
+        "brasil": true
+      }
+    }
+  }
+}

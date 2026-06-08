@@ -1,0 +1,251 @@
+{
+  "_meta": {
+    "fontes": ["Reg. UE 1308/2013", "Reg. Delegado UE 2019/934", "Reg. UE 2024/3085", "Reg. CE 606/2009"],
+    "zona_portugal": "Zona C III (Alentejo) e Zona C II (Douro, Dão, Bairrada, etc.)",
+    "atualizado": "2026-06"
+  },
+  "so2_total": {
+    "_unidade": "mg/L",
+    "_nota": "SO₂ total = livre + combinado; limites máximos no vinho acabado",
+    "tinto_seco": {
+      "max": 150,
+      "condicao": "açúcar < 5 g/L",
+      "fonte": "Reg. Delegado 2019/934, Anexo I-B"
+    },
+    "branco_rose_seco": {
+      "max": 200,
+      "condicao": "açúcar < 5 g/L",
+      "fonte": "Reg. Delegado 2019/934, Anexo I-B"
+    },
+    "tinto_doce": {
+      "max": 200,
+      "condicao": "açúcar ≥ 5 g/L"
+    },
+    "branco_rose_doce": {
+      "max": 250,
+      "condicao": "açúcar ≥ 5 g/L"
+    },
+    "botrytis_colheita_tardia": {
+      "max": 300,
+      "condicao": "vinhos de colheita tardia e de grão nobre"
+    },
+    "espumante_qualidade": {
+      "max": 185
+    },
+    "espumante_outros": {
+      "max": 235
+    },
+    "biologico_tinto": {
+      "max": 100,
+      "fonte": "Reg. UE 203/2012"
+    },
+    "biologico_branco_rose": {
+      "max": 150,
+      "fonte": "Reg. UE 203/2012"
+    },
+    "derogacao_anos_dificeis": {
+      "incremento_max": 50,
+      "nota": "Autorizado pelo Conselho da UE em anos com condições climáticas difíceis"
+    }
+  },
+  "so2_livre_recomendado": {
+    "_nota": "Valores recomendados para protecção microbiana; não são limites legais",
+    "_formula_molecular": "SO₂ molecular (mg/L) = SO₂ livre (mg/L) / (1 + 10^(pH - 1.81))",
+    "_objectivo_molecular": "0,4–0,8 mg/L de SO₂ molecular activo",
+    "por_ph": {
+      "pH_3.0": { "so2_livre_mg_L": 6, "so2_molecular_percent": 6.06 },
+      "pH_3.2": { "so2_livre_mg_L": 10 },
+      "pH_3.4": { "so2_livre_mg_L": 16 },
+      "pH_3.5": { "so2_livre_mg_L": 20, "so2_molecular_percent": 2.00 },
+      "pH_3.6": { "so2_livre_mg_L": 25 },
+      "pH_3.7": { "so2_livre_mg_L": 32 },
+      "pH_3.8": { "so2_livre_mg_L": 40 },
+      "pH_4.0": { "so2_livre_mg_L": 63, "so2_molecular_percent": 0.64 }
+    }
+  },
+  "so2_conversoes": {
+    "k2s2o5_para_so2": {
+      "fator": 0.572,
+      "descricao": "57,2 g de K₂S₂O₅ = 32,7 g de SO₂ activo",
+      "uso": "metabissulfito de potássio"
+    },
+    "khso3_para_so2": {
+      "fator": 0.538,
+      "descricao": "53,8 g de KHSO₃ = 29,0 g de SO₂ activo",
+      "uso": "bissulfito de potássio"
+    },
+    "so2_gasoso": {
+      "fator": 1.000,
+      "uso": "SO₂ gasoso puro"
+    },
+    "solucao_so2_6pct": {
+      "concentracao_g_L": 60,
+      "fator": 0.060,
+      "uso": "solução aquosa 6% p/v"
+    }
+  },
+  "acidificacao": {
+    "mosto": {
+      "max_g_L_tartarico_equiv": 1.50,
+      "fonte": "Reg. Delegado 2019/934"
+    },
+    "vinho": {
+      "max_g_L_tartarico_equiv": 2.50
+    },
+    "agentes_autorizados": ["tartarico", "malico", "lactico"],
+    "proibidos": ["citrico"],
+    "regra_exclusividade": "Na UE, acidificação e desacidificação NÃO podem ser realizadas no mesmo vinho no mesmo ano vitícola",
+    "equivalencias": {
+      "tartarico": { "fator_meq": 13.3, "descricao": "1 g/L ác. tartárico = 13,3 mEq/L" },
+      "malico": { "fator_meq": 14.9, "descricao": "1 g/L ác. málico = 14,9 mEq/L" },
+      "lactico": { "fator_meq": 11.1, "descricao": "1 g/L ác. láctico = 11,1 mEq/L" }
+    },
+    "efeito_tartarico_no_pH": {
+      "0.5_g_L": { "acidez_total_g_L": "+0.33", "delta_pH": "-0.08" },
+      "1.0_g_L": { "acidez_total_g_L": "+0.65", "delta_pH": "-0.15" },
+      "1.5_g_L": { "acidez_total_g_L": "+1.04", "delta_pH": "-0.22" }
+    }
+  },
+  "desacidificacao": {
+    "mosto": {
+      "max_g_L_tartarico_equiv": 1.00
+    },
+    "vinho": {
+      "max_g_L_tartarico_equiv": 1.00
+    },
+    "agentes_autorizados": ["bicarbonato_potassio", "carbonato_calcio", "tartarato_neutro_k", "fml"],
+    "proibidos_zona_c": ["acido_tartarico"],
+    "fatores_por_g_L_descida": {
+      "bicarbonato_potassio_KHCO3": {
+        "dose_g_L": 0.67,
+        "descricao": "0,67 g/L KHCO₃ por 1,0 g/L de descida de acidez total (em ác. tartárico)",
+        "fator_alternativo": "1,5 g KHCO₃ por 1 g/L de acidez total (em H₂SO₄)"
+      },
+      "carbonato_calcio_CaCO3": {
+        "dose_g_L": 0.50,
+        "descricao": "0,50 g/L CaCO₃ por 1,0 g/L de descida de acidez (tartárico equiv.)",
+        "fator_alternativo": "1,0 g CaCO₃ por 1 g/L de acidez total (em H₂SO₄)"
+      },
+      "tartarato_neutro_potassio": {
+        "dose_g_L": 0.85,
+        "descricao": "0,85 g/L tartarato neutro de K por 1,0 g/L de descida de acidez"
+      }
+    }
+  },
+  "enriquecimento": {
+    "zona_c_portugal": {
+      "metodo_autorizado": ["MC (Mosto Concentrado)", "MCR (Mosto Concentrado Rectificado)"],
+      "chapitalizacao": false,
+      "aumento_normal_pct_vol": 1.5,
+      "aumento_excepcional_pct_vol": 2.0,
+      "nota_excepcional": "Autorizado por decisão anual da Comissão Europeia em anos difíceis"
+    },
+    "zona_a_b": {
+      "chapitalizacao": true,
+      "aumento_max_pct_vol": { "zona_a": 3.0, "zona_b": 2.0 }
+    },
+    "fatores_conversao": {
+      "sacarose_para_alcool": {
+        "oficial_ue_g_L": 16.378,
+        "pratico_tintos_g_L": 18,
+        "pratico_brancos_g_L": 17,
+        "descricao": "g de açúcar por litro por 1% vol de álcool"
+      },
+      "mcr_liquido": {
+        "concentracao_tipica_g_L": 700,
+        "ml_por_pct_vol": 24,
+        "descricao": "aprox. 24 mL/L de MCR 700 g/L por +1,0% vol"
+      }
+    }
+  },
+  "acidez_volatil": {
+    "_unidade": "mEq/L ou g/L ác. acético",
+    "_conversao": "1 g/L ác. acético = 16,7 mEq/L",
+    "tinto": { "max_meq_L": 20, "max_g_L_acac": 1.20 },
+    "branco_rose": { "max_meq_L": 18, "max_g_L_acac": 1.08 },
+    "fonte": "Reg. Delegado 2019/934"
+  },
+  "sulfatos_totais": {
+    "max_g_L": 1.0,
+    "unidade": "g/L como K₂SO₄"
+  },
+  "cloretos": {
+    "max_g_L": 1.0,
+    "unidade": "g/L como NaCl"
+  },
+  "clarificacao_colagem": {
+    "bentonite": {
+      "fase": ["mosto", "vinho"],
+      "dose_tipica_g_hL": "25–150",
+      "obs": "Dose determinada por jar-test"
+    },
+    "carvao_ativado_oenologico": {
+      "fase": ["mosto", "vinho branco", "vinho rosé"],
+      "proibido_em": "vinho tinto (UE)",
+      "dose_max_g_hL": 100,
+      "obs": "Proibido em vinho tinto — Reg. CE 606/2009"
+    },
+    "pvpp": {
+      "fase": ["mosto", "vinho"],
+      "obs": "Clarificante polifenólico; removido por filtração"
+    },
+    "gelatina": {
+      "fase": "vinho",
+      "dose_tipica_g_hL": "1–5",
+      "obs": "Colagem; interage com taninos"
+    },
+    "caseina": {
+      "fase": "vinho",
+      "obs": "Clarificação proteica; alergénio (declaração obrigatória em rótulo)"
+    },
+    "albumina_ovo": {
+      "fase": "vinho",
+      "obs": "Colagem clássica de tintos de qualidade; alergénio (declaração obrigatória)"
+    },
+    "esferas_adsorventes_pvi_pvp": {
+      "fase": "vinho",
+      "dose_max_g_hL": "Conforme Reg. UE 2024/3085",
+      "obs": "Para remoção selectiva de fenóis voláteis (Brettanomyces); autorizado desde 2024"
+    },
+    "quitosano": {
+      "fase": "vinho",
+      "dose_max_g_hL": 10,
+      "obs": "Inibe Brettanomyces; autorizado Reg. UE 2018/1629"
+    },
+    "acido_ascorbico": {
+      "fase": "vinho",
+      "dose_max_mg_L": 250,
+      "obs": "Antioxidante; SEMPRE em combinação com SO₂; nunca isolado"
+    },
+    "goma_arabica": {
+      "fase": "vinho",
+      "dose_max_g_L": 0.3,
+      "obs": "Estabilizador coloidal; uso no engarrafamento"
+    }
+  },
+  "estabilizacao_tartarica": {
+    "frio": {
+      "temperatura_tipica_C": -4,
+      "duracao_dias": "7–14",
+      "obs": "Método clássico; precipita bitartarato de potássio"
+    },
+    "cmc": {
+      "nome": "Carboximetilcelulose (CMC)",
+      "dose_max_mg_L": 100,
+      "aplicacao": "brancos e rosés; inibição de cristalização",
+      "obs": "Não autorizado em espumantes"
+    },
+    "acido_metatartarico": {
+      "dose_max_g_hL": 10,
+      "duracao_efeito": "12–18 meses a temperatura moderada",
+      "obs": "Hidrolisa com o tempo; não adequado para conservação longa"
+    },
+    "manoprotéinas": {
+      "obs": "Inibidores naturais de cristalização das borras (lees); efeito preventivo"
+    }
+  },
+  "ferro_cobre_limites": {
+    "ferro_max_mg_L": { "recomendado": 5, "nota": "Limite legal não fixado; limite prático para evitar casse" },
+    "cobre_max_mg_L": { "legal": 1, "fonte": "Reg. CE 606/2009" }
+  }
+}

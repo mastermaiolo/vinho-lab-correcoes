@@ -1,0 +1,612 @@
+[
+  {
+    "id": "DEF-01",
+    "nome": "Acidez Volátil Elevada",
+    "categoria": "microbiologico",
+    "compostos_marcadores": [
+      {
+        "nome": "Ácido acético",
+        "formula": "CH3COOH",
+        "limiar_percepcao": "0,6 g/L (eq. H2SO4) — sabor azedo evidente acima deste valor",
+        "limiar_detecao": "0,3–0,4 g/L (em vinhos com pH normal)"
+      },
+      {
+        "nome": "Acetato de etilo",
+        "formula": "CH3COOC2H5",
+        "limiar_percepcao": "160–180 mg/L — odor a diluente/acetona",
+        "nota": "Contribui para o aroma pungente quando associado ao ácido acético"
+      }
+    ],
+    "descritores_sensoriais": ["vinagre", "azedo", "pungente", "acetona", "aguardente"],
+    "causa": "Bactérias acéticas aeróbias (Acetobacter aceti, A. pasteurianus) oxidam etanol a ácido acético. Bactérias lácticas heterofermentativas (Lactobacillus spp.) podem produzir AV em anaerobiose. Leveduras produzem 100–300 mg/L de AV durante fermentação normal.",
+    "favorecido_por": [
+      "Temperatura de fermentação >30°C",
+      "Arejamento excessivo durante fermentação",
+      "Vendima com Botrytis cinerea (gluconobacter)",
+      "SO₂ insuficiente no início da vinificação",
+      "Paragem de fermentação com açúcares residuais",
+      "Nitrógeno assimilável deficiente (<120 mg/L)"
+    ],
+    "confirmacao_analitica": {
+      "metodo_principal": "Destilação e titulação (método oficial OIV)",
+      "metodo_alternativo": "Enzimático (kit enzimático rápido)",
+      "expressao": "Em g/L de ácido acético ou mEq/L (1 g/L ác. acético = 16,7 mEq/L)"
+    },
+    "limites_legais": {
+      "pt_ue": {
+        "tinto": "20 mEq/L (= 1,20 g/L como ác. acético)",
+        "branco_rose": "18 mEq/L (= 1,08 g/L como ác. acético)",
+        "fonte": "Reg. Delegado UE 2019/934"
+      },
+      "brasil": {
+        "todos": "20 mEq/L",
+        "fonte": "IN MAPA 14/2018, Tabela 4"
+      }
+    },
+    "correcao": {
+      "pt_ue": "Osmose inversa combinada com resina de troca iónica aniónica (redução parcial). Sem tratamento químico direto autorizado para redução de AV em vinho acabado. Medidas preventivas: SO₂ adequado desde a recepção da uva (5–8 g/hL), controlo da temperatura de fermentação (<28°C tintos, <22°C brancos), inoculação precoce com LSA.",
+      "br": "Idêntico à UE. Osmose inversa autorizada (Lei 7.678/1988)."
+    },
+    "prevencao": [
+      "SO₂ preventivo adequado ao pH e estado da uva (5–12 g/hL)",
+      "Temperatura de fermentação controlada",
+      "Inóculo adequado de LSA (20–30 g/hL)",
+      "Nutrição azotada adequada (NFA ≥ 150 mg/L)",
+      "Evitar paragens de fermentação"
+    ],
+    "reversivel": false,
+    "notas_tecnicas": "Acima de 1,2 g/L em tintos o vinho é geralmente irrecuperável organolepticamente. A osmose inversa pode reduzir AV em 30–50% mas é cara e pode alterar o perfil aromático."
+  },
+  {
+    "id": "DEF-02",
+    "nome": "Brettanomyces",
+    "categoria": "microbiologico",
+    "compostos_marcadores": [
+      {
+        "nome": "4-Etilfenol (4-EP)",
+        "formula": "C8H10O",
+        "limiar_percepcao": "600 µg/L — defeito evidente",
+        "zona_risco": "200–600 µg/L — risco de expressão dependendo do estilo de vinho",
+        "nota": "Formado a partir do ácido p-cumárico"
+      },
+      {
+        "nome": "4-Etilguaiacol (4-EG)",
+        "formula": "C9H12O2",
+        "limiar_percepcao": "110 µg/L",
+        "nota": "Formado a partir do ácido ferúlico; aroma de especiaria/fumo"
+      },
+      {
+        "nome": "4-Etilfenol + 4-Etilguaiacol (ratio)",
+        "nota": "Ratio 4-EP:4-EG habitualmente 5–10:1 em vinhos Brett"
+      }
+    ],
+    "descritores_sensoriais": [
+      "couro curtido",
+      "suor de cavalo",
+      "curral",
+      "estrebaria",
+      "bacon",
+      "curativo (band-aid)",
+      "especiarias (4-EG)",
+      "fumo (4-EG)"
+    ],
+    "causa": "Levedura Brettanomyces bruxellensis (forma teleomórfica: Dekkera bruxellensis) descarboxila ácidos hidroxicinâmicos presentes no vinho (p-cumárico e ferúlico) a vinilfenóis, que são depois reduzidos a etilfenóis pela enzima vinilfenol redutase. Desenvolvimento preferencial em barricas de carvalho durante estágio.",
+    "favorecido_por": [
+      "SO₂ livre <0,4 mg/L de forma molecular (pH>3,5: crítico)",
+      "pH > 3,5",
+      "Temperatura de estágio > 18°C",
+      "Barricas velhas (>3 uso) ou mal higienizadas",
+      "Fermentação maloláctica incompleta (açúcares residuais de pentoses)",
+      "Ácido p-cumárico e ferúlico disponíveis (vinhos com uvas com muito ácido cinâmico)"
+    ],
+    "confirmacao_analitica": {
+      "metodo_principal": "GC-MS: quantificação directa de 4-EP e 4-EG (µg/L)",
+      "metodo_rapido": "qPCR do DNA de B. bruxellensis (resultado em 4-6h)",
+      "threshold_qpcr": ">10² UFC/mL = risco significativo",
+      "metodo_indirecto": "Painel sensorial treinado (método de confirmação qualitativa)"
+    },
+    "correcao": {
+      "pt_ue": "Esferas adsorventes de polivinilimidazole/polivinilpirrolidona (PVPP/PVI) — autorizadas pelo Reg. UE 2024/3085 para remoção selectiva de fenóis voláteis. Carvão activado oenológico: apenas em vinhos brancos e rosés (proibido em tintos na UE). Higienização radical de barricas: vapor de água a 90°C + solução de SO₂ 2% alternada com água quente. Manutenção de SO₂ livre moleculado adequado ao pH (0,4–0,8 mg/L molecular).",
+      "br": "Carvão activado oenológico (autorizado em tintos no Brasil — IN MAPA 14/2018). Quitosano enológico (Reg. UE 2018/1629, também aceite no Brasil): 10 g/hL máx., inibe activamente B. bruxellensis. Higienização de barricas idêntica. Controlo de SO₂."
+    },
+    "prevencao": [
+      "Monitorização regular de SO₂ livre em função do pH (manter SO₂ molecular ≥ 0,4 mg/L)",
+      "Higiene rigorosa de barricas e equipamento",
+      "Temperatura de cave < 18°C",
+      "qPCR preventivo antes e durante estágio em barrica",
+      "Vinhos com pH > 3,6: avaliar necessidade de acidificação"
+    ],
+    "reversivel": false,
+    "notas_tecnicas": "Acima de 1000 µg/L de 4-EP o vinho raramente é recuperável. Os etilfenóis são extremamente estáveis e não degradam espontaneamente. A remoção com PVPP/PVI reduz tipicamente 40–60% dos etilfenóis mas pode afectar a estrutura tánica."
+  },
+  {
+    "id": "DEF-03",
+    "nome": "Gosto de Rolha (TCA)",
+    "categoria": "quimico",
+    "compostos_marcadores": [
+      {
+        "nome": "2,4,6-Tricloroanisol (TCA)",
+        "formula": "C7H5Cl3O",
+        "limiar_percepcao": "4 ng/L (4 ppt) — detecção mínima",
+        "limiar_rejeicao": "3,1 ng/L — rejeição pelo consumidor",
+        "nota": "Composto principal responsável pelo defeito; formado por metilação de 2,4,6-triclorofenol por bolores (Penicillium, Aspergillus, Trichoderma)"
+      },
+      {
+        "nome": "2,3,4,6-Tetracloroanisol (TeCA)",
+        "limiar_percepcao": "4 ng/L",
+        "limiar_alteracao_significativa": "150 ng/L"
+      },
+      {
+        "nome": "Pentacloroanisol (PCA)",
+        "limiar_percepcao": "4000 ng/L"
+      },
+      {
+        "nome": "1-Octen-3-ona",
+        "limiar_percepcao": "20 ng/L",
+        "descriptor": "cogumelo, metálico"
+      },
+      {
+        "nome": "Geosmina",
+        "limiar_percepcao": "25 ng/L",
+        "descriptor": "terroso, beterraba"
+      }
+    ],
+    "descritores_sensoriais": ["mofo", "cartão húmido", "cortiça", "farmácia", "cogumelo", "humidade"],
+    "causa": "Bolores presentes na cortiça (Penicillium camemberti, Aspergillus niger, Trichoderma spp.) convertem clorofenóis (oriundos do tratamento industrial da cortiça com cloro ou fungicidas) em cloroanisóis por metilação enzimática. A contaminação pode ser também ambiental (madeiras tratadas na adega, paletes).",
+    "favorecido_por": [
+      "Cortiça tratada com derivados clorados",
+      "Humidade elevada na cave (HR > 75%)",
+      "Madeiras de cave tratadas com clorofenóis (pentaclorofenol)",
+      "Paletes de transporte contaminadas",
+      "Ausência de ventilação na área de armazenamento de rolhas",
+      "Contaminação cruzada de cortiça saudável com contaminada"
+    ],
+    "confirmacao_analitica": {
+      "metodo_principal": "GC-MS (headspace ou SPME) — quantificação em ng/L",
+      "metodo_rapido": "ELISA específico para TCA (disponível comercialmente)",
+      "nota": "Limiar de deteção GC-MS: 0,1–1 ng/L; muito abaixo do limiar sensorial"
+    },
+    "correcao": {
+      "pt_ue": "Sem tratamento oenológico eficaz uma vez que o vinho está engarrafado. Prevenção é a única estratégia eficaz. Para vinhos a granel ainda não engarrafados: adsorção com carvão activado oenológico (brancos/rosés) pode reduzir parcialmente. Substituição para sistemas de fecho alternativos (cápsula de rosca, rolha sintética) em linhas futuras.",
+      "br": "Igual à UE."
+    },
+    "prevencao": [
+      "Selecção de fornecedores de rolhas com certificação DIAM ou sistemas de análise individual",
+      "Armazenamento de rolhas em ambiente seco, ventilado e sem produtos com cloro",
+      "Análise sensorial e GC-MS de lotes de rolha antes de uso",
+      "Evitar uso de clorofenóis na cave (fungicidas, tratamentos de madeira)",
+      "Ventilação adequada da cave"
+    ],
+    "reversivel": false,
+    "notas_tecnicas": "O TCA não é nocivo para a saúde. Afecta 1–3% das garrafas com rolha natural. A percepção suprime a fruta e o aroma varietal mesmo a concentrações sub-limiares."
+  },
+  {
+    "id": "DEF-04",
+    "nome": "Oxidação / Acetaldeído",
+    "categoria": "quimico",
+    "compostos_marcadores": [
+      {
+        "nome": "Acetaldeído (etanal)",
+        "formula": "CH3CHO",
+        "concentracao_normal_vinho": "10–75 mg/L (vinhos secos)",
+        "limiar_percepcao": "100–125 mg/L — 'maçã cortada', 'sherried'",
+        "nota": "Principal produto de oxidação do etanol; marcador de oxidação precoce; pode ser parcialmente mascarado por SO₂"
+      },
+      {
+        "nome": "SO₂ livre necessário para cobrir acetaldeído",
+        "nota": "1 mg/L de acetaldeído exige ~2 mg/L de SO₂ livre para se ligar (forma sulfonato de etanal)"
+      }
+    ],
+    "descritores_sensoriais": [
+      "maçã cortada (envelhecimento prematuro)",
+      "ranço",
+      "xerez/sherry (acetaldeído elevado)",
+      "cera de abelha",
+      "passas",
+      "nozes"
+    ],
+    "causa": "Oxidação de etanol por oxigénio dissolvido, catalisada por Fe²⁺/Fe³⁺ e Cu⁺/Cu²⁺ (reacção de Fenton). Ocorre durante trasegos, filtragem, engarrafamento. 'Bottle sickness': pico de acetaldeído 2–4 semanas após engarrafamento que reverte com tempo.",
+    "favorecido_por": [
+      "Oxigénio dissolvido elevado (>0,2 mg/L pós-engarrafamento)",
+      "SO₂ livre insuficiente (<20 mg/L ao engarrafar)",
+      "Ferro > 5 mg/L e/ou Cobre > 0,5 mg/L (catalisadores)",
+      "Temperatura de armazenamento > 20°C",
+      "Rolha de cortiça com elevada permeabilidade ao O₂ (OTR > 2 mg O₂/ano)",
+      "Espaço de cabeça excessivo no engarrafamento"
+    ],
+    "confirmacao_analitica": {
+      "metodo_principal": "HPLC ou GC com derivatização (2,4-DNPH)",
+      "metodo_rapido": "Potencial redox (Eh): >400 mV = vinho oxidado; <250 mV = vinho reduzido",
+      "nota": "Determinação de O₂ dissolvido (Winkler ou luminescência): objectivo <0,1 mg/L pós-engarrafamento"
+    },
+    "correcao": {
+      "pt_ue": "Ácido ascórbico: 25–50 mg/L antes do arejamento (antioxidante sinérgico com SO₂; NUNCA usar sem SO₂). SO₂ livre: 25–35 mg/L em tintos, 30–40 mg/L em brancos ao engarrafamento. Engarrafamento com gás inerte (N₂, CO₂ ou mistura Ar+N₂). Selecção de rolha de baixa permeabilidade ao O₂.",
+      "br": "Ácido ascórbico: máx. 150 mg/L (IN MAPA 14/2018). Restante: igual à UE."
+    },
+    "prevencao": [
+      "Manutenção de SO₂ livre adequado em todas as fases",
+      "Operações de trasego e engarrafamento sob atmosfera inerte",
+      "Armazenamento em recipientes completamente cheios",
+      "Temperatura de cave < 15°C",
+      "Determinação regular de O₂ dissolvido"
+    ],
+    "reversivel": "Parcial — bottle sickness resolve-se em 4–8 semanas. Oxidação avançada é irreversível.",
+    "notas_tecnicas": "Cada mg/L de O₂ dissolvido no vinho consome ~4 mg/L de SO₂ livre. O potencial redox (Eh) é o melhor indicador do estado oxidativo: 200–250 mV = reduzido saudável; >400 mV = oxidado."
+  },
+  {
+    "id": "DEF-05",
+    "nome": "Redução (H₂S / Mercaptanos)",
+    "categoria": "quimico",
+    "compostos_marcadores": [
+      {
+        "nome": "Sulfeto de hidrogénio (H₂S)",
+        "formula": "H2S",
+        "limiar_percepcao": "1,1 µg/L (1,1 ppb) — extremamente volátil",
+        "descriptor": "ovo podre, fósforo"
+      },
+      {
+        "nome": "Metanotiol (metanomercaptano)",
+        "formula": "CH3SH",
+        "limiar_percepcao": "1,2 µg/L",
+        "descriptor": "repolho cozido, couve"
+      },
+      {
+        "nome": "Etanotiol",
+        "formula": "C2H5SH",
+        "limiar_percepcao": "1,1 µg/L",
+        "descriptor": "cebola, borracha"
+      },
+      {
+        "nome": "Sulfeto de dimetilo (DMS)",
+        "formula": "(CH3)2S",
+        "limiar_percepcao": "25–60 µg/L em brancos / 50–100 µg/L em tintos",
+        "descriptor": "milho cozido, aspargo",
+        "nota": "Também pode ser positivo em baixas concentrações"
+      },
+      {
+        "nome": "4-Metil-4-mercaptopentan-2-ona (4-MMP)",
+        "limiar_percepcao": "0,8 ng/L",
+        "descriptor": "buxo, groselha negra, maracujá (positivo em Sauvignon Blanc)",
+        "nota": "Tiol varietal benéfico em baixa concentração"
+      },
+      {
+        "nome": "3-Mercaptohexan-1-ol (3-SH)",
+        "limiar_percepcao": "4 ng/L",
+        "descriptor": "grapefruit, maracujá (positivo em Sauvignon Blanc)"
+      }
+    ],
+    "descritores_sensoriais": ["ovo podre", "borracha", "repolho cozido", "cebola", "fósforos", "petróleo"],
+    "causa": "Formação de H₂S durante fermentação por leveduras: redução de sulfato/sulfito ou degradação de aminoácidos sulfurados (cisteína, metionina) em condições de déficit nutritivo. H₂S acumula em borras durante envelhecimento (autólise levedurar). Mercaptanos formam-se por reacção de H₂S com etanol.",
+    "favorecido_por": [
+      "Deficiência em nitrógeno assimilável (NFA < 120 mg/L)",
+      "Temperaturas de fermentação muito baixas (<14°C)",
+      "SO₂ excessivo no mosto (reduzido a H₂S pelas leveduras)",
+      "Envelhecimento prolongado em borras (lees aging) sem remeximento (bâtonnage)",
+      "Enxofre residual das uvas (tratamentos fitossanitários)",
+      "Cepa de levedura com alta produção de H₂S"
+    ],
+    "confirmacao_analitica": {
+      "metodo_principal": "GC com detector de fotoionização de chama (FPD) — quantificação em µg/L",
+      "metodo_rapido": "Prova sensorial: agitar/arejar amostra e avaliar desaparecimento do defeito (H₂S volátil)"
+    },
+    "correcao": {
+      "pt_ue": "Arejamento controlado (trasego com arejamento): elimina H₂S e etanotiol. Sulfato de cobre: 0,5–1,0 g/hL (forma CuS insolúvel com H₂S; máx. 1 mg/L Cu no vinho final). Separação das borras por trasego se H₂S de borras. Ácido ascórbico: contraindicado pois aumenta condições redutoras.",
+      "br": "Sulfato de cobre: autorizado (IN MAPA 14/2018). Restante: igual à UE."
+    },
+    "prevencao": [
+      "NFA adequado (150–200 mg/L): DAP (fosfato diamónico) + nutrientes orgânicos",
+      "Selecção de cepa de levedura com baixa produção de H₂S",
+      "Enxaguar uvas/equipamento para remover enxofre residual",
+      "Bâtonnage regular durante envelhecimento em borras",
+      "Temperatura de fermentação > 16°C"
+    ],
+    "reversivel": "Sim, se tratado precocemente (H₂S volatiliza facilmente; mercaptanos mais persistentes)",
+    "notas_tecnicas": "A distinção entre H₂S (arejamento resolve) e mercaptanos (necessita cobre) é importante: o H₂S desaparece ao agitar a amostra no copo, os mercaptanos persistem."
+  },
+  {
+    "id": "DEF-06",
+    "nome": "Gosto de Rato (Mousiness)",
+    "categoria": "microbiologico",
+    "compostos_marcadores": [
+      {
+        "nome": "2-Acetil-1,4,5,6-tetrahidropiridina (2-ATHP)",
+        "limiar_percepcao": "<1 ng/L (detecção sensorial a pH alcalino — varia com pH)",
+        "nota": "Percepção muito dependente do pH: no vinho (pH 3,5) é pouco detectável; na boca (pH salivar 7) torna-se muito evidente. Disfar ao provar directamente no copo."
+      },
+      {
+        "nome": "2-Acetil-3,4,5,6-tetrahidropiridina",
+        "nota": "Variante com limiar e descriptor similares"
+      },
+      {
+        "nome": "2-Acetilpiperidina",
+        "nota": "Composto adicional com descriptor de rato"
+      }
+    ],
+    "descritores_sensoriais": ["urina de rato", "rato", "biscoito de arroz queimado", "milho-pipoca rançoso"],
+    "causa": "Produzido por bactérias lácticas (Lactobacillus spp., Oenococcus oeni em algumas estirpes) e por leveduras não-Saccharomyces (Brettanomyces spp.) a partir de lisina e açúcares. Mecanismo: reacção de aminoácidos com acetaldeído.",
+    "favorecido_por": [
+      "Fermentação maloláctica descontrolada",
+      "Bactérias lácticas contaminantes (Lactobacillus heterofermenta",
+      "pH elevado (> 3,8)",
+      "SO₂ livre muito baixo",
+      "Vinhos naturais / sem SO₂ (mais susceptíveis)"
+    ],
+    "confirmacao_analitica": {
+      "metodo_principal": "GC-MS ou SPME-GC-MS",
+      "metodo_sensorial": "Técnica da palma: colocar gota de vinho na palma, aquecer com o calor da mão, cheirar — o aumento de pH aumenta a volatilidade do composto"
+    },
+    "correcao": {
+      "pt_ue": "Sem tratamento oenológico eficaz depois de desenvolvido. SO₂ pode inibir formação adicional. Filtragem esterilizante pode remover as bactérias. Bentonite: efeito mínimo sobre os compostos. Vinho comercialmente não recuperável acima de concentrações detectáveis.",
+      "br": "Igual à UE."
+    },
+    "prevencao": [
+      "SO₂ adequado durante toda a vinificação",
+      "Selecção de estirpes bacterianas para FML testadas sem produção de ATHP",
+      "Monitorização sensorial regular dos vinhos em estágio",
+      "Higiene rigorosa de equipamento"
+    ],
+    "reversivel": false,
+    "notas_tecnicas": "Prova diagnóstica da palma: esfregar gota de vinho na palma aquecida e cheirar — o calor eleva o pH e torna o composto detectável. É um defeito que elimina o vinho comercialmente."
+  },
+  {
+    "id": "DEF-07",
+    "nome": "Gosto de Gerânio",
+    "categoria": "quimico",
+    "compostos_marcadores": [
+      {
+        "nome": "2-Etoxi-3,5-hexadieno (E)-hex-3,5-dien-2-ol",
+        "nota": "Formado por degradação do ácido sórbico (E,E)-hexa-2,4-dienoico por bactérias lácticas",
+        "limiar_percepcao": "0,001 mg/L (1 µg/L) — extremamente perceptível"
+      },
+      {
+        "nome": "Geraniol (precursor semelhante)",
+        "nota": "Terpeno natural presente em uvas (Muscat) — não confundir com o defeito"
+      }
+    ],
+    "descritores_sensoriais": ["gerânio", "sardinheiras", "folhas de gerânio", "floral pesado desagradável"],
+    "causa": "Bactérias lácticas (principalmente Oenococcus oeni) degradam o ácido sórbico (E,E-sorbato) por redução a (E,E)-hexadienol, que se etoxila espontaneamente a 2-etoxi-3,5-hexadieno. Ocorre quando se adiciona sorbato de potássio para estabilização microbiológica e o vinho sofre subsequentemente FML.",
+    "favorecido_por": [
+      "Adição de sorbato de potássio a vinhos que depois sofrem FML",
+      "Bactérias lácticas viáveis presentes após adição de sorbato",
+      "SO₂ insuficiente para inibir a actividade láctica",
+      "pH elevado (bactérias mais activas)"
+    ],
+    "confirmacao_analitica": {
+      "metodo_principal": "GC-MS (detecção a concentrações de ng/L)",
+      "nota": "Prova sensorial é suficiente para diagnóstico — odor inconfundível de sardinheiras"
+    },
+    "correcao": {
+      "pt_ue": "Vinho comercialmente inutilizável se pronunciado. Não há tratamento eficaz para remover o composto. Carvão activado pode reduzir parcialmente (apenas brancos/rosés na UE). Prevenção é imperativa.",
+      "br": "Carvão activado autorizado em todos os tipos de vinho no Brasil."
+    },
+    "prevencao": [
+      "NUNCA adicionar sorbato de potássio a vinhos com bactérias lácticas viáveis",
+      "Garantir que a FML está completa antes de adicionar sorbato",
+      "Dose adequada de SO₂ antes da adição de sorbato (inibir qualquer bacteria residual)",
+      "Se FML não for realizada: sorbato + SO₂ simultaneamente"
+    ],
+    "reversivel": false,
+    "notas_tecnicas": "Este defeito é completamente evitável. A sequência correcta: terminar FML → sulfitar adequadamente → adicionar sorbato. O sorbato por si só não protege se houver bactérias lácticas viáveis."
+  },
+  {
+    "id": "DEF-08",
+    "nome": "Refermentação na Garrafa",
+    "categoria": "microbiologico_fisico",
+    "compostos_marcadores": [
+      {
+        "nome": "Açúcares redutores residuais",
+        "valor_risco": ">2 g/L combinado com leveduras viáveis"
+      },
+      {
+        "nome": "CO₂ dissolvido",
+        "valor_normal_vinho_tranquilo": "<0,5 g/L",
+        "valor_refermentacao": ">1,0 g/L (borbulhamento visível)"
+      }
+    ],
+    "descritores_sensoriais": ["efervescência indesejada", "gás", "turvação", "depósito levedurar", "sabor alterado"],
+    "causa": "Leveduras viáveis residuais (Saccharomyces cerevisiae ou espécies mais resistentes como Saccharomycodes ludwigii, Zygosaccharomyces bailii) refermentam açúcares residuais após engarrafamento. Produção de CO₂ que pode causar rolha a estalar.",
+    "favorecido_por": [
+      "Açúcares residuais > 2 g/L no engarrafamento sem estabilização microbiológica",
+      "Filtragem insuficiente (módulo > 0,45 µm)",
+      "SO₂ livre < 25 mg/L no engarrafamento",
+      "Temperatura de armazenamento > 20°C",
+      "Leveduras resistentes ao SO₂ (Z. bailii tolera até 50 mg/L SO₂ livre)"
+    ],
+    "confirmacao_analitica": {
+      "metodo_principal": "Contagem de leveduras viáveis (UFC/mL): objectivo < 10 UFC/mL no vinho filtrado",
+      "analise_complementar": "Determinação de açúcares fermentáveis (glucose + frutose) por HPLC ou enzimático"
+    },
+    "correcao": {
+      "pt_ue": "Vinho engarrafado: sem remédio (descontinuar o lote). Vinho a granel: filtração esterilizante (0,45 µm) + sulfitar adequadamente + novo engarrafamento asséptico.",
+      "br": "Igual à UE."
+    },
+    "prevencao": [
+      "Filtração esterilizante 0,45 µm imediatamente antes do engarrafamento",
+      "SO₂ livre ≥ 25 mg/L (tintos), ≥ 30 mg/L (brancos) no engarrafamento",
+      "Para vinhos doces: sorbato de potássio 200 mg/L + SO₂ adequado",
+      "Verificação microbiológica antes de engarrafamento (conta de leveduras)",
+      "Linha de engarrafamento asséptica (higienizada com vapor/peróxido)"
+    ],
+    "reversivel": "Não (em garrafa); possível correção antes do engarrafamento",
+    "notas_tecnicas": "Saccharomycodes ludwigii é particularmente perigoso: resistente a SO₂ até 50 mg/L de SO₂ livre, resiste a pH baixo e a benzoato. Só a filtração esterilizante é eficaz."
+  },
+  {
+    "id": "DEF-09",
+    "nome": "Lightstrike (Golpe de Luz)",
+    "categoria": "fisico_quimico",
+    "compostos_marcadores": [
+      {
+        "nome": "Riboflavina (vitamina B2)",
+        "formula": "C17H20N4O6",
+        "concentracao_em_vinho": "20–200 µg/L (em vinhos brancos)",
+        "nota": "Fotossensibilizador; absorve luz a 370–450 nm"
+      },
+      {
+        "nome": "Metanotiol e outros tiols",
+        "nota": "Produtos da fotodegradação de aminoácidos sulfurados catalisada pela riboflavina excitada"
+      },
+      {
+        "nome": "Dimetil dissulfeto (DMDS)",
+        "descriptor": "repolho cozido, borracha queimada"
+      }
+    ],
+    "descritores_sensoriais": [
+      "repolho cozido",
+      "borracha",
+      "skunky (mosca) — mais em espumantes",
+      "mofo láctico",
+      "perda de frescura e aromas varietais"
+    ],
+    "causa": "Riboflavina absorve luz a 370–440 nm e em estado excitado catalisa a oxidação fotoquímica de metionina e cisteína, gerando compostos de enxofre (metanotiol, dimetil sulfeto). Ocorre em minutos a horas de exposição directa.",
+    "favorecido_por": [
+      "Garrafa de vidro verde ou transparente (transmite UV e luz visível)",
+      "Exposição directa à luz solar (radiação UV intensa)",
+      "Iluminação fluorescente na adega ou loja",
+      "Vinhos com teor elevado de riboflavina (principalmente brancos)"
+    ],
+    "confirmacao_analitica": {
+      "metodo_principal": "SPME-GC-FPD para compostos de enxofre; HPLC para riboflavina",
+      "nota": "Prova sensorial antes e depois de exposição à luz controlada (fotodegradação experimental)"
+    },
+    "correcao": {
+      "pt_ue": "Sem tratamento eficaz após o dano. Carvão activado pode adsorver parcialmente tiols (brancos/rosés). Prevenção é essencial.",
+      "br": "Carvão activado em todos os tipos."
+    },
+    "prevencao": [
+      "Garrafa de vidro âmbar/castanho ou com tratamento UV",
+      "Embalagem em caixa opaca (armazenamento e transporte)",
+      "Evitar exposição à luz directa na adega e na venda",
+      "Escolha de rolha/capsulagem que não transmita UV",
+      "Para espumantes: especial atenção (riboflavina mais alta, produto mais sensível)"
+    ],
+    "reversivel": false,
+    "notas_tecnicas": "O Champagne é particularmente susceptível por ter teores elevados de riboflavina. Garrafa âmbar é 100x mais eficaz que garrafa verde para bloquear 370–440 nm."
+  },
+  {
+    "id": "DEF-10",
+    "nome": "Casse Proteica",
+    "categoria": "fisico_quimico",
+    "compostos_marcadores": [
+      {
+        "nome": "Proteínas termolábeis (Proteínas ricas em prolina, taumatina-like proteins)",
+        "concentracao_em_mosto": "150–300 mg/L",
+        "concentracao_em_vinho": "1,5–100 mg/L (após fermentação)",
+        "nota": "Precipitam irreversivelmente quando aquecidas >60°C (teste de termoestabilidade)"
+      }
+    ],
+    "descritores_sensoriais": ["turvação branca/leitosa", "depósito branco fino", "sem alteração gustativa"],
+    "causa": "Proteínas de uva (principalmente em variedades brancas) formam agregados insolúveis quando sujeitas a calor, oxidação ou variações de pH. Mais frequente em vinhos brancos que carecem de taninos (que precipitam proteínas naturalmente).",
+    "favorecido_por": [
+      "Variedades brancas com alto teor proteico (Gewürztraminer, Muscat, Alvarinho)",
+      "Uvas com Botrytis (gluconases libertam proteínas celulares)",
+      "Baixo teor em taninos (ausência de precipitação tanino-proteína natural)",
+      "Baixa clarificação do mosto",
+      "Alta temperatura de transporte/armazenamento"
+    ],
+    "confirmacao_analitica": {
+      "metodo_principal": "Teste de calor: 80°C durante 30 min — turbidez (>2 NTU de aumento) = instável",
+      "metodo_alternativo": "Teste de etanol: adicionar 25 mL de etanol 96% a 75 mL de vinho — turbidez = instabilidade proteica",
+      "quantificacao": "Bradford, Lowry ou Coomassie Blue: mg/L proteína"
+    },
+    "correcao": {
+      "pt_ue": "Bentonite sódica ou cálcio-sódica: 25–150 g/hL (dose determinada por ensaio laboratorial previamente ao tratamento). A bentonite é a única solução eficaz e universalmente aceite. Tratamento a frio potencia efeito. Carboximetilcelulose (CMC): não actua sobre proteínas.",
+      "br": "Bentonite: autorizada (IN MAPA 14/2018). Doses idênticas."
+    },
+    "prevencao": [
+      "Clarificação precoce do mosto (colagem enzimática)",
+      "Proteases enológicas (Aspergillus niger): hidrólise preventiva de proteínas (autorizado EU desde 2023)",
+      "Ensaio de termoestabilidade sistemático antes do engarrafamento",
+      "Dose de bentonite optimizada por ensaio de jar-test"
+    ],
+    "reversivel": "Sim, se tratado com bentonite antes do engarrafamento",
+    "notas_tecnicas": "A bentonite em excesso (>200 g/hL) pode remover aromas (perda de compostos de aroma voláteis por adsorção). Sempre realizar jar-test para determinar dose mínima eficaz."
+  },
+  {
+    "id": "DEF-11",
+    "nome": "Casse Férrica",
+    "categoria": "quimico",
+    "compostos_marcadores": [
+      {
+        "nome": "Fe³⁺ (Ferro III / Ferro Férrico)",
+        "concentracao_uva": "2–5 mg/L (concentração normal)",
+        "concentracao_risco": ">6 mg/L em brancos; >10 mg/L em tintos",
+        "concentracao_contaminacao": "até 25 mg/L (contaminação por equipamento)"
+      },
+      {
+        "nome": "Fosfato de Fe³⁺ (Casse Branca/White Casse)",
+        "nota": "Em vinhos brancos: precipitado branco amorfo",
+        "condicao": "Fosfato total >100 mg/L + Fe>8 mg/L + arejamento"
+      },
+      {
+        "nome": "Fe³⁺-tanino (Casse Azul/Blue Casse)",
+        "nota": "Em vinhos tintos: coloração azul-violeta intensa",
+        "condicao": "Fe³⁺ + antocianinas/taninos após arejamento"
+      }
+    ],
+    "descritores_sensoriais": ["turvação branca (brancos)", "coloração azul-violeta intensa (tintos)", "sem alteração gustativa significativa"],
+    "causa": "O ferro no vinho existe em equilíbrio Fe²⁺ (solúvel) ↔ Fe³⁺ (insolúvel). O arejamento oxida Fe²⁺ a Fe³⁺ que precipita com fosfatos (brancos) ou taninos/antocianinas (tintos). A casse ocorre tipicamente 48h após arejamento.",
+    "favorecido_por": [
+      "Equipamento de ferro ou ferro fundido (corrói, liberta ferro)",
+      "Arejamento após tratamento com ácido ascórbico",
+      "pH baixo (3,0–3,3) — máximo risco",
+      "Fosfato total elevado (>150 mg/L em tintos; >70 mg/L em brancos)",
+      "Armazenamento a temperatura baixa (insolubilidade aumentada)"
+    ],
+    "confirmacao_analitica": {
+      "metodo_principal": "Espectrometria de absorção atómica (SAA) ou ICP: quantificação de Fe total (mg/L)",
+      "teste_rapido": "Teste de arejamento: garrafa semi-cheia, agitar, aguardar 48h — turbidez = casse",
+      "objetivo": "Fe total < 5 mg/L em vinhos brancos; < 8 mg/L em tintos"
+    },
+    "correcao": {
+      "pt_ue": "Ácido ascórbico: 25–50 mg/L antes de qualquer arejamento — reduz Fe³⁺ a Fe²⁺ (solúvel). Ácido cítrico: 0,5–1,0 g/L — complexa Fe³⁺ tornando-o solúvel (máx. autorizado: 0,5 g/L em vinhos PT/UE — verificar legislação actual). Ferrocianeto de potássio (Azul de Berlim): máx. 1 g/hL — precipitação de Fe como ferrocianeto azul (usa-se pouco; produtos de decomposição potencialmente tóxicos). Goma arábica: 15–30 g/hL — estabiliza colóides, previne precipitação.",
+      "br": "Ácido cítrico: máx. 1,0 g/L (autorizado no Brasil). Ácido ascórbico, ferrocianeto de potássio, goma arábica: autorizados."
+    },
+    "prevencao": [
+      "Equipamento exclusivamente em aço inoxidável ou polímeros alimentares",
+      "Ácido ascórbico preventivo antes de operações com arejamento",
+      "Monitorização de Fe total em cada lote",
+      "Evitar exposição do vinho a superfícies ferrosas"
+    ],
+    "reversivel": "Sim, se tratado antes do engarrafamento",
+    "notas_tecnicas": "O ferrocianeto de potássio (Blaukläre/Blue fining) é muito eficaz mas requer cuidado: sobretratamento dá turbidez azul permanente. Deve ser feito em laboratório certificado e sujeito a declaração obrigatória em alguns países."
+  },
+  {
+    "id": "DEF-12",
+    "nome": "Casse Cúprica",
+    "categoria": "quimico",
+    "compostos_marcadores": [
+      {
+        "nome": "Cu²⁺ (Cobre II)",
+        "concentracao_normal": "<0,5 mg/L (após fermentação — parte precipita com borras)",
+        "concentracao_risco": ">0,5–1,0 mg/L em vinho acabado",
+        "limite_legal_UE": "máx. 1 mg/L no vinho (Reg. CE 606/2009)",
+        "limite_legal_BR": "máx. 1 mg/L (IN MAPA 14/2018)"
+      }
+    ],
+    "descritores_sensoriais": ["turvação acastanhada/avermelhada", "depósito castanho", "sabor metálico (em casos graves)"],
+    "causa": "Cobre residual de equipamento (bombas, válvulas em bronze/latão) ou de tratamentos fitossanitários (calda bordalesa) precipita em condições redutoras (SO₂ elevado) como sulfeto de cobre (Cu₂S) — formação de turvação em anaerobiose.",
+    "favorecido_por": [
+      "Equipamento com cobre/bronze/latão",
+      "Tratamentos fitossanitários com cobre no vinhedo",
+      "Condições redutoras (SO₂ livre elevado, armazenamento anaeróbio)",
+      "Temperaturas baixas (insolubilidade aumentada)",
+      "Luz (catalisa precipitação de sulfeto de cobre)"
+    ],
+    "confirmacao_analitica": {
+      "metodo_principal": "SAA (Espectrometria de Absorção Atómica): quantificação Cu total (mg/L)",
+      "teste_rapido": "Arejamento + luz durante 24–48h — turbidez acastanhada = casse cúprica"
+    },
+    "correcao": {
+      "pt_ue": "Ferrocianeto de potássio: precipita Cu²⁺ como ferrocianeto de cobre (cianocupreto, insolúvel). Arejamento suave + colagem bentonite: pode remover parte do Cu. Sulfureto de potássio (K₂S): forma CuS insolúvel (uso controlado — risco de H₂S residual). Goma arábica: acção estabilizante sobre os colóides.",
+      "br": "Igual à UE."
+    },
+    "prevencao": [
+      "Substituir todo o equipamento de cobre/bronze/latão por aço inoxidável",
+      "Tratamento preventivo com bentonite e sulfato de ferro (para depositar Cu com borras)",
+      "Monitorização regular de Cu total no vinho",
+      "Reduzir tratamentos com calda bordalesa — respeitar períodos de carência"
+    ],
+    "reversivel": "Sim, se tratado antes do engarrafamento",
+    "notas_tecnicas": "O cobre é simultaneamente: (1) defeito em excesso (casse cúprica) e (2) agente de correcção da redução (sulfato de cobre para H₂S). A dose terapêutica de CuSO₄ é 0,5–1,0 g/hL; o objectivo é ter <0,5 mg/L Cu no vinho final."
+  }
+]
