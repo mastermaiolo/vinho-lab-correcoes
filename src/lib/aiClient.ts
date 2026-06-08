@@ -151,8 +151,10 @@ async function callOpenRouter(apiKey: string, model: string, system: string, use
     headers: {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${apiKey}`,
-      'HTTP-Referer': 'https://vinho-lab-correcoes.vercel.app',
-      'X-Title': 'Vinho-Lab Correções',
+      // X-Title é o único header extra permitido pelo CORS do OpenRouter a partir do browser.
+      // HTTP-Referer como header custom dispara preflight que o OpenRouter rejeita;
+      // o browser já envia o Referer real automaticamente.
+      'X-Title': 'Vinho-Lab Correcoes',
     },
     body: JSON.stringify({
       model,
