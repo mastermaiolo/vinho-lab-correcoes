@@ -38,7 +38,7 @@ export const PROVIDER_LABELS: Record<AIProvider, string> = {
 
 export const PROVIDER_MODELS: Record<AIProvider, string> = {
   gemini: 'gemini-2.5-flash',
-  claude: 'claude-haiku-4-5-20251001',
+  claude: 'claude-haiku-4-5',
   openai: 'gpt-4o-mini',
   openrouter: 'google/gemma-4-26b-a4b-it:free',
 }
@@ -68,7 +68,8 @@ export const OPENROUTER_DEFAULT_KEY: string =
 
 // Strip markdown code blocks and extract raw JSON
 function extractJSON(text: string): string {
-  const fenced = text.match(/```(?:json)?\s*([\s\S]*?)```/)
+  // Case-insensitive para ```json, ```JSON, ```text, etc.
+  const fenced = text.match(/```(?:[a-zA-Z]*)?\s*([\s\S]*?)```/)
   if (fenced) return fenced[1].trim()
   const obj = text.match(/\{[\s\S]*\}/)
   if (obj) return obj[0]
@@ -81,7 +82,7 @@ async function sleep(ms: number) {
 
 async function callGemini(apiKey: string, system: string, user: string): Promise<string> {
   const res = await fetch(
-    `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`,
+    `https://generativelanguage.googleapis.com/v1beta/models/${PROVIDER_MODELS.gemini}:generateContent?key=${apiKey}`,
     {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -130,7 +131,7 @@ async function callOpenAI(apiKey: string, system: string, user: string): Promise
     body: JSON.stringify({
       model: PROVIDER_MODELS.openai,
       temperature: 0.2,
-      max_tokens: 2048,
+      max_completion_tokens: 2048,
       response_format: { type: 'json_object' },
       messages: [
         { role: 'system', content: system },
@@ -160,8 +161,10 @@ async function callOpenRouter(apiKey: string, model: string, system: string, use
       model,
       temperature: 0.2,
       max_tokens: 2048,
+      // response_format só é suportado por alguns modelos OpenRouter (não universal em free models)
+      // Instruímos via system prompt; modelos compatíveis respeitam ambos
       messages: [
-        { role: 'system', content: system + '\n\nResponda EXCLUSIVAMENTE em JSON válido, sem markdown.' },
+        { role: 'system', content: system + '\n\nResponda EXCLUSIVAMENTE em JSON válido, sem markdown nem texto extra.' },
         { role: 'user', content: user },
       ],
     }),
