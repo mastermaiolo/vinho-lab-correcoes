@@ -152,10 +152,8 @@ async function callOpenRouter(apiKey: string, model: string, system: string, use
     headers: {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${apiKey}`,
-      // X-Title é o único header extra permitido pelo CORS do OpenRouter a partir do browser.
-      // HTTP-Referer como header custom dispara preflight que o OpenRouter rejeita;
-      // o browser já envia o Referer real automaticamente.
-      'X-Title': 'Vinho-Lab Correcoes',
+      // Não enviamos X-Title nem HTTP-Referer — headers custom disparam preflight CORS
+      // que o OpenRouter rejeita em chamadas do browser. Só Content-Type + Authorization.
     },
     body: JSON.stringify({
       model,
