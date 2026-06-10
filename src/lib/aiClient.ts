@@ -40,7 +40,7 @@ export const PROVIDER_MODELS: Record<AIProvider, string> = {
   gemini: 'gemini-2.5-flash',
   claude: 'claude-haiku-4-5',
   openai: 'gpt-4o-mini',
-  openrouter: 'google/gemma-4-26b-a4b-it:free',
+  openrouter: 'nvidia/nemotron-3-super-120b-a12b:free',
 }
 
 export const PROVIDER_KEY_HINTS: Record<AIProvider, string> = {
@@ -52,14 +52,14 @@ export const PROVIDER_KEY_HINTS: Record<AIProvider, string> = {
 
 // Modelos sugeridos no selector do OpenRouter (free + custo baixo)
 export const OPENROUTER_MODELS: { id: string; label: string; free: boolean }[] = [
-  { id: 'google/gemma-4-26b-a4b-it:free',              label: 'Gemma 4 26B (Google) — free',          free: true },
-  { id: 'google/gemini-2.0-flash-exp:free',             label: 'Gemini 2.0 Flash Exp (Google) — free', free: true },
-  { id: 'meta-llama/llama-3.3-70b-instruct:free',       label: 'Llama 3.3 70B (Meta) — free',          free: true },
-  { id: 'deepseek/deepseek-chat-v3-0324:free',          label: 'DeepSeek Chat V3 — free',              free: true },
-  { id: 'mistralai/mistral-7b-instruct:free',           label: 'Mistral 7B — free',                    free: true },
-  { id: 'google/gemini-2.5-flash',                      label: 'Gemini 2.5 Flash (Google) — pago',     free: false },
-  { id: 'anthropic/claude-haiku-4-5',                   label: 'Claude Haiku 4.5 — pago',              free: false },
-  { id: 'openai/gpt-4o-mini',                           label: 'GPT-4o Mini (OpenAI) — pago',          free: false },
+  { id: 'nvidia/nemotron-3-super-120b-a12b:free',       label: 'Nemotron 3 Super 120B (NVIDIA) — free', free: true },
+  { id: 'google/gemma-4-26b-a4b-it:free',               label: 'Gemma 4 26B (Google) — free',           free: true },
+  { id: 'meta-llama/llama-3.3-70b-instruct:free',       label: 'Llama 3.3 70B (Meta) — free',           free: true },
+  { id: 'nousresearch/hermes-3-llama-3.1-405b:free',    label: 'Hermes 3 Llama 405B — free',            free: true },
+  { id: 'google/gemma-4-31b-it:free',                   label: 'Gemma 4 31B (Google) — free',           free: true },
+  { id: 'google/gemini-2.5-flash',                      label: 'Gemini 2.5 Flash (Google) — pago',      free: false },
+  { id: 'anthropic/claude-haiku-4-5',                   label: 'Claude Haiku 4.5 — pago',               free: false },
+  { id: 'openai/gpt-4o-mini',                           label: 'GPT-4o Mini (OpenAI) — pago',           free: false },
 ]
 
 // Chave embutida (compilada no bundle a partir de .env.local — não vai ao git)
@@ -222,11 +222,21 @@ export async function chamarIA(
   throw new Error('Falha ao conectar com a API de IA.')
 }
 
+// Incrementar quando o modelo default mudar — força reset do sessionStorage
+const CONFIG_VERSION = '2'
+
 export function loadAIConfig(): AIConfig {
   const stored = sessionStorage.getItem('vl_ai_config')
   if (stored) {
     try {
-      return JSON.parse(stored) as AIConfig
+      const parsed = JSON.parse(stored) as AIConfig & { _v?: string }
+      // Se versão diferente e for openrouter com chave default, actualiza modelo
+      if (parsed._v !== CONFIG_VERSION && parsed.provider === 'openrouter' && parsed.apiKey === OPENROUTER_DEFAULT_KEY) {
+        parsed.model = PROVIDER_MODELS.openrouter
+        parsed._v = CONFIG_VERSION
+        sessionStorage.setItem('vl_ai_config', JSON.stringify(parsed))
+      }
+      return parsed
     } catch { /* fall through */ }
   }
   // backward compat
