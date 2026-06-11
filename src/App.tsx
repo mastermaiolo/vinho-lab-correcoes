@@ -1,13 +1,19 @@
-import { useState } from 'react'
+import { useState, lazy, Suspense } from 'react'
 import Header from './components/Header'
 import ApiKeyModal from './components/ApiKeyModal'
 import HistoricoModal from './components/HistoricoModal'
 import DiagnosticoIA from './tabs/DiagnosticoIA'
-import Correcoes from './tabs/Correcoes'
-import Calculadoras from './tabs/Calculadoras'
-import FichasDefeito from './tabs/FichasDefeito'
-import Comparacao from './tabs/Comparacao'
-import Produtos from './tabs/Produtos'
+
+// Tabs secundárias em chunks separados — corta o bundle inicial
+const Correcoes = lazy(() => import('./tabs/Correcoes'))
+const Calculadoras = lazy(() => import('./tabs/Calculadoras'))
+const FichasDefeito = lazy(() => import('./tabs/FichasDefeito'))
+const Comparacao = lazy(() => import('./tabs/Comparacao'))
+const Produtos = lazy(() => import('./tabs/Produtos'))
+
+const TabFallback = () => (
+  <div className="py-16 text-center text-stone-500 text-sm">⏳ …</div>
+)
 import { carregarHistorico, EntradaHistorico } from './lib/historico'
 import { AIConfig, loadAIConfig } from './lib/aiClient'
 import { useI18n } from './components/I18nProvider'
@@ -83,13 +89,15 @@ export default function App() {
             onNovoDiagnostico={atualizarHistorico}
           />
         )}
-        {tab === 'correcoes' && <Correcoes jur={jurisdicao} />}
-        {tab === 'calculadoras' && <Calculadoras jur={jurisdicao} />}
-        {tab === 'fichas' && (
-          <FichasDefeito jur={jurisdicao} onDiagnosticar={handleDiagnosticarDeFicha} />
-        )}
-        {tab === 'produtos' && <Produtos jur={jurisdicao} />}
-        {tab === 'comparacao' && <Comparacao />}
+        <Suspense fallback={<TabFallback />}>
+          {tab === 'correcoes' && <Correcoes jur={jurisdicao} />}
+          {tab === 'calculadoras' && <Calculadoras jur={jurisdicao} />}
+          {tab === 'fichas' && (
+            <FichasDefeito jur={jurisdicao} onDiagnosticar={handleDiagnosticarDeFicha} />
+          )}
+          {tab === 'produtos' && <Produtos jur={jurisdicao} />}
+          {tab === 'comparacao' && <Comparacao />}
+        </Suspense>
       </main>
 
       {/* Footer */}

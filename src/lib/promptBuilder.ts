@@ -1,6 +1,15 @@
 import SYSTEM_RAW from './systemPrompt'
+import { Locale } from './i18n'
 
 export const SYSTEM_PROMPT = SYSTEM_RAW
+
+// O catálogo e os dados permanecem em PT; só o texto da resposta muda de idioma
+const IDIOMA_RESPOSTA: Record<Locale, string> = {
+  pt: 'português',
+  en: 'inglês (English)',
+  es: 'espanhol (español)',
+  zh: 'chinês simplificado (简体中文)',
+}
 
 export interface FormData {
   tipo: string
@@ -17,7 +26,7 @@ export interface FormData {
   jurisdicao: 'ptue' | 'br'
 }
 
-export function buildUserPrompt(form: FormData): string {
+export function buildUserPrompt(form: FormData, locale: Locale = 'pt'): string {
   const sintomasStr = [
     ...form.sintomas,
     ...(form.sintomaOutro.trim() ? [`Outro: ${form.sintomaOutro.trim()}`] : []),
@@ -51,5 +60,9 @@ ${sintomasStr || '  (nenhum selecionado)'}
 
 LEGISLAÇÃO APLICÁVEL: ${form.jurisdicao === 'ptue' ? 'Portugal / União Europeia' : 'Brasil (MAPA)'}
 
-Forneça diagnóstico diferencial completo com as correções adequadas para a legislação indicada.`
+Forneça diagnóstico diferencial completo com as correções adequadas para a legislação indicada.${
+    locale !== 'pt'
+      ? `\n\nIMPORTANTE: Redija todos os textos da resposta JSON (causa, correção, observações, métodos, proibições) em ${IDIOMA_RESPOSTA[locale]}. Mantenha nomes de compostos químicos e referências legais no formato original.`
+      : ''
+  }`
 }

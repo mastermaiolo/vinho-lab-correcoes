@@ -1,4 +1,4 @@
-import { DiagnosticoResponse } from './geminiClient'
+import { DiagnosticoResponse } from './aiClient'
 import { FormData } from './promptBuilder'
 
 export interface EntradaHistorico {

@@ -6,6 +6,7 @@ import {
   calcDesacidificacao, AgenteDesacid, NOMES_DESACID,
   calcEnriquecimento, MetodoEnriquecimento,
 } from '../lib/calculadoras'
+import { useI18n } from '../components/I18nProvider'
 
 function num(v: number, d = 2) {
   return isFinite(v) && !isNaN(v) ? v.toFixed(d) : '—'
@@ -21,6 +22,7 @@ function Row({ label, value, unit }: { label: string; value: string; unit?: stri
 }
 
 function CalcSO2({ jur }: { jur: 'ptue' | 'br' }) {
+  const { t } = useI18n()
   const [vol, setVol] = useState('10')
   const [atual, setAtual] = useState('18')
   const [desejado, setDesejado] = useState('35')
@@ -36,6 +38,7 @@ function CalcSO2({ jur }: { jur: 'ptue' | 'br' }) {
     botrytis: { ptue: 300, br: 150 },
     biologico_tinto: { ptue: 100, br: 150 },
   }
+  const TIPOS_SO2 = Object.keys(LIMITES_SO2)
 
   const vN = parseFloat(vol)
   const atuN = parseFloat(atual)
@@ -51,19 +54,19 @@ function CalcSO2({ jur }: { jur: 'ptue' | 'br' }) {
 
   return (
     <div className="card space-y-4">
-      <p className="section-title">Calculadora SO₂</p>
+      <p className="section-title">{t('calc.so2.title')}</p>
       <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-        <div><label className="label">Volume (hL)</label>
+        <div><label className="label">{t('calc.so2.volume')}</label>
           <input type="number" step="0.5" min="0.01" value={vol} onChange={e => setVol(e.target.value)} /></div>
-        <div><label className="label">SO₂ livre atual (mg/L)</label>
+        <div><label className="label">{t('calc.so2.atual')}</label>
           <input type="number" step="1" min="0" value={atual} onChange={e => setAtual(e.target.value)} /></div>
         <div>
-          <label className="label">SO₂ livre desejado (mg/L)</label>
+          <label className="label">{t('calc.so2.desejado')}</label>
           <div className="flex gap-1.5">
             <input type="number" step="1" min="0" value={desejado} onChange={e => setDesejado(e.target.value)} className="flex-1 min-w-0" />
             <button
               type="button"
-              title="Sugerir SO₂ livre para atingir SO₂ molecular alvo (tintos 0,5 mg/L; brancos/rosés 0,8 mg/L)"
+              title={t('calc.so2.sugerir.hint')}
               onClick={() => {
                 const phV = parseFloat(ph)
                 if (!phV) return
@@ -73,24 +76,19 @@ function CalcSO2({ jur }: { jur: 'ptue' | 'br' }) {
               }}
               className="shrink-0 px-2 py-1.5 rounded-lg border border-wine-700/50 bg-wine-900/20 text-wine-300 text-xs hover:bg-wine-900/40 transition-colors whitespace-nowrap"
             >
-              ✨ Sugerir alvo
+              {t('calc.so2.sugerir')}
             </button>
           </div>
-          <p className="text-[10px] text-stone-500 mt-0.5">Tintos: SO₂mol=0,5 mg/L · Brancos/rosés: 0,8 mg/L</p>
+          <p className="text-[10px] text-stone-500 mt-0.5">{t('calc.so2.sugerir.hint')}</p>
         </div>
-        <div><label className="label">pH</label>
+        <div><label className="label">{t('calc.so2.ph')}</label>
           <input type="number" step="0.01" min="2.8" max="4.5" value={ph} onChange={e => setPh(e.target.value)} /></div>
-        <div><label className="label">Tipo de vinho</label>
+        <div><label className="label">{t('calc.so2.tipo')}</label>
           <select value={tipo} onChange={e => setTipo(e.target.value)}>
-            <option value="tinto_seco">Tinto seco</option>
-            <option value="branco_rose_seco">Branco/rosé seco</option>
-            <option value="tinto_doce">Tinto doce (≥5 g/L)</option>
-            <option value="branco_rose_doce">Branco/rosé doce</option>
-            <option value="botrytis">Botrytis (só PT/UE)</option>
-            <option value="biologico_tinto">Biológico tinto</option>
+            {TIPOS_SO2.map(k => <option key={k} value={k}>{t(`calc.so2.t.${k}`)}</option>)}
           </select>
         </div>
-        <div><label className="label">Produto</label>
+        <div><label className="label">{t('calc.so2.produto')}</label>
           <select value={produto} onChange={e => setProduto(e.target.value as ProdutoSO2)}>
             {(Object.keys(NOMES_PRODUTO_SO2) as ProdutoSO2[]).map(k => (
               <option key={k} value={k}>{NOMES_PRODUTO_SO2[k]}</option>
@@ -101,22 +99,22 @@ function CalcSO2({ jur }: { jur: 'ptue' | 'br' }) {
 
       {calc && (
         <div className="bg-stone-800 rounded-xl p-4 space-y-1">
-          <Row label="Dose a adicionar" value={num(calc.doseProduto, 1)} unit={`${unidade} / ${vN} hL`} />
-          <Row label="SO₂ activo necessário" value={num(calc.gAtivo, 1)} unit="g" />
-          <Row label="SO₂ molecular actual (pH actual)" value={num(molAtual ?? 0, 3)} unit="mg/L" />
-          <Row label="SO₂ molecular após adição" value={num(mol ?? 0, 3)} unit="mg/L" />
-          <Row label={`Limite legal (${jur === 'ptue' ? 'PT/UE' : 'BR'})`} value={`${limite}`} unit="mg/L total" />
+          <Row label={t('calc.so2.dose')} value={num(calc.doseProduto, 1)} unit={`${unidade} / ${vN} hL`} />
+          <Row label={t('calc.so2.ativo')} value={num(calc.gAtivo, 1)} unit="g" />
+          <Row label={t('calc.so2.mol.atual')} value={num(molAtual ?? 0, 3)} unit="mg/L" />
+          <Row label={t('calc.so2.mol.apos')} value={num(mol ?? 0, 3)} unit="mg/L" />
+          <Row label={t('calc.so2.limite', { jur: jur === 'ptue' ? t('common.ptue') : t('common.br') })} value={`${limite}`} unit="mg/L total" />
         </div>
       )}
 
       {calc && mol !== null && (
         <div>
           {mol >= 0.4
-            ? <div className="alert-ok">✅ SO₂ molecular ≥ 0,4 mg/L — protecção antimicrobiana efetiva.</div>
-            : <div className="alert-warn">⚠ SO₂ molecular &lt; 0,4 mg/L — protecção insuficiente. Aumente o SO₂ livre ou reduza o pH.</div>
+            ? <div className="alert-ok">{t('calc.so2.ok')}</div>
+            : <div className="alert-warn">{t('calc.so2.warn.mol')}</div>
           }
           {parseFloat(desejado) > limite && (
-            <div className="alert-err mt-2">⚠ SO₂ desejado ({desejado} mg/L) pode exceder o limite legal de {limite} mg/L.</div>
+            <div className="alert-err mt-2">{t('calc.so2.warn.limite', { val: desejado, limite })}</div>
           )}
         </div>
       )}
@@ -127,6 +125,7 @@ function CalcSO2({ jur }: { jur: 'ptue' | 'br' }) {
 }
 
 function CalcAcidificacao({ jur }: { jur: 'ptue' | 'br' }) {
+  const { t } = useI18n()
   const [vol, setVol] = useState('10')
   const [atAtual, setAtAtual] = useState('5.5')
   const [atDesejado, setAtDesejado] = useState('6.5')
@@ -145,51 +144,52 @@ function CalcAcidificacao({ jur }: { jur: 'ptue' | 'br' }) {
   const excedeLimite = calc && calc.deltaAT > limite
 
   const acidoCitricoUE = acido === 'citrico' && jur === 'ptue'
+  const faseLabel = t(`calc.fase.${fase}`)
 
   return (
     <div className="card space-y-4">
-      <p className="section-title">Calculadora de Acidificação</p>
+      <p className="section-title">{t('calc.acid.title')}</p>
       <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-        <div><label className="label">Volume (hL)</label>
+        <div><label className="label">{t('calc.acid.volume')}</label>
           <input type="number" step="0.5" min="0.01" value={vol} onChange={e => setVol(e.target.value)} /></div>
-        <div><label className="label">AT actual (g/L tart.)</label>
+        <div><label className="label">{t('calc.acid.at_atual')}</label>
           <input type="number" step="0.1" min="0" value={atAtual} onChange={e => setAtAtual(e.target.value)} /></div>
-        <div><label className="label">AT desejada (g/L tart.)</label>
+        <div><label className="label">{t('calc.acid.at_desejado')}</label>
           <input type="number" step="0.1" min="0" value={atDesejado} onChange={e => setAtDesejado(e.target.value)} /></div>
-        <div><label className="label">Ácido</label>
+        <div><label className="label">{t('calc.acid.acido')}</label>
           <select value={acido} onChange={e => setAcido(e.target.value as AcidoAcidificacao)}>
             {(Object.keys(NOMES_ACIDO) as AcidoAcidificacao[]).map(k => (
               <option key={k} value={k}>{NOMES_ACIDO[k]}</option>
             ))}
           </select>
         </div>
-        <div><label className="label">Fase</label>
+        <div><label className="label">{t('calc.acid.fase')}</label>
           <select value={fase} onChange={e => setFase(e.target.value as 'mosto' | 'vinho')}>
-            <option value="mosto">Mosto</option>
-            <option value="vinho">Vinho</option>
+            <option value="mosto">{t('calc.fase.mosto')}</option>
+            <option value="vinho">{t('calc.fase.vinho')}</option>
           </select>
         </div>
       </div>
 
       {acidoCitricoUE && (
-        <div className="alert-err">❌ Ácido cítrico PROIBIDO como acidificante na UE (Reg. 1308/2013).</div>
+        <div className="alert-err">{t('calc.acid.proibido_citrico')}</div>
       )}
 
       {calc && !acidoCitricoUE && (
         <div className="bg-stone-800 rounded-xl p-4 space-y-1">
-          <Row label="Dose (g/hL)" value={num(calc.doseGHL)} unit="g/hL" />
-          <Row label="Dose total" value={num(calc.doseTotalG, 0)} unit="g" />
-          <Row label="Δ AT" value={`+${num(calc.deltaAT)}`} unit="g/L" />
-          <Row label={`Limite ${fase} (PT/UE)`} value={`${limite}`} unit="g/L" />
+          <Row label={t('calc.acid.dose_ghl')} value={num(calc.doseGHL)} unit="g/hL" />
+          <Row label={t('calc.acid.dose_total')} value={num(calc.doseTotalG, 0)} unit="g" />
+          <Row label={t('calc.acid.delta_at')} value={`+${num(calc.deltaAT)}`} unit="g/L" />
+          <Row label={t('calc.acid.limite_row', { fase: faseLabel })} value={`${limite}`} unit="g/L" />
         </div>
       )}
 
       {excedeLimite && !acidoCitricoUE && (
-        <div className="alert-err">⚠ Dose excede o limite legal de {limite} g/L para {fase}.</div>
+        <div className="alert-err">{t('calc.acid.excede', { limite, fase: faseLabel })}</div>
       )}
 
       {calc && !excedeLimite && !acidoCitricoUE && (
-        <div className="alert-ok">✅ Dentro dos limites legais.</div>
+        <div className="alert-ok">{t('calc.ok.limites')}</div>
       )}
 
       <p className="legal-ref">Reg. Delegado UE 2019/934 · IN MAPA 14/2018</p>
@@ -198,6 +198,7 @@ function CalcAcidificacao({ jur }: { jur: 'ptue' | 'br' }) {
 }
 
 function CalcDesacidificacao({ jur }: { jur: 'ptue' | 'br' }) {
+  const { t } = useI18n()
   const [vol, setVol] = useState('10')
   const [atAtual, setAtAtual] = useState('8.0')
   const [atDesejado, setAtDesejado] = useState('6.5')
@@ -213,15 +214,15 @@ function CalcDesacidificacao({ jur }: { jur: 'ptue' | 'br' }) {
 
   return (
     <div className="card space-y-4">
-      <p className="section-title">Calculadora de Desacidificação</p>
+      <p className="section-title">{t('calc.desacid.title')}</p>
       <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-        <div><label className="label">Volume (hL)</label>
+        <div><label className="label">{t('calc.acid.volume')}</label>
           <input type="number" step="0.5" min="0.01" value={vol} onChange={e => setVol(e.target.value)} /></div>
-        <div><label className="label">AT actual (g/L tart.)</label>
+        <div><label className="label">{t('calc.desacid.at_atual')}</label>
           <input type="number" step="0.1" min="0" value={atAtual} onChange={e => setAtAtual(e.target.value)} /></div>
-        <div><label className="label">AT desejada (g/L tart.)</label>
+        <div><label className="label">{t('calc.desacid.at_desejado')}</label>
           <input type="number" step="0.1" min="0" value={atDesejado} onChange={e => setAtDesejado(e.target.value)} /></div>
-        <div><label className="label">Agente</label>
+        <div><label className="label">{t('calc.desacid.agente')}</label>
           <select value={agente} onChange={e => setAgente(e.target.value as AgenteDesacid)}>
             {(Object.keys(NOMES_DESACID) as AgenteDesacid[]).map(k => (
               <option key={k} value={k}>{NOMES_DESACID[k]}</option>
@@ -231,20 +232,20 @@ function CalcDesacidificacao({ jur }: { jur: 'ptue' | 'br' }) {
       </div>
 
       {jur === 'ptue' && agente === 'tartarato_k' && (
-        <div className="alert-warn">⚠ Ácido tartárico proibido na desacidificação na Zona C (Portugal).</div>
+        <div className="alert-warn">{t('calc.desacid.warn_tartarato')}</div>
       )}
 
       {calc && (
         <div className="bg-stone-800 rounded-xl p-4 space-y-1">
-          <Row label="Dose (g/hL)" value={num(calc.doseGHL)} unit="g/hL" />
-          <Row label="Dose total" value={num(calc.doseTotalG, 0)} unit="g" />
-          <Row label="Δ AT" value={`-${num(calc.deltaAT)}`} unit="g/L" />
-          <Row label="Limite (PT/UE e BR)" value="1,00" unit="g/L" />
+          <Row label={t('calc.desacid.dose_ghl')} value={num(calc.doseGHL)} unit="g/hL" />
+          <Row label={t('calc.desacid.dose_total')} value={num(calc.doseTotalG, 0)} unit="g" />
+          <Row label={t('calc.desacid.delta_at')} value={`-${num(calc.deltaAT)}`} unit="g/L" />
+          <Row label={t('calc.desacid.limite_row')} value="1,00" unit="g/L" />
         </div>
       )}
 
-      {excedeLimite && <div className="alert-err">⚠ Redução de acidez excede o limite legal de 1,00 g/L.</div>}
-      {calc && !excedeLimite && <div className="alert-ok">✅ Dentro dos limites legais.</div>}
+      {excedeLimite && <div className="alert-err">{t('calc.desacid.excede')}</div>}
+      {calc && !excedeLimite && <div className="alert-ok">{t('calc.ok.limites')}</div>}
 
       <p className="legal-ref">Reg. Delegado UE 2019/934 · IN MAPA 14/2018</p>
     </div>
@@ -252,6 +253,7 @@ function CalcDesacidificacao({ jur }: { jur: 'ptue' | 'br' }) {
 }
 
 function CalcEnriquecimento({ jur }: { jur: 'ptue' | 'br' }) {
+  const { t } = useI18n()
   const [vol, setVol] = useState('10')
   const [tavAtual, setTavAtual] = useState('11.5')
   const [tavDesejado, setTavDesejado] = useState('13.0')
@@ -268,53 +270,59 @@ function CalcEnriquecimento({ jur }: { jur: 'ptue' | 'br' }) {
 
   const calc = valid ? calcEnriquecimento(vN, atuN, desN, metodo) : null
   const delta = desN - atuN
+  // Zona C (Portugal): enriquecimento limitado a +1,5% vol (Reg. 1308/2013 Anexo VIII)
+  const LIMITE_DELTA_UE = 1.5
+  const excedeUE = jur === 'ptue' && calc && delta > LIMITE_DELTA_UE
+
+  const CATEGORIAS_BR = ['reservado', 'reserva', 'gran_reserva', 'nobre']
 
   return (
     <div className="card space-y-4">
-      <p className="section-title">Calculadora de Enriquecimento</p>
+      <p className="section-title">{t('calc.enrich.title')}</p>
 
       {jur === 'ptue' && (
-        <div className="alert-warn text-xs">Portugal (Zona C): chaptalização com sacarose PROIBIDA. Use MCR ou MC.</div>
+        <div className="alert-warn text-xs">{t('calc.enrich.warn_pt')}</div>
       )}
 
       <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-        <div><label className="label">Volume (hL)</label>
+        <div><label className="label">{t('calc.acid.volume')}</label>
           <input type="number" step="0.5" min="0.01" value={vol} onChange={e => setVol(e.target.value)} /></div>
-        <div><label className="label">TAV actual (% vol)</label>
+        <div><label className="label">{t('calc.enrich.tav_atual')}</label>
           <input type="number" step="0.1" min="7" max="16" value={tavAtual} onChange={e => setTavAtual(e.target.value)} /></div>
-        <div><label className="label">TAV pretendido (% vol)</label>
+        <div><label className="label">{t('calc.enrich.tav_desejado')}</label>
           <input type="number" step="0.1" min="7" max="16" value={tavDesejado} onChange={e => setTavDesejado(e.target.value)} /></div>
-        <div><label className="label">Método</label>
+        <div><label className="label">{t('calc.enrich.metodo')}</label>
           <select value={metodo} onChange={e => setMetodo(e.target.value as MetodoEnriquecimento)}>
-            <option value="sacarose">Sacarose (chaptalização)</option>
-            <option value="mcr">MCR (mosto conc. rectificado)</option>
+            <option value="sacarose">{t('calc.enrich.metodo.sacarose')}</option>
+            <option value="mcr">{t('calc.enrich.metodo.mcr')}</option>
           </select>
         </div>
         {jur === 'br' && (
-          <div><label className="label">Categoria (BR)</label>
+          <div><label className="label">{t('calc.enrich.categoria')}</label>
             <select value={categoria} onChange={e => setCategoria(e.target.value)}>
-              <option value="reservado">Reservado (+2,0% máx.)</option>
-              <option value="reserva">Reserva (+1,0% máx.)</option>
-              <option value="gran_reserva">Gran Reserva (proibido)</option>
-              <option value="nobre">Nobre (proibido)</option>
+              {CATEGORIAS_BR.map(c => <option key={c} value={c}>{t(`calc.enrich.cat.${c}`)}</option>)}
             </select>
           </div>
         )}
       </div>
 
-      {chapProibido && <div className="alert-err">❌ Chaptalização com sacarose PROIBIDA em Portugal (Zona C).</div>}
-      {categoriaProibida && <div className="alert-err">❌ Chaptalização PROIBIDA para a categoria {categoria} no Brasil.</div>}
+      {chapProibido && <div className="alert-err">{t('calc.enrich.chap_proibida')}</div>}
+      {categoriaProibida && <div className="alert-err">{t('calc.enrich.cat_proibida', { cat: categoria })}</div>}
 
       {calc && (
         <div className="bg-stone-800 rounded-xl p-4 space-y-1">
-          <Row label="Δ TAV" value={`+${num(delta)}`} unit="% vol" />
-          <Row label={metodo === 'sacarose' ? 'Sacarose a adicionar' : 'MCR a adicionar'}
-            value={num(calc.dose, metodo === 'sacarose' ? 1 : 1)} unit={calc.unidade} />
+          <Row label={t('calc.enrich.delta')} value={`+${num(delta)}`} unit="% vol" />
+          <Row label={metodo === 'sacarose' ? t('calc.enrich.dose.sacarose') : t('calc.enrich.dose.mcr')}
+            value={num(calc.dose, 1)} unit={calc.unidade} />
         </div>
       )}
 
+      {excedeUE && (
+        <div className="alert-err">{t('calc.enrich.excede_ue', { delta: num(delta, 1) })}</div>
+      )}
+
       {jur === 'br' && calc && delta > (categoria === 'reservado' ? 2.0 : 1.0) && (
-        <div className="alert-err">⚠ Enriquecimento excede o limite da categoria {categoria}.</div>
+        <div className="alert-err">{t('calc.enrich.excede_cat', { cat: categoria })}</div>
       )}
 
       <p className="legal-ref">Reg. Delegado UE 2019/934 · IN MAPA 14/2018 · Portaria 723/2024</p>

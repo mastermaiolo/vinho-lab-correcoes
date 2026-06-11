@@ -7,21 +7,37 @@ import { guardarHistorico, EntradaHistorico } from '../lib/historico'
 import PrivacyConsentModal from '../components/PrivacyConsentModal'
 import { useI18n } from '../components/I18nProvider'
 
-const SINTOMAS = [
-  'Vinagre / acetona',
-  'Couro / suor de cavalo (Brett)',
-  'Rolha / mofo (TCA)',
-  'Ovo podre / borracha (H₂S)',
-  'Oxidado / ranço / sherry',
-  'Gerânio / sardinheiras',
-  'Gosto de rato',
-  'Gás indesejado / refermentação',
-  'Turvação',
-  'Cor alterada',
+// Os valores canónicos (PT) são o que vai no formulário, histórico e prompt da IA;
+// a chave i18n serve apenas para a exibição na UI
+const SINTOMAS: { id: string; valor: string }[] = [
+  { id: 'vinagre', valor: 'Vinagre / acetona' },
+  { id: 'brett', valor: 'Couro / suor de cavalo (Brett)' },
+  { id: 'tca', valor: 'Rolha / mofo (TCA)' },
+  { id: 'h2s', valor: 'Ovo podre / borracha (H₂S)' },
+  { id: 'oxidado', valor: 'Oxidado / ranço / sherry' },
+  { id: 'geranio', valor: 'Gerânio / sardinheiras' },
+  { id: 'rato', valor: 'Gosto de rato' },
+  { id: 'gas', valor: 'Gás indesejado / refermentação' },
+  { id: 'turvacao', valor: 'Turvação' },
+  { id: 'cor', valor: 'Cor alterada' },
 ]
 
-const TIPOS = ['Tinto seco', 'Tinto doce', 'Branco seco', 'Branco doce', 'Rosé seco', 'Espumante']
-const FASES = ['Fermentação', 'Pós-fermentação / trasfega', 'Estágio / barrica', 'Pré-engarrafamento', 'Pós-engarrafamento']
+const TIPOS: { id: string; valor: string }[] = [
+  { id: 'tinto_seco', valor: 'Tinto seco' },
+  { id: 'tinto_doce', valor: 'Tinto doce' },
+  { id: 'branco_seco', valor: 'Branco seco' },
+  { id: 'branco_doce', valor: 'Branco doce' },
+  { id: 'rose_seco', valor: 'Rosé seco' },
+  { id: 'espumante', valor: 'Espumante' },
+]
+
+const FASES: { id: string; valor: string }[] = [
+  { id: 'fermentacao', valor: 'Fermentação' },
+  { id: 'pos_fermentacao', valor: 'Pós-fermentação / trasfega' },
+  { id: 'estagio', valor: 'Estágio / barrica' },
+  { id: 'pre_engarrafamento', valor: 'Pré-engarrafamento' },
+  { id: 'pos_engarrafamento', valor: 'Pós-engarrafamento' },
+]
 
 const URGENCIA_COR: Record<string, string> = {
   imediata: 'bg-red-900/40 text-red-300 border-red-700/40',
@@ -139,7 +155,7 @@ function DiagCard({ d, jur }: { d: DiagnosticoItem; jur: 'ptue' | 'br' }) {
                 ? 'bg-green-900/30 text-green-300 border-green-700/30'
                 : 'bg-red-900/30 text-red-300 border-red-700/30'
             }`}>
-              {d.reversivel ? 'reversível' : 'irreversível'}
+              {d.reversivel ? t('diag.result.reversivel.sim') : t('diag.result.reversivel.nao')}
             </span>
           </div>
           <p className="text-xs text-stone-400 line-clamp-1">{d.causa}</p>
@@ -202,7 +218,7 @@ function DiagCard({ d, jur }: { d: DiagnosticoItem; jur: 'ptue' | 'br' }) {
 }
 
 export default function DiagnosticoIA({ aiConfig, onApiKey, jurisdicao, initialForm, historicoInicial, onNovoDiagnostico }: Props) {
-  const { t } = useI18n()
+  const { t, locale } = useI18n()
   const fileRef = useRef<HTMLInputElement>(null)
   const [form, setForm] = useState<FormData>(() => ({
     tipo: historicoInicial?.formSnapshot.tipo ?? initialForm?.tipo ?? 'Tinto seco',
@@ -223,7 +239,10 @@ export default function DiagnosticoIA({ aiConfig, onApiKey, jurisdicao, initialF
   const [result, setResult] = useState<DiagnosticoResponse | null>(() => historicoInicial?.resultado ?? null)
   const [importMsg, setImportMsg] = useState<string | null>(null)
   const [showPrivacy, setShowPrivacy] = useState(false)
-  const privacyConsent = () => sessionStorage.getItem('gemini_privacy_consent') === '1'
+  // 'gemini_privacy_consent' é a chave antiga — aceite por retrocompatibilidade
+  const privacyConsent = () =>
+    sessionStorage.getItem('vl_privacy_consent') === '1' ||
+    sessionStorage.getItem('gemini_privacy_consent') === '1'
 
   // Sync jurisdição prop → form
   useEffect(() => {
@@ -260,7 +279,7 @@ export default function DiagnosticoIA({ aiConfig, onApiKey, jurisdicao, initialF
       acidezTotal: parsed.acidezTotal ?? f.acidezTotal,
       esr: parsed.esr ?? f.esr,
     }))
-    setImportMsg(`✅ Importado: ${label}`)
+    setImportMsg(t('diag.import.ok', { label }))
     setTimeout(() => setImportMsg(null), 4000)
   }
 
@@ -276,7 +295,7 @@ export default function DiagnosticoIA({ aiConfig, onApiKey, jurisdicao, initialF
           applyParsed(parsed, parsed.amostra || parsed.lote || file.name)
           return
         }
-        setImportMsg('⚠ Ficheiro JSON não reconhecido como sessão do Companheiro.')
+        setImportMsg(t('diag.import.unrecognized'))
         setTimeout(() => setImportMsg(null), 4000)
         return
       }
@@ -285,7 +304,7 @@ export default function DiagnosticoIA({ aiConfig, onApiKey, jurisdicao, initialF
       const parsed = parseMdBoletim(texto)
       applyParsed(parsed, parsed.amostra || parsed.lote || file.name)
     } catch {
-      setImportMsg('❌ Erro ao importar o ficheiro.')
+      setImportMsg(t('diag.import.error'))
       setTimeout(() => setImportMsg(null), 4000)
     }
   }
@@ -295,7 +314,7 @@ export default function DiagnosticoIA({ aiConfig, onApiKey, jurisdicao, initialF
     setError(null)
     setResult(null)
     try {
-      const res = await chamarIA(aiConfig, SYSTEM_PROMPT, buildUserPrompt({ ...form, jurisdicao: jur }))
+      const res = await chamarIA(aiConfig, SYSTEM_PROMPT, buildUserPrompt({ ...form, jurisdicao: jur }, locale))
       setResult(res)
       guardarHistorico({
         jurisdicao: jur,
@@ -320,7 +339,7 @@ export default function DiagnosticoIA({ aiConfig, onApiKey, jurisdicao, initialF
   }
 
   const handlePrivacyAccept = () => {
-    sessionStorage.setItem('gemini_privacy_consent', '1')
+    sessionStorage.setItem('vl_privacy_consent', '1')
     setShowPrivacy(false)
     runDiagnosis()
   }
@@ -329,6 +348,7 @@ export default function DiagnosticoIA({ aiConfig, onApiKey, jurisdicao, initialF
     <div className="space-y-6">
       {showPrivacy && (
         <PrivacyConsentModal
+          provider={aiConfig.provider}
           onAccept={handlePrivacyAccept}
           onCancel={() => setShowPrivacy(false)}
         />
@@ -367,13 +387,13 @@ export default function DiagnosticoIA({ aiConfig, onApiKey, jurisdicao, initialF
           <div className="col-span-2 sm:col-span-2">
             <label className="label">{t('diag.field.tipo')}</label>
             <select value={form.tipo} onChange={(e) => setForm({ ...form, tipo: e.target.value })}>
-              {TIPOS.map((tp) => <option key={tp}>{tp}</option>)}
+              {TIPOS.map((tp) => <option key={tp.id} value={tp.valor}>{t(`tipo.${tp.id}`)}</option>)}
             </select>
           </div>
           <div className="col-span-2 sm:col-span-2">
             <label className="label">{t('diag.field.fase')}</label>
             <select value={form.fase} onChange={(e) => setForm({ ...form, fase: e.target.value })}>
-              {FASES.map((f) => <option key={f}>{f}</option>)}
+              {FASES.map((f) => <option key={f.id} value={f.valor}>{t(`fase.${f.id}`)}</option>)}
             </select>
           </div>
           <div>
@@ -450,14 +470,14 @@ export default function DiagnosticoIA({ aiConfig, onApiKey, jurisdicao, initialF
         <p className="section-title">{t('diag.section.sintomas')}</p>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-3">
           {SINTOMAS.map((s) => (
-            <label key={s} className="flex items-center gap-2.5 cursor-pointer group">
+            <label key={s.id} className="flex items-center gap-2.5 cursor-pointer group">
               <input
                 type="checkbox"
-                checked={form.sintomas.includes(s)}
-                onChange={() => toggleSintoma(s)}
+                checked={form.sintomas.includes(s.valor)}
+                onChange={() => toggleSintoma(s.valor)}
                 className="w-4 h-4 accent-wine-600 shrink-0"
               />
-              <span className="text-sm text-stone-300 group-hover:text-stone-100">{s}</span>
+              <span className="text-sm text-stone-300 group-hover:text-stone-100">{t(`sintoma.${s.id}`)}</span>
             </label>
           ))}
         </div>
@@ -498,8 +518,8 @@ export default function DiagnosticoIA({ aiConfig, onApiKey, jurisdicao, initialF
         </p>
       </div>
 
-      {/* Erro */}
-      {error && <div className="alert-err">{error}</div>}
+      {/* Erro — t() traduz chaves err.*; mensagens cruas das APIs passam tal-e-qual */}
+      {error && <div className="alert-err">{t(error)}</div>}
 
       {/* Resultado */}
       {result && (

@@ -66,9 +66,19 @@ export const OPENROUTER_MODELS: { id: string; label: string; free: boolean }[] =
 export const OPENROUTER_DEFAULT_KEY: string =
   (import.meta as { env?: Record<string, string> }).env?.VITE_OPENROUTER_DEFAULT_KEY ?? ''
 
+// Tokens de saída: o diagnóstico completo (3 itens + observações) pode passar
+// de 2048 em modelos verbosos — 4096 evita JSON truncado a meio
+const MAX_TOKENS = 4096
+
+// Erros conhecidos são lançados como chaves i18n (err.*) — a UI traduz com t();
+// mensagens dinâmicas das APIs passam em texto cru e são exibidas tal-e-qual.
+function apiError(i18nKey: string, opts?: { is429?: boolean; retryable?: boolean }) {
+  return Object.assign(new Error(i18nKey), opts)
+}
+
 // Strip markdown code blocks and extract raw JSON
-function extractJSON(text: string): string {
-  // Case-insensitive para ```json, ```JSON, ```text, etc.
+export function extractJSON(text: string): string {
+  // Aceita ```json, ```JSON, ```text, ``` etc.
   const fenced = text.match(/```(?:[a-zA-Z]*)?\s*([\s\S]*?)```/)
   if (fenced) return fenced[1].trim()
   const obj = text.match(/\{[\s\S]*\}/)
@@ -89,15 +99,16 @@ async function callGemini(apiKey: string, system: string, user: string): Promise
       body: JSON.stringify({
         system_instruction: { parts: [{ text: system }] },
         contents: [{ role: 'user', parts: [{ text: user }] }],
-        generationConfig: { responseMimeType: 'application/json', maxOutputTokens: 2048, temperature: 0.2 },
+        generationConfig: { responseMimeType: 'application/json', maxOutputTokens: MAX_TOKENS, temperature: 0.2 },
       }),
     }
   )
-  if (res.status === 429) throw Object.assign(new Error('rate_limit'), { is429: true })
-  if (res.status === 400) throw new Error('Pedido inválido (400). Verifique a chave API Gemini e os dados.')
-  if (res.status === 401 || res.status === 403) throw new Error('Chave API Gemini inválida ou sem permissão.')
-  if (!res.ok) throw new Error(`Erro Gemini: ${res.status} ${res.statusText}`)
+  if (res.status === 429) throw apiError('err.rate_limit', { is429: true })
+  if (res.status === 400) throw apiError('err.invalid_request')
+  if (res.status === 401 || res.status === 403) throw apiError('err.key.gemini')
+  if (!res.ok) throw new Error(`Gemini: ${res.status} ${res.statusText}`)
   const data = await res.json()
+  if (data?.candidates?.[0]?.finishReason === 'MAX_TOKENS') throw apiError('err.truncated', { retryable: true })
   return data?.candidates?.[0]?.content?.parts?.[0]?.text ?? ''
 }
 
@@ -111,16 +122,17 @@ async function callClaude(apiKey: string, system: string, user: string): Promise
     },
     body: JSON.stringify({
       model: PROVIDER_MODELS.claude,
-      max_tokens: 2048,
+      max_tokens: MAX_TOKENS,
       temperature: 0.2,
       system: system + '\n\nResponda EXCLUSIVAMENTE em JSON válido, sem markdown.',
       messages: [{ role: 'user', content: user }],
     }),
   })
-  if (res.status === 429) throw Object.assign(new Error('rate_limit'), { is429: true })
-  if (res.status === 401) throw new Error('Chave API Anthropic inválida (401).')
-  if (!res.ok) throw new Error(`Erro Anthropic: ${res.status} ${res.statusText}`)
+  if (res.status === 429) throw apiError('err.rate_limit', { is429: true })
+  if (res.status === 401) throw apiError('err.key.claude')
+  if (!res.ok) throw new Error(`Anthropic: ${res.status} ${res.statusText}`)
   const data = await res.json()
+  if (data?.stop_reason === 'max_tokens') throw apiError('err.truncated', { retryable: true })
   return data?.content?.[0]?.text ?? ''
 }
 
@@ -131,7 +143,7 @@ async function callOpenAI(apiKey: string, system: string, user: string): Promise
     body: JSON.stringify({
       model: PROVIDER_MODELS.openai,
       temperature: 0.2,
-      max_completion_tokens: 2048,
+      max_completion_tokens: MAX_TOKENS,
       response_format: { type: 'json_object' },
       messages: [
         { role: 'system', content: system },
@@ -139,10 +151,11 @@ async function callOpenAI(apiKey: string, system: string, user: string): Promise
       ],
     }),
   })
-  if (res.status === 429) throw Object.assign(new Error('rate_limit'), { is429: true })
-  if (res.status === 401) throw new Error('Chave API OpenAI inválida (401).')
-  if (!res.ok) throw new Error(`Erro OpenAI: ${res.status} ${res.statusText}`)
+  if (res.status === 429) throw apiError('err.rate_limit', { is429: true })
+  if (res.status === 401) throw apiError('err.key.openai')
+  if (!res.ok) throw new Error(`OpenAI: ${res.status} ${res.statusText}`)
   const data = await res.json()
+  if (data?.choices?.[0]?.finish_reason === 'length') throw apiError('err.truncated', { retryable: true })
   return data?.choices?.[0]?.message?.content ?? ''
 }
 
@@ -158,7 +171,7 @@ async function callOpenRouter(apiKey: string, model: string, system: string, use
     body: JSON.stringify({
       model,
       temperature: 0.2,
-      max_tokens: 2048,
+      max_tokens: MAX_TOKENS,
       // response_format só é suportado por alguns modelos OpenRouter (não universal em free models)
       // Instruímos via system prompt; modelos compatíveis respeitam ambos
       messages: [
@@ -167,15 +180,19 @@ async function callOpenRouter(apiKey: string, model: string, system: string, use
       ],
     }),
   })
-  if (res.status === 429) throw Object.assign(new Error('rate_limit'), { is429: true })
-  if (res.status === 401 || res.status === 403) throw new Error('Chave OpenRouter inválida ou sem permissão.')
+  if (res.status === 429) throw apiError('err.rate_limit', { is429: true })
+  if (res.status === 401 || res.status === 403) throw apiError('err.key.openrouter')
   if (!res.ok) {
     const body = await res.text().catch(() => res.statusText)
-    throw new Error(`Erro OpenRouter: ${res.status} — ${body.slice(0, 200)}`)
+    throw new Error(`OpenRouter: ${res.status} — ${body.slice(0, 200)}`)
   }
   const data = await res.json()
   // OpenRouter pode devolver erro em JSON mesmo com status 200
-  if (data.error) throw new Error(`OpenRouter: ${data.error.message ?? JSON.stringify(data.error)}`)
+  if (data.error) {
+    if (data.error.code === 429) throw apiError('err.rate_limit', { is429: true })
+    throw new Error(`OpenRouter: ${data.error.message ?? JSON.stringify(data.error)}`)
+  }
+  if (data?.choices?.[0]?.finish_reason === 'length') throw apiError('err.truncated', { retryable: true })
   return data?.choices?.[0]?.message?.content ?? ''
 }
 
@@ -204,22 +221,20 @@ export async function chamarIA(
         return JSON.parse(extractJSON(text)) as DiagnosticoResponse
       } catch {
         console.error('[aiClient] JSON parse failed. Raw text:', text.slice(0, 300))
-        throw new Error('Resposta da IA não é JSON válido. Tente novamente.')
+        // Modelos free são instáveis — vale a pena repetir uma vez
+        throw apiError('err.invalid_json', { retryable: true })
       }
     } catch (err) {
-      const is429 = (err as { is429?: boolean }).is429 === true
-      if (is429 && i < retries - 1) {
-        await sleep(delay * Math.pow(2, i))
-        continue
-      }
-      if (i < retries - 1 && err instanceof TypeError) {
+      const e = err as { is429?: boolean; retryable?: boolean }
+      const deveRepetir = e.is429 === true || e.retryable === true || err instanceof TypeError
+      if (deveRepetir && i < retries - 1) {
         await sleep(delay * Math.pow(2, i))
         continue
       }
       throw err
     }
   }
-  throw new Error('Falha ao conectar com a API de IA.')
+  throw new Error('err.connect')
 }
 
 // Incrementar quando o modelo default mudar — força reset do sessionStorage

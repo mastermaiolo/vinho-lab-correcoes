@@ -1,5 +1,8 @@
-import { createContext, useContext, useState, ReactNode } from 'react'
+import { createContext, useContext, useState, useEffect, ReactNode } from 'react'
 import { Locale, DEFAULT_LOCALE, translate } from '../lib/i18n'
+
+// O atributo lang afeta screen readers, hifenização e seleção de fontes CJK
+const HTML_LANG: Record<Locale, string> = { pt: 'pt', en: 'en', es: 'es', zh: 'zh-CN' }
 
 interface I18nCtx {
   locale: Locale
@@ -23,6 +26,10 @@ export function I18nProvider({ children }: { children: ReactNode }) {
     setLocaleState(l)
     localStorage.setItem('vl_locale', l)
   }
+
+  useEffect(() => {
+    document.documentElement.lang = HTML_LANG[locale]
+  }, [locale])
 
   const t = (key: string, vars?: Record<string, string | number>) =>
     translate(locale, key, vars)

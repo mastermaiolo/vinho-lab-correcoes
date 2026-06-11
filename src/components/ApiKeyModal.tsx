@@ -121,7 +121,7 @@ export default function ApiKeyModal({ current, onSave, onClose }: Props) {
                   {m.label}
                 </option>
               ))}
-              <option value="__custom__">✏️ Outro modelo (ID manual)…</option>
+              <option value="__custom__">{t('api.model.custom')}</option>
             </select>
             {(customModel || !OPENROUTER_MODELS.find(m => m.id === model)) && (
               <input
@@ -133,7 +133,7 @@ export default function ApiKeyModal({ current, onSave, onClose }: Props) {
               />
             )}
             <p className="text-[10px] text-stone-600">
-              Lista completa em{' '}
+              {t('api.model.full_list')}{' '}
               <a href="https://openrouter.ai/models?q=free" target="_blank" rel="noopener noreferrer" className="text-wine-500 underline">
                 openrouter.ai/models?q=free
               </a>
@@ -146,7 +146,7 @@ export default function ApiKeyModal({ current, onSave, onClose }: Props) {
           <label className="label">{t('api.key.label')}</label>
           {usingDefault && (
             <p className="text-xs text-green-500 mb-1.5">
-              ✅ Chave partilhada pré-configurada — pode usar sem alterações.
+              {t('api.default_key.note')}
             </p>
           )}
           <div className="flex gap-2">
@@ -155,7 +155,7 @@ export default function ApiKeyModal({ current, onSave, onClose }: Props) {
               value={key}
               onChange={(e) => setKey(e.target.value)}
               onKeyDown={(e) => e.key === 'Enter' && handleSave()}
-              placeholder={usingDefault ? '(chave pré-configurada)' : PROVIDER_KEY_HINTS[provider]}
+              placeholder={usingDefault ? t('api.default_key.placeholder') : PROVIDER_KEY_HINTS[provider]}
               className="font-mono text-sm"
               autoFocus={!usingDefault}
             />
@@ -168,7 +168,7 @@ export default function ApiKeyModal({ current, onSave, onClose }: Props) {
         <div className="text-xs text-stone-500 bg-stone-800 rounded-lg p-3 space-y-2">
           {!usingDefault && (
             <p>
-              Obtenha uma chave em{' '}
+              {t('api.get_key')}{' '}
               <a href={link.url} target="_blank" rel="noopener noreferrer" className="text-wine-400 underline">
                 {link.label}
               </a>
@@ -189,9 +189,7 @@ export default function ApiKeyModal({ current, onSave, onClose }: Props) {
             </a>
           )}
           {isOpenRouter && (
-            <p className="text-stone-500">
-              Modelos <code className="text-stone-400">:free</code> não têm custo monetário — partilham rate limits com outros utilizadores.
-            </p>
+            <p className="text-stone-500">{t('api.openrouter.free_note')}</p>
           )}
         </div>
 
