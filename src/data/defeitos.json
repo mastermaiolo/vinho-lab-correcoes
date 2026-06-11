@@ -106,7 +106,7 @@
       "metodo_indirecto": "Painel sensorial treinado (método de confirmação qualitativa)"
     },
     "correcao": {
-      "pt_ue": "TEÓRICO: Remoção física/adsorção dos etilfenóis formados + eliminação da levedura viável. PRODUTOS: Esferas adsorventes PVI/PVP (Reg. UE 2024/3085) — aplicar ao vinho tinto, reduzem 40–60% dos etilfenóis; dose conforme produto comercial. Quitosano enológico 10 g/hL máx. — inibe activamente B. bruxellensis (Reg. UE 2018/1629). SO₂ molecular 0,4–0,8 mg/L (calcular em função do pH com metabissulfito de potássio). Carvão activado oenológico: PROIBIDO em tintos na UE. Higienização de barricas: vapor 90°C + solução SO₂ 2%.",
+      "pt_ue": "TEÓRICO: Remoção física/adsorção dos etilfenóis formados + eliminação da levedura viável. PRODUTOS: Esferas adsorventes PVI/PVP (Reg. UE 2024/3085) — aplicar ao vinho tinto, reduzem 40–60% dos etilfenóis; dose conforme produto comercial. Quitosano enológico 10 g/hL máx. — inibe activamente B. bruxellensis (Reg. Delegado UE 2019/934). SO₂ molecular 0,4–0,8 mg/L (calcular em função do pH com metabissulfito de potássio). Carvão activado oenológico: PROIBIDO em tintos na UE. Higienização de barricas: vapor 90°C + solução SO₂ 2%.",
       "br": "TEÓRICO: Idêntico à UE mais opção adicional de carvão activado em tintos. PRODUTOS: Carvão activado oenológico máx. 100 g/hL (autorizado em tintos no Brasil — IN MAPA 14/2018) — adsorção de 4-EP e 4-EG. Quitosano 10 g/hL (autorizado). PVI/PVP: a verificar legislação BR. SO₂ molecular idêntico à UE. RESTRIÇÕES: Carvão activado remove cor e taninos em tintos — usar com prudência."
     },
     "prevencao": [
@@ -220,7 +220,7 @@
       "nota": "Determinação de O₂ dissolvido (Winkler ou luminescência): objectivo <0,1 mg/L pós-engarrafamento"
     },
     "correcao": {
-      "pt_ue": "TEÓRICO: O SO₂ liga-se ao acetaldeído formando sulfonato de etanal (inodoro), mascarando o defeito. O ácido ascórbico age como antioxidante sinérgico impedindo nova oxidação. PRODUTOS: SO₂ livre ajustado a 25–35 mg/L em tintos, 30–40 mg/L em brancos ao engarrafamento (via metabissulfito de potássio, calcular pela fórmula Sudraud-Chauvet em função do pH). Ácido ascórbico 25–50 mg/L antes de qualquer arejamento — NUNCA usar sem SO₂ simultâneo (caso contrário gera peróxido de hidrogénio). Engarrafamento com gás inerte (N₂, CO₂ ou mistura). RESTRIÇÕES: Ácido ascórbico máx. 250 mg/L UE (Reg. CE 606/2009).",
+      "pt_ue": "TEÓRICO: O SO₂ liga-se ao acetaldeído formando sulfonato de etanal (inodoro), mascarando o defeito. O ácido ascórbico age como antioxidante sinérgico impedindo nova oxidação. PRODUTOS: SO₂ livre ajustado a 25–35 mg/L em tintos, 30–40 mg/L em brancos ao engarrafamento (via metabissulfito de potássio, calcular pela fórmula Sudraud-Chauvet em função do pH). Ácido ascórbico 25–50 mg/L antes de qualquer arejamento — NUNCA usar sem SO₂ simultâneo (caso contrário gera peróxido de hidrogénio). Engarrafamento com gás inerte (N₂, CO₂ ou mistura). RESTRIÇÕES: Ácido ascórbico máx. 250 mg/L UE (Reg. Delegado UE 2019/934).",
       "br": "TEÓRICO: Idêntico à UE. PRODUTOS: Ácido ascórbico máx. 150 mg/L (IN MAPA 14/2018) — dose inferior à UE. SO₂ e técnicas de inertização: idênticas. RESTRIÇÕES: Nunca usar ácido ascórbico sem SO₂ activo no vinho."
     },
     "prevencao": [
@@ -290,7 +290,7 @@
       "metodo_rapido": "Prova sensorial: agitar/arejar amostra e avaliar desaparecimento do defeito (H₂S volátil)"
     },
     "correcao": {
-      "pt_ue": "TEÓRICO: H₂S é eliminado por volatilização (arejamento) ou precipitação como sulfeto de cobre insolúvel (CuS). Mercaptanos persistem após arejamento e requerem o cobre para precipitação. PRODUTOS: Sulfato de cobre (CuSO₄) 0,5–1,0 g/hL — forma CuS insolúvel com H₂S e mercaptanos (objectivo: Cu final < 0,5 mg/L no vinho, máx. legal 1 mg/L UE/BR). Arejamento controlado em trasega: elimina H₂S sem cobre para casos leves. RESTRIÇÕES: Nunca adicionar ácido ascórbico (agrava condições redutoras). Cu residual no vinho ≤ 1 mg/L (Reg. CE 606/2009).",
+      "pt_ue": "TEÓRICO: H₂S é eliminado por volatilização (arejamento) ou precipitação como sulfeto de cobre insolúvel (CuS). Mercaptanos persistem após arejamento e requerem o cobre para precipitação. PRODUTOS: Sulfato de cobre (CuSO₄) 0,5–1,0 g/hL — forma CuS insolúvel com H₂S e mercaptanos (objectivo: Cu final < 0,5 mg/L no vinho, máx. legal 1 mg/L UE/BR). Arejamento controlado em trasega: elimina H₂S sem cobre para casos leves. RESTRIÇÕES: Nunca adicionar ácido ascórbico (agrava condições redutoras). Cu residual no vinho ≤ 1 mg/L (Reg. Delegado UE 2019/934).",
       "br": "TEÓRICO: Idêntico à UE. PRODUTOS: Sulfato de cobre autorizado (IN MAPA 14/2018) 0,5–1,0 g/hL, mesma dose e objectivo de Cu final. RESTRIÇÕES: Cu máx. 1 mg/L no vinho final."
     },
     "prevencao": [
@@ -579,7 +579,7 @@
         "nome": "Cu²⁺ (Cobre II)",
         "concentracao_normal": "<0,5 mg/L (após fermentação — parte precipita com borras)",
         "concentracao_risco": ">0,5–1,0 mg/L em vinho acabado",
-        "limite_legal_UE": "máx. 1 mg/L no vinho (Reg. CE 606/2009)",
+        "limite_legal_UE": "máx. 1 mg/L no vinho (Reg. Delegado UE 2019/934)",
         "limite_legal_BR": "máx. 1 mg/L (IN MAPA 14/2018)"
       }
     ],
@@ -597,7 +597,7 @@
       "teste_rapido": "Arejamento + luz durante 24–48h — turbidez acastanhada = casse cúprica"
     },
     "correcao": {
-      "pt_ue": "TEÓRICO: Precipitação do cobre como sal insolúvel (ferrocianeto de cobre ou sulfeto de cobre) seguida de filtração. PRODUTOS: Ferrocianeto de potássio máx. 100 mg/L — precipita Cu²⁺ como ferrocianeto de cobre insolúvel (cianocupreto); exige análise de cianeto residual livre (<0,5 mg/L HCN) após tratamento. Sulfureto de potássio (K₂S) 2–10 g/hL — forma CuS insolúvel (uso controlado: risco de H₂S residual; arejar antes de filtrar). Bentonite 25–80 g/hL + arejamento suave: remove Cu parcialmente por adsorção. Goma arábica 15–30 g/hL: acção estabilizante sobre colóides. RESTRIÇÕES: Cu final deve ser ≤ 1 mg/L no vinho (Reg. CE 606/2009).",
+      "pt_ue": "TEÓRICO: Precipitação do cobre como sal insolúvel (ferrocianeto de cobre ou sulfeto de cobre) seguida de filtração. PRODUTOS: Ferrocianeto de potássio máx. 100 mg/L — precipita Cu²⁺ como ferrocianeto de cobre insolúvel (cianocupreto); exige análise de cianeto residual livre (<0,5 mg/L HCN) após tratamento. Sulfureto de potássio (K₂S) 2–10 g/hL — forma CuS insolúvel (uso controlado: risco de H₂S residual; arejar antes de filtrar). Bentonite 25–80 g/hL + arejamento suave: remove Cu parcialmente por adsorção. Goma arábica 15–30 g/hL: acção estabilizante sobre colóides. RESTRIÇÕES: Cu final deve ser ≤ 1 mg/L no vinho (Reg. Delegado UE 2019/934).",
       "br": "TEÓRICO: Idêntico à UE. PRODUTOS: Ferrocianeto de potássio, sulfureto de potássio, bentonite e goma arábica autorizados (IN MAPA 14/2018). RESTRIÇÕES: Cu máx. 1 mg/L no vinho final; análise de cianeto obrigatória pós-ferrocianeto."
     },
     "prevencao": [
@@ -634,7 +634,7 @@
       "metodo_rapido": "SO₂ molecular calculado: SO₂mol = SO₂livre / (1 + 10^(pH-1,81)); objectivo: 0,4–0,8 mg/L"
     },
     "correcao": {
-      "pt_ue": "TEÓRICO: O SO₂ livre liga-se progressivamente a compostos carbonílicos (acetaldeído, piruvato, α-cetoglutarato) passando a SO₂ combinado (inodoro). O arejamento controlado oxida e volatiliza o excesso de SO₂. PRODUTOS/TÉCNICAS: Arejamento controlado em trasega — reduz SO₂ livre em 5–15 mg/L por operação. Aguardar 2–4 semanas: combinação natural com carbonilo. NÃO adicionar mais SO₂. RESTRIÇÕES: SO₂ total máx. UE: 150 mg/L (tintos secos), 200 mg/L (brancos secos), 400 mg/L (vinhos doces botrytizados) — Reg. CE 606/2009.",
+      "pt_ue": "TEÓRICO: O SO₂ livre liga-se progressivamente a compostos carbonílicos (acetaldeído, piruvato, α-cetoglutarato) passando a SO₂ combinado (inodoro). O arejamento controlado oxida e volatiliza o excesso de SO₂. PRODUTOS/TÉCNICAS: Arejamento controlado em trasega — reduz SO₂ livre em 5–15 mg/L por operação. Aguardar 2–4 semanas: combinação natural com carbonilo. NÃO adicionar mais SO₂. RESTRIÇÕES: SO₂ total máx. UE: 150 mg/L (tintos secos), 200 mg/L (brancos secos), 400 mg/L (vinhos doces botrytizados) — Reg. Delegado UE 2019/934.",
       "br": "TEÓRICO: Idêntico à UE. TÉCNICAS: Arejamento controlado, aguardar. RESTRIÇÕES: SO₂ total máx. BR: 350 mg/L (tintos doces), 200 mg/L (brancos secos) — IN MAPA 14/2018."
     },
     "prevencao": [
@@ -769,7 +769,7 @@
       "metodo_bioquimico": "Determinação de diacetilo por GC-MS ou método colorimétrico (dinitrofenilhidrazina)"
     },
     "correcao": {
-      "pt_ue": "TEÓRICO: As cadeias beta-1,3-glucanas são fisicamente quebradas por agitação mecânica vigorosa, depois o Pediococcus deve ser eliminado por filtração esterilizante e/ou lisozima. PRODUTOS: Agitação/trasega vigorosa — quebra fisicamente as cadeias glucanas e restaura fluidez imediata. Bentonite 50–100 g/hL — adsorção de proteínas bacterianas e flocculação, facilita clarificação após agitação. Lisozima 200–500 mg/L — destrói a parede celular dos Pediococcus (Gram-positivos), eliminando a fonte de produção de glucanas; autorizada UE (Reg. CE 606/2009) e BR. Filtração esterilizante 0,45 µm após tratamento. SO₂ ajustado para manter 0,4 mg/L de SO₂ molecular. RESTRIÇÕES: Reversível se apanhado cedo, antes de concentrações maciças de glucanas.",
+      "pt_ue": "TEÓRICO: As cadeias beta-1,3-glucanas são fisicamente quebradas por agitação mecânica vigorosa, depois o Pediococcus deve ser eliminado por filtração esterilizante e/ou lisozima. PRODUTOS: Agitação/trasega vigorosa — quebra fisicamente as cadeias glucanas e restaura fluidez imediata. Bentonite 50–100 g/hL — adsorção de proteínas bacterianas e flocculação, facilita clarificação após agitação. Lisozima 200–500 mg/L — destrói a parede celular dos Pediococcus (Gram-positivos), eliminando a fonte de produção de glucanas; autorizada UE (Reg. Delegado UE 2019/934) e BR. Filtração esterilizante 0,45 µm após tratamento. SO₂ ajustado para manter 0,4 mg/L de SO₂ molecular. RESTRIÇÕES: Reversível se apanhado cedo, antes de concentrações maciças de glucanas.",
       "br": "TEÓRICO: Idêntico à UE. PRODUTOS: Lisozima 200–500 mg/L, bentonite 50–100 g/hL, filtração esterilizante — autorizados (IN MAPA 14/2018). SO₂ ajustado. RESTRIÇÕES: Lisozima é proteína de ovo (alergénio declarável nos rótulos). Mesmas que UE."
     },
     "prevencao": [
@@ -967,7 +967,7 @@
       "limite_deteccao": "0,01–0,05 µg/L (GC-MS/MS); muito abaixo do limite legal"
     },
     "correcao": {
-      "pt_ue": "TEÓRICO: Redução de OTA por adsorção com agentes de colagem que a capturam fisicamente — a OTA liga-se a superfícies polares e proteínas por interacções hidrofóbicas e iónicas. PRODUTOS: Bentonite sódica 50–100 g/hL — adsorção de OTA junto com proteínas; eficácia de redução de 20–50%. Quitosano enológico 10 g/hL (Reg. UE 2018/1629) — eficaz na adsorção de OTA, especialmente em combinação com bentonite; redução adicional de 30–40%. Carvão activado oenológico máx. 100 g/hL (apenas brancos e rosés na UE): adsorção de OTA por mecanismo hidrofóbico, redução de 40–70%. Gelatina 1–5 g/hL + bentonite combinados — sinergia na adsorção. RESTRIÇÕES: Carvão activado PROIBIDO em tintos na UE. A prevenção é prioritária — os tratamentos adsortivos raramente eliminam totalmente a OTA se a contaminação inicial for elevada.",
+      "pt_ue": "TEÓRICO: Redução de OTA por adsorção com agentes de colagem que a capturam fisicamente — a OTA liga-se a superfícies polares e proteínas por interacções hidrofóbicas e iónicas. PRODUTOS: Bentonite sódica 50–100 g/hL — adsorção de OTA junto com proteínas; eficácia de redução de 20–50%. Quitosano enológico 10 g/hL (Reg. Delegado UE 2019/934) — eficaz na adsorção de OTA, especialmente em combinação com bentonite; redução adicional de 30–40%. Carvão activado oenológico máx. 100 g/hL (apenas brancos e rosés na UE): adsorção de OTA por mecanismo hidrofóbico, redução de 40–70%. Gelatina 1–5 g/hL + bentonite combinados — sinergia na adsorção. RESTRIÇÕES: Carvão activado PROIBIDO em tintos na UE. A prevenção é prioritária — os tratamentos adsortivos raramente eliminam totalmente a OTA se a contaminação inicial for elevada.",
       "br": "TEÓRICO: Idêntico à UE. PRODUTOS: Bentonite, quitosano, carvão activado (incluindo em tintos no Brasil — IN MAPA 14/2018), gelatina — todos autorizados. RESTRIÇÕES: OTA estável — triagem rigorosa da matéria-prima é a única garantia de segurança. RDC ANVISA 7/2011 fixa limite de 2 µg/L."
     },
     "prevencao": [

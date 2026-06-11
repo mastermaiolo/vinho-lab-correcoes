@@ -106,21 +106,21 @@ function CorrecoesPTUE() {
         <TableRow label="Bentonite" value="25–150 g/hL (jar-test obrigatório)" />
         <TableRow label="Gelatina" value="Autorizada (colagem tânica clássica)" />
         <TableRow label="Caseína / albumina / PVPP" value="Autorizados em brancos e rosés" />
-        <RefLegal>Reg. CE 606/2009 · Reg. UE 2024/3085 · Reg. UE 2018/1629</RefLegal>
+        <RefLegal>Reg. Delegado UE 2019/934 · Reg. UE 2024/3085 · Reg. Delegado UE 2019/934</RefLegal>
       </Section>
 
       <Section title="Acidez volátil — limites máximos">
         <TableRow label="Tinto" value="20 mEq/L (= 1,20 g/L ác. acético)" />
         <TableRow label="Branco / rosé" value="18 mEq/L (= 1,08 g/L ác. acético)" />
         <TableRow label="Vinho doce botritizado" value="30 mEq/L" />
-        <RefLegal>Reg. CE 606/2009, Anexo I-C</RefLegal>
+        <RefLegal>Reg. Delegado UE 2019/934, Anexo I-C</RefLegal>
       </Section>
 
       <Section title="Ferro e cobre">
         <TableRow label="Cobre máx. no produto final" value="1 mg/L" />
         <TableRow label="Ferro — limiar de casse" value=">6 mg/L (brancos) / >10 mg/L (tintos)" />
         <TableRow label="Tratamento" value="Ácido ascórbico + SO₂; ferrocianeto K (controlado)" />
-        <RefLegal>Reg. CE 606/2009</RefLegal>
+        <RefLegal>Reg. Delegado UE 2019/934</RefLegal>
       </Section>
     </div>
   )

@@ -140,9 +140,9 @@ ENRIQUECIMENTO: Portugal (Zona C) — PROIBIDA chaptalização com sacarose
 
 ACIDEZ VOLÁTIL máximos: Tinto 20 mEq/L | Branco/rosé 18 mEq/L
 
-CLARIFICAÇÃO RESTRIÇÕES: Carvão activado PROIBIDO em TINTOS [CE 606/2009]
+CLARIFICAÇÃO RESTRIÇÕES: Carvão activado PROIBIDO em TINTOS [Reg. Delegado UE 2019/934]
   Esferas PVI/PVP: autorizadas para fenóis voláteis [Reg.UE 2024/3085]
-  Quitosano: 10 g/hL máx. [Reg.UE 2018/1629] | Ác.ascórbico: 250 mg/L máx. (sempre com SO₂)
+  Quitosano: 10 g/hL máx. [Reg. Delegado UE 2019/934] | Ác.ascórbico: 250 mg/L máx. (sempre com SO₂)
   Lisozima: 500 mg/L máx. | DMDC (Velcorin): 200 mg/L máx.
   OTA: limite 2 µg/L [Reg.CE 123/2005] | Cu: máx.1 mg/L
   Sorbato: NUNCA com bactérias lácticas activas → gosto de gerânio

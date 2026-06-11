@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "fontes": ["Reg. UE 1308/2013", "Reg. Delegado UE 2019/934", "Reg. UE 2024/3085", "Reg. CE 606/2009"],
+    "fontes": ["Reg. UE 1308/2013", "Reg. Delegado UE 2019/934", "Reg. UE 2024/3085", "Reg. Delegado UE 2019/934"],
     "zona_portugal": "Zona C III (Alentejo) e Zona C II (Douro, Dão, Bairrada, etc.)",
     "atualizado": "2026-06"
   },
@@ -183,7 +183,7 @@
       "fase": ["mosto", "vinho branco", "vinho rosé"],
       "proibido_em": "vinho tinto (UE)",
       "dose_max_g_hL": 100,
-      "obs": "Proibido em vinho tinto — Reg. CE 606/2009"
+      "obs": "Proibido em vinho tinto — Reg. Delegado UE 2019/934"
     },
     "pvpp": {
       "fase": ["mosto", "vinho"],
@@ -210,7 +210,7 @@
     "quitosano": {
       "fase": "vinho",
       "dose_max_g_hL": 10,
-      "obs": "Inibe Brettanomyces; autorizado Reg. UE 2018/1629"
+      "obs": "Inibe Brettanomyces; autorizado Reg. Delegado UE 2019/934"
     },
     "acido_ascorbico": {
       "fase": "vinho",
@@ -246,6 +246,6 @@
   },
   "ferro_cobre_limites": {
     "ferro_max_mg_L": { "recomendado": 5, "nota": "Limite legal não fixado; limite prático para evitar casse" },
-    "cobre_max_mg_L": { "legal": 1, "fonte": "Reg. CE 606/2009" }
+    "cobre_max_mg_L": { "legal": 1, "fonte": "Reg. Delegado UE 2019/934" }
   }
 }

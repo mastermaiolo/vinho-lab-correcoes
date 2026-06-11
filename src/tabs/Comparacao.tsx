@@ -20,7 +20,7 @@ const ROWS: Row[] = [
   { param: 'Carvão activado em tintos', ptue: '❌ Proibido', br: '✅ Autorizado', diferenca: true },
   { param: 'Esferas adsorventes PVI/PVP', ptue: '✅ Autorizado (Reg. 2024/3085)', br: '❌ Não previsto', diferenca: true },
   { param: 'Ácido ascórbico (máx.)', ptue: '250 mg/L', br: '150 mg/L', diferenca: true },
-  { param: 'Quitosano', ptue: '10 g/hL (Reg. 2018/1629)', br: '✅ Autorizado' },
+  { param: 'Quitosano', ptue: '10 g/hL (Reg. Delegado UE 2019/934)', br: '✅ Autorizado' },
   { param: 'Cu máx. no vinho', ptue: '1 mg/L', br: '1 mg/L' },
   { param: 'TAV mín.', ptue: '8,5% vol', br: '8,6% vol' },
   { param: 'ESR tinto mín.', ptue: '—', br: '21 g/L' },
@@ -63,7 +63,7 @@ export default function Comparacao() {
 
       <div className="card bg-stone-800/40 text-xs text-stone-500 leading-relaxed">
         <p className="font-medium text-stone-400 mb-1">Fontes legais</p>
-        <p>PT/UE: Reg. UE 1308/2013 · Reg. Delegado 2019/934 · Reg. UE 2024/3085 · Reg. CE 606/2009 · Reg. UE 2018/1629</p>
+        <p>PT/UE: Reg. UE 1308/2013 · Reg. Delegado 2019/934 · Reg. UE 2024/3085 · Reg. Delegado UE 2019/934 · Reg. Delegado UE 2019/934</p>
         <p className="mt-1">Brasil: IN MAPA 14/2018 · Portaria MAPA 723/2024 · Lei 7.678/1988</p>
         <p className="mt-2 text-stone-600 italic">
           A colocação no mercado exige também documentação (certificado de origem, VI-1 para exportação PT→BR), rotulagem e práticas enológicas conformes. Esta tabela reflete apenas limites físico-químicos e práticas enológicas.
