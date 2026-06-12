@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
-import { chamarIA, DiagnosticoItem, DiagnosticoResponse, AIConfig } from '../lib/aiClient'
+import { chamarIA, DiagnosticoItem, DiagnosticoResponse, AIConfig, PROVIDER_LABELS, PROVIDER_MODELS } from '../lib/aiClient'
+import { DATA_VERSION } from '../data/version'
 import { buildUserPrompt, SYSTEM_PROMPT, FormData } from '../lib/promptBuilder'
 import { parseMdBoletim, isSessionCompanheiro, parseSessionCompanheiro } from '../lib/mdParser'
 import { so2Molecular } from '../lib/calculadoras'
@@ -76,7 +77,10 @@ function validarCampos(form: FormData): Aviso[] {
   return avisos
 }
 
-function exportarMd(form: FormData, result: DiagnosticoResponse, jur: 'ptue' | 'br'): string {
+function exportarMd(form: FormData, result: DiagnosticoResponse, jur: 'ptue' | 'br', config: AIConfig): string {
+  const provider = PROVIDER_LABELS[config.provider]
+  const model = config.model ?? PROVIDER_MODELS[config.provider]
+  const carimbo = `*Gerado por ${provider} (${model}) · dados v${DATA_VERSION} · ${new Date().toISOString().slice(0, 16).replace('T', ' ')}*`
   const linhas = [
     `# Diagnóstico Vinho-Lab — ${jur === 'ptue' ? 'PT/UE' : 'Brasil'}`,
     ``,
@@ -107,7 +111,8 @@ function exportarMd(form: FormData, result: DiagnosticoResponse, jur: 'ptue' | '
     result.confirmacao_prioritaria ? `---\n\n**Exame prioritário:** ${result.confirmacao_prioritaria}\n` : '',
     result.observacoes ? `**Observações:** ${result.observacoes}\n` : '',
     `---`,
-    `*Gerado por Vinho-Lab Correções — ferramenta de apoio, não substitui aconselhamento enológico profissional.*`,
+    carimbo,
+    `*Vinho-Lab Correções — ferramenta de apoio, não substitui aconselhamento enológico profissional.*`,
   ]
   return linhas.filter((l) => l !== '').join('\n')
 }
@@ -323,6 +328,9 @@ export default function DiagnosticoIA({ aiConfig, onApiKey, jurisdicao, initialF
         sintomas: form.sintomas,
         resultado: res,
         formSnapshot: { ...form, jurisdicao: jur },
+        provider: aiConfig.provider,
+        model: aiConfig.model ?? PROVIDER_MODELS[aiConfig.provider],
+        dataVersion: DATA_VERSION,
       })
       onNovoDiagnostico()
     } catch (e) {
@@ -530,7 +538,7 @@ export default function DiagnosticoIA({ aiConfig, onApiKey, jurisdicao, initialF
             </h3>
             <div className="flex gap-2">
               <button
-                onClick={() => downloadMd(exportarMd(form, result, jur))}
+                onClick={() => downloadMd(exportarMd(form, result, jur, aiConfig))}
                 className="btn-ghost text-xs flex items-center gap-1.5"
                 title="Exportar diagnóstico como ficheiro Markdown"
               >
@@ -563,6 +571,15 @@ export default function DiagnosticoIA({ aiConfig, onApiKey, jurisdicao, initialF
               <p className="text-sm text-stone-300">{result.observacoes}</p>
             </div>
           )}
+
+          {/* Carimbo de proveniência — auditabilidade */}
+          <p className="text-[11px] text-stone-600 font-mono pt-1">
+            {t('diag.result.carimbo', {
+              provider: PROVIDER_LABELS[aiConfig.provider],
+              model: aiConfig.model ?? PROVIDER_MODELS[aiConfig.provider],
+              versao: DATA_VERSION,
+            })}
+          </p>
         </div>
       )}
     </div>

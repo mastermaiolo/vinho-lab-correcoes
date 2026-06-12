@@ -1,5 +1,6 @@
 import limitesUE from '../data/limites_pt_ue.json'
 import limitesBR from '../data/limites_brasil.json'
+import { useI18n } from '../components/I18nProvider'
 
 interface Props {
   jur: 'ptue' | 'br'
@@ -106,7 +107,7 @@ function CorrecoesPTUE() {
         <TableRow label="Bentonite" value="25–150 g/hL (jar-test obrigatório)" />
         <TableRow label="Gelatina" value="Autorizada (colagem tânica clássica)" />
         <TableRow label="Caseína / albumina / PVPP" value="Autorizados em brancos e rosés" />
-        <RefLegal>Reg. Delegado UE 2019/934 · Reg. UE 2024/3085 · Reg. Delegado UE 2019/934</RefLegal>
+        <RefLegal>Reg. Delegado UE 2019/934 · Reg. UE 2024/3085</RefLegal>
       </Section>
 
       <Section title="Acidez volátil — limites máximos">
@@ -228,5 +229,11 @@ function CorrecoesBR() {
 }
 
 export default function Correcoes({ jur }: Props) {
-  return jur === 'ptue' ? <CorrecoesPTUE /> : <CorrecoesBR />
+  const { t } = useI18n()
+  return (
+    <div className="space-y-4">
+      <p className="text-xs text-stone-500 bg-stone-800/40 rounded-lg px-3 py-2 leading-relaxed">{t('reftable.note')}</p>
+      {jur === 'ptue' ? <CorrecoesPTUE /> : <CorrecoesBR />}
+    </div>
+  )
 }

@@ -1,3 +1,5 @@
+import { useI18n } from '../components/I18nProvider'
+
 interface Row {
   param: string
   ptue: string
@@ -30,8 +32,10 @@ const ROWS: Row[] = [
 ]
 
 export default function Comparacao() {
+  const { t } = useI18n()
   return (
     <div className="space-y-4">
+      <p className="text-xs text-stone-500 bg-stone-800/40 rounded-lg px-3 py-2 leading-relaxed">{t('reftable.note')}</p>
       <div className="flex items-center gap-4 text-xs text-stone-500">
         <span className="flex items-center gap-1.5"><span className="w-2 h-2 rounded-full bg-amber-500 inline-block"></span> diferença relevante</span>
         <span>✅ autorizado &nbsp; ❌ proibido</span>
@@ -63,7 +67,7 @@ export default function Comparacao() {
 
       <div className="card bg-stone-800/40 text-xs text-stone-500 leading-relaxed">
         <p className="font-medium text-stone-400 mb-1">Fontes legais</p>
-        <p>PT/UE: Reg. UE 1308/2013 · Reg. Delegado 2019/934 · Reg. UE 2024/3085 · Reg. Delegado UE 2019/934 · Reg. Delegado UE 2019/934</p>
+        <p>PT/UE: Reg. UE 1308/2013 · Reg. Delegado UE 2019/934 · Reg. UE 2024/3085 · Reg. UE 2023/915 (OTA)</p>
         <p className="mt-1">Brasil: IN MAPA 14/2018 · Portaria MAPA 723/2024 · Lei 7.678/1988</p>
         <p className="mt-2 text-stone-600 italic">
           A colocação no mercado exige também documentação (certificado de origem, VI-1 para exportação PT→BR), rotulagem e práticas enológicas conformes. Esta tabela reflete apenas limites físico-químicos e práticas enológicas.

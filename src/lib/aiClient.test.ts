@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { extractJSON } from './aiClient'
+import { extractJSON, isValidDiagnostico } from './aiClient'
 
 const OBJ = '{"diagnosticos": [], "observacoes": "ok"}'
 
@@ -40,5 +40,48 @@ describe('extractJSON', () => {
     for (const v of variantes) {
       expect(() => JSON.parse(extractJSON(v))).not.toThrow()
     }
+  })
+})
+
+describe('isValidDiagnostico', () => {
+  const valido = {
+    diagnosticos: [{ defeito: 'Acidez volátil', correcao: 'Arejamento + SO₂' }],
+    observacoes: 'ok',
+    confirmacao_prioritaria: 'GC',
+  }
+
+  it('aceita resposta com estrutura correcta', () => {
+    expect(isValidDiagnostico(valido)).toBe(true)
+  })
+
+  it('aceita diagnosticos com nulls desde que haja um real', () => {
+    expect(isValidDiagnostico({ diagnosticos: [valido.diagnosticos[0], null, null] })).toBe(true)
+  })
+
+  it('rejeita array em vez de objecto', () => {
+    expect(isValidDiagnostico([])).toBe(false)
+  })
+
+  it('rejeita diagnosticos em falta', () => {
+    expect(isValidDiagnostico({ observacoes: 'x' })).toBe(false)
+  })
+
+  it('rejeita diagnosticos não-array', () => {
+    expect(isValidDiagnostico({ diagnosticos: 'texto' })).toBe(false)
+  })
+
+  it('rejeita item sem defeito ou correcao', () => {
+    expect(isValidDiagnostico({ diagnosticos: [{ defeito: 'X' }] })).toBe(false)
+    expect(isValidDiagnostico({ diagnosticos: [{ correcao: 'Y' }] })).toBe(false)
+  })
+
+  it('rejeita lista só com nulls', () => {
+    expect(isValidDiagnostico({ diagnosticos: [null, null] })).toBe(false)
+  })
+
+  it('rejeita null e tipos primitivos', () => {
+    expect(isValidDiagnostico(null)).toBe(false)
+    expect(isValidDiagnostico('x')).toBe(false)
+    expect(isValidDiagnostico(42)).toBe(false)
   })
 })

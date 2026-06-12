@@ -76,6 +76,25 @@ function apiError(i18nKey: string, opts?: { is429?: boolean; retryable?: boolean
   return Object.assign(new Error(i18nKey), opts)
 }
 
+// Validação de schema (zero-dep) — confirma que a IA devolveu a estrutura
+// esperada antes de a aceitar. Modelos free por vezes devolvem JSON sintáctico
+// mas com a forma errada (array em vez de objecto, campos em falta).
+export function isValidDiagnostico(obj: unknown): obj is DiagnosticoResponse {
+  if (typeof obj !== 'object' || obj === null) return false
+  const o = obj as Record<string, unknown>
+  if (!Array.isArray(o.diagnosticos)) return false
+  // Cada item não-nulo tem de ter pelo menos defeito + correção (campos centrais)
+  for (const item of o.diagnosticos) {
+    if (item === null) continue
+    if (typeof item !== 'object') return false
+    const d = item as Record<string, unknown>
+    if (typeof d.defeito !== 'string' || typeof d.correcao !== 'string') return false
+  }
+  // Tem de haver pelo menos um diagnóstico real (não só nulls)
+  if (!o.diagnosticos.some((d) => d !== null)) return false
+  return true
+}
+
 // Strip markdown code blocks and extract raw JSON
 export function extractJSON(text: string): string {
   // Aceita ```json, ```JSON, ```text, ``` etc.
@@ -217,13 +236,19 @@ export async function chamarIA(
         text = await callOpenAI(config.apiKey, systemPrompt, userPrompt)
       }
 
+      let parsed: unknown
       try {
-        return JSON.parse(extractJSON(text)) as DiagnosticoResponse
+        parsed = JSON.parse(extractJSON(text))
       } catch {
         console.error('[aiClient] JSON parse failed. Raw text:', text.slice(0, 300))
         // Modelos free são instáveis — vale a pena repetir uma vez
         throw apiError('err.invalid_json', { retryable: true })
       }
+      if (!isValidDiagnostico(parsed)) {
+        console.error('[aiClient] Schema inválido. Recebido:', JSON.stringify(parsed).slice(0, 300))
+        throw apiError('err.invalid_json', { retryable: true })
+      }
+      return parsed
     } catch (err) {
       const e = err as { is429?: boolean; retryable?: boolean }
       const deveRepetir = e.is429 === true || e.retryable === true || err instanceof TypeError

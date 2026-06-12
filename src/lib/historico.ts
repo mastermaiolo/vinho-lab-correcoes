@@ -1,4 +1,4 @@
-import { DiagnosticoResponse } from './aiClient'
+import { DiagnosticoResponse, AIProvider } from './aiClient'
 import { FormData } from './promptBuilder'
 
 export interface EntradaHistorico {
@@ -10,6 +10,10 @@ export interface EntradaHistorico {
   sintomas: string[]
   resultado: DiagnosticoResponse
   formSnapshot: Partial<FormData>
+  // Proveniência — para auditar que produziu cada diagnóstico
+  provider?: AIProvider
+  model?: string
+  dataVersion?: string
 }
 
 const KEY = 'vl_historico'
