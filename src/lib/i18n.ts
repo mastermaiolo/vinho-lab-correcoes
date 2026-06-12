@@ -32,7 +32,7 @@ const pt: Dict = {
   'app.title.short': 'VL Correções',
   'app.footer.disclaimer': 'Ferramenta de apoio à decisão. Não substitui o boletim oficial emitido por laboratório autorizado nem aconselhamento enológico profissional.',
   'app.footer.legal': 'Limites legais: MAPA (IN 14/2018 e alt.) · Reg. UE 1308/2013 · Reg. Delegado UE 2019/934 · 2024/3085.',
-  'app.footer.privacy': '**Privacidade:** Os parâmetros analíticos enviados ao módulo de Diagnóstico IA são processados pelo fornecedor de IA configurado (Google, Anthropic ou OpenAI). Nome da amostra, lote e responsável **nunca são enviados**. Consentimento solicitado antes do primeiro diagnóstico (RGPD Art. 6.º, n.º 1, al. a). Chave API guardada apenas em sessionStorage — eliminada ao fechar o tab.',
+  'app.footer.privacy': '**Privacidade:** Os parâmetros analíticos enviados ao módulo de Diagnóstico IA são processados pelo fornecedor de IA configurado (OpenRouter, Google, Anthropic ou OpenAI). Nome da amostra, lote e responsável **nunca são enviados**. Consentimento solicitado antes do primeiro diagnóstico (RGPD Art. 6.º, n.º 1, al. a). Chave API guardada apenas em sessionStorage — eliminada ao fechar o tab.',
 
   // Header
   'header.historico': 'Histórico',
@@ -322,7 +322,7 @@ const en: Dict = {
   'app.title.short': 'VL Corrections',
   'app.footer.disclaimer': 'Decision support tool. Does not replace the official report issued by an accredited laboratory or professional oenological advice.',
   'app.footer.legal': 'Legal limits: MAPA (IN 14/2018 and amendments) · EU Reg. 1308/2013 · Delegated Reg. EU 2019/934 · 2024/3085.',
-  'app.footer.privacy': '**Privacy:** Analytical parameters sent to the AI Diagnosis module are processed by the configured AI provider (Google, Anthropic or OpenAI). Sample name, batch and responsible person are **never sent**. Consent requested before first diagnosis (GDPR Art. 6(1)(a)). API key stored only in sessionStorage — deleted when the tab is closed.',
+  'app.footer.privacy': '**Privacy:** Analytical parameters sent to the AI Diagnosis module are processed by the configured AI provider (OpenRouter, Google, Anthropic or OpenAI). Sample name, batch and responsible person are **never sent**. Consent requested before first diagnosis (GDPR Art. 6(1)(a)). API key stored only in sessionStorage — deleted when the tab is closed.',
 
   'header.historico': 'History',
   'header.configIA': 'AI Config',
@@ -598,7 +598,7 @@ const es: Dict = {
   'app.title.short': 'VL Correc.',
   'app.footer.disclaimer': 'Herramienta de apoyo a la decisión. No sustituye el boletín oficial emitido por laboratorio acreditado ni el asesoramiento enológico profesional.',
   'app.footer.legal': 'Límites legales: MAPA (IN 14/2018 y mod.) · Reg. UE 1308/2013 · Reg. Delegado UE 2019/934 · 2024/3085.',
-  'app.footer.privacy': '**Privacidad:** Los parámetros analíticos enviados al módulo de Diagnóstico IA son procesados por el proveedor de IA configurado (Google, Anthropic u OpenAI). El nombre de la muestra, lote y responsable **nunca se envían**. Se solicita consentimiento antes del primer diagnóstico (RGPD Art. 6(1)(a)). La clave API se guarda solo en sessionStorage — se elimina al cerrar la pestaña.',
+  'app.footer.privacy': '**Privacidad:** Los parámetros analíticos enviados al módulo de Diagnóstico IA son procesados por el proveedor de IA configurado (OpenRouter, Google, Anthropic u OpenAI). El nombre de la muestra, lote y responsable **nunca se envían**. Se solicita consentimiento antes del primer diagnóstico (RGPD Art. 6(1)(a)). La clave API se guarda solo en sessionStorage — se elimina al cerrar la pestaña.',
 
   'header.historico': 'Historial',
   'header.configIA': 'Config. IA',
@@ -874,7 +874,7 @@ const zh: Dict = {
   'app.title.short': 'VL 纠正',
   'app.footer.disclaimer': '辅助决策工具。不可替代经认可实验室出具的官方报告或专业酿酒建议。',
   'app.footer.legal': '法律限值：MAPA (IN 14/2018) · 欧盟法规 1308/2013 · 2019/934（授权法规）· 2024/3085。',
-  'app.footer.privacy': '**隐私声明：** 发送至AI诊断模块的分析参数由所配置的AI提供商（Google、Anthropic或OpenAI）处理。样品名称、批次和负责人**绝不发送**。首次诊断前将请求同意（GDPR第6条第1款(a)项）。API密钥仅存储于sessionStorage，关闭标签页后即删除。',
+  'app.footer.privacy': '**隐私声明：** 发送至AI诊断模块的分析参数由所配置的AI提供商（OpenRouter、Google、Anthropic或OpenAI）处理。样品名称、批次和负责人**绝不发送**。首次诊断前将请求同意（GDPR第6条第1款(a)项）。API密钥仅存储于sessionStorage，关闭标签页后即删除。',
 
   'header.historico': '历史',
   'header.configIA': 'AI 配置',
