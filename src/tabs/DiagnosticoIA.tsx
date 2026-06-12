@@ -4,6 +4,7 @@ import { DATA_VERSION } from '../data/version'
 import { buildUserPrompt, SYSTEM_PROMPT, FormData } from '../lib/promptBuilder'
 import { parseMdBoletim, isSessionCompanheiro, parseSessionCompanheiro } from '../lib/mdParser'
 import { so2Molecular } from '../lib/calculadoras'
+import { validarCatalogo } from '../lib/catalogo'
 import { guardarHistorico, EntradaHistorico } from '../lib/historico'
 import PrivacyConsentModal from '../components/PrivacyConsentModal'
 import { useI18n } from '../components/I18nProvider'
@@ -162,6 +163,24 @@ function DiagCard({ d, jur }: { d: DiagnosticoItem; jur: 'ptue' | 'br' }) {
             }`}>
               {d.reversivel ? t('diag.result.reversivel.sim') : t('diag.result.reversivel.nao')}
             </span>
+            {(() => {
+              const cat = validarCatalogo(d.catalogo_ref)
+              return cat.emCatalogo ? (
+                <span
+                  className="text-xs px-2 py-0.5 rounded-full border font-medium bg-sky-900/30 text-sky-300 border-sky-700/30"
+                  title={`${t('diag.result.catalogo.sim')}: ${cat.id} · ${cat.nome}`}
+                >
+                  📖 {cat.id}
+                </span>
+              ) : (
+                <span
+                  className="text-xs px-2 py-0.5 rounded-full border font-medium bg-stone-800 text-stone-400 border-stone-600"
+                  title={t('diag.result.catalogo.nao.hint')}
+                >
+                  ⚠ {t('diag.result.catalogo.nao')}
+                </span>
+              )
+            })()}
           </div>
           <p className="text-xs text-stone-400 line-clamp-1">{d.causa}</p>
         </div>

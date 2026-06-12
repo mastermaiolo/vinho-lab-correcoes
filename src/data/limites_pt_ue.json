@@ -1,6 +1,16 @@
 {
   "_meta": {
-    "fontes": ["Reg. UE 1308/2013", "Reg. Delegado UE 2019/934", "Reg. UE 2024/3085", "Reg. Delegado UE 2019/934"],
+    "_generated": true,
+    "_source": "vinho-lab/data/practices/limites_pt_ue.json",
+    "_aviso": "NÃO EDITAR À MÃO — regenerar com: python tools/export_correcoes.py",
+    "version": "2026.06.1",
+    "generated_utc": "2026-06-12T13:13Z",
+    "fontes": [
+      "Reg. UE 1308/2013",
+      "Reg. Delegado UE 2019/934",
+      "Reg. UE 2024/3085",
+      "Reg. UE 2023/915 (OTA)"
+    ],
     "zona_portugal": "Zona C III (Alentejo) e Zona C II (Douro, Dão, Bairrada, etc.)",
     "atualizado": "2026-06"
   },
@@ -53,14 +63,33 @@
     "_formula_molecular": "SO₂ molecular (mg/L) = SO₂ livre (mg/L) / (1 + 10^(pH - 1.81))",
     "_objectivo_molecular": "0,4–0,8 mg/L de SO₂ molecular activo",
     "por_ph": {
-      "pH_3.0": { "so2_livre_mg_L": 6, "so2_molecular_percent": 6.06 },
-      "pH_3.2": { "so2_livre_mg_L": 10 },
-      "pH_3.4": { "so2_livre_mg_L": 16 },
-      "pH_3.5": { "so2_livre_mg_L": 20, "so2_molecular_percent": 2.00 },
-      "pH_3.6": { "so2_livre_mg_L": 25 },
-      "pH_3.7": { "so2_livre_mg_L": 32 },
-      "pH_3.8": { "so2_livre_mg_L": 40 },
-      "pH_4.0": { "so2_livre_mg_L": 63, "so2_molecular_percent": 0.64 }
+      "pH_3.0": {
+        "so2_livre_mg_L": 6,
+        "so2_molecular_percent": 6.06
+      },
+      "pH_3.2": {
+        "so2_livre_mg_L": 10
+      },
+      "pH_3.4": {
+        "so2_livre_mg_L": 16
+      },
+      "pH_3.5": {
+        "so2_livre_mg_L": 20,
+        "so2_molecular_percent": 2.0
+      },
+      "pH_3.6": {
+        "so2_livre_mg_L": 25
+      },
+      "pH_3.7": {
+        "so2_livre_mg_L": 32
+      },
+      "pH_3.8": {
+        "so2_livre_mg_L": 40
+      },
+      "pH_4.0": {
+        "so2_livre_mg_L": 63,
+        "so2_molecular_percent": 0.64
+      }
     }
   },
   "so2_conversoes": {
@@ -75,46 +104,77 @@
       "uso": "bissulfito de potássio"
     },
     "so2_gasoso": {
-      "fator": 1.000,
+      "fator": 1.0,
       "uso": "SO₂ gasoso puro"
     },
     "solucao_so2_6pct": {
       "concentracao_g_L": 60,
-      "fator": 0.060,
+      "fator": 0.06,
       "uso": "solução aquosa 6% p/v"
     }
   },
   "acidificacao": {
     "mosto": {
-      "max_g_L_tartarico_equiv": 1.50,
+      "max_g_L_tartarico_equiv": 1.5,
       "fonte": "Reg. Delegado 2019/934"
     },
     "vinho": {
-      "max_g_L_tartarico_equiv": 2.50
+      "max_g_L_tartarico_equiv": 2.5
     },
-    "agentes_autorizados": ["tartarico", "malico", "lactico"],
-    "proibidos": ["citrico"],
+    "agentes_autorizados": [
+      "tartarico",
+      "malico",
+      "lactico"
+    ],
+    "proibidos": [
+      "citrico"
+    ],
     "regra_exclusividade": "Na UE, acidificação e desacidificação NÃO podem ser realizadas no mesmo vinho no mesmo ano vitícola",
     "equivalencias": {
-      "tartarico": { "fator_meq": 13.3, "descricao": "1 g/L ác. tartárico = 13,3 mEq/L" },
-      "malico": { "fator_meq": 14.9, "descricao": "1 g/L ác. málico = 14,9 mEq/L" },
-      "lactico": { "fator_meq": 11.1, "descricao": "1 g/L ác. láctico = 11,1 mEq/L" }
+      "tartarico": {
+        "fator_meq": 13.3,
+        "descricao": "1 g/L ác. tartárico = 13,3 mEq/L"
+      },
+      "malico": {
+        "fator_meq": 14.9,
+        "descricao": "1 g/L ác. málico = 14,9 mEq/L"
+      },
+      "lactico": {
+        "fator_meq": 11.1,
+        "descricao": "1 g/L ác. láctico = 11,1 mEq/L"
+      }
     },
     "efeito_tartarico_no_pH": {
-      "0.5_g_L": { "acidez_total_g_L": "+0.33", "delta_pH": "-0.08" },
-      "1.0_g_L": { "acidez_total_g_L": "+0.65", "delta_pH": "-0.15" },
-      "1.5_g_L": { "acidez_total_g_L": "+1.04", "delta_pH": "-0.22" }
+      "0.5_g_L": {
+        "acidez_total_g_L": "+0.33",
+        "delta_pH": "-0.08"
+      },
+      "1.0_g_L": {
+        "acidez_total_g_L": "+0.65",
+        "delta_pH": "-0.15"
+      },
+      "1.5_g_L": {
+        "acidez_total_g_L": "+1.04",
+        "delta_pH": "-0.22"
+      }
     }
   },
   "desacidificacao": {
     "mosto": {
-      "max_g_L_tartarico_equiv": 1.00
+      "max_g_L_tartarico_equiv": 1.0
     },
     "vinho": {
-      "max_g_L_tartarico_equiv": 1.00
+      "max_g_L_tartarico_equiv": 1.0
     },
-    "agentes_autorizados": ["bicarbonato_potassio", "carbonato_calcio", "tartarato_neutro_k", "fml"],
-    "proibidos_zona_c": ["acido_tartarico"],
+    "agentes_autorizados": [
+      "bicarbonato_potassio",
+      "carbonato_calcio",
+      "tartarato_neutro_k",
+      "fml"
+    ],
+    "proibidos_zona_c": [
+      "acido_tartarico"
+    ],
     "fatores_por_g_L_descida": {
       "bicarbonato_potassio_KHCO3": {
         "dose_g_L": 0.67,
@@ -122,7 +182,7 @@
         "fator_alternativo": "1,5 g KHCO₃ por 1 g/L de acidez total (em H₂SO₄)"
       },
       "carbonato_calcio_CaCO3": {
-        "dose_g_L": 0.50,
+        "dose_g_L": 0.5,
         "descricao": "0,50 g/L CaCO₃ por 1,0 g/L de descida de acidez (tartárico equiv.)",
         "fator_alternativo": "1,0 g CaCO₃ por 1 g/L de acidez total (em H₂SO₄)"
       },
@@ -134,7 +194,10 @@
   },
   "enriquecimento": {
     "zona_c_portugal": {
-      "metodo_autorizado": ["MC (Mosto Concentrado)", "MCR (Mosto Concentrado Rectificado)"],
+      "metodo_autorizado": [
+        "MC (Mosto Concentrado)",
+        "MCR (Mosto Concentrado Rectificado)"
+      ],
       "chapitalizacao": false,
       "aumento_normal_pct_vol": 1.5,
       "aumento_excepcional_pct_vol": 2.0,
@@ -142,7 +205,10 @@
     },
     "zona_a_b": {
       "chapitalizacao": true,
-      "aumento_max_pct_vol": { "zona_a": 3.0, "zona_b": 2.0 }
+      "aumento_max_pct_vol": {
+        "zona_a": 3.0,
+        "zona_b": 2.0
+      }
     },
     "fatores_conversao": {
       "sacarose_para_alcool": {
@@ -161,8 +227,14 @@
   "acidez_volatil": {
     "_unidade": "mEq/L ou g/L ác. acético",
     "_conversao": "1 g/L ác. acético = 16,7 mEq/L",
-    "tinto": { "max_meq_L": 20, "max_g_L_acac": 1.20 },
-    "branco_rose": { "max_meq_L": 18, "max_g_L_acac": 1.08 },
+    "tinto": {
+      "max_meq_L": 20,
+      "max_g_L_acac": 1.2
+    },
+    "branco_rose": {
+      "max_meq_L": 18,
+      "max_g_L_acac": 1.08
+    },
     "fonte": "Reg. Delegado 2019/934"
   },
   "sulfatos_totais": {
@@ -175,18 +247,28 @@
   },
   "clarificacao_colagem": {
     "bentonite": {
-      "fase": ["mosto", "vinho"],
+      "fase": [
+        "mosto",
+        "vinho"
+      ],
       "dose_tipica_g_hL": "25–150",
       "obs": "Dose determinada por jar-test"
     },
     "carvao_ativado_oenologico": {
-      "fase": ["mosto", "vinho branco", "vinho rosé"],
+      "fase": [
+        "mosto",
+        "vinho branco",
+        "vinho rosé"
+      ],
       "proibido_em": "vinho tinto (UE)",
       "dose_max_g_hL": 100,
       "obs": "Proibido em vinho tinto — Reg. Delegado UE 2019/934"
     },
     "pvpp": {
-      "fase": ["mosto", "vinho"],
+      "fase": [
+        "mosto",
+        "vinho"
+      ],
       "obs": "Clarificante polifenólico; removido por filtração"
     },
     "gelatina": {
@@ -245,7 +327,13 @@
     }
   },
   "ferro_cobre_limites": {
-    "ferro_max_mg_L": { "recomendado": 5, "nota": "Limite legal não fixado; limite prático para evitar casse" },
-    "cobre_max_mg_L": { "legal": 1, "fonte": "Reg. Delegado UE 2019/934" }
+    "ferro_max_mg_L": {
+      "recomendado": 5,
+      "nota": "Limite legal não fixado; limite prático para evitar casse"
+    },
+    "cobre_max_mg_L": {
+      "legal": 1,
+      "fonte": "Reg. Delegado UE 2019/934"
+    }
   }
 }

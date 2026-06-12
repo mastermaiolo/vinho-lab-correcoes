@@ -1,6 +1,15 @@
 {
   "_meta": {
-    "fontes": ["IN MAPA 14/2018 (Lei 7.678/1988)", "Portaria MAPA 723/2024", "Lei 10.970/2004"],
+    "_generated": true,
+    "_source": "vinho-lab/data/practices/limites_brasil.json",
+    "_aviso": "NÃO EDITAR À MÃO — regenerar com: python tools/export_correcoes.py",
+    "version": "2026.06.1",
+    "generated_utc": "2026-06-12T13:13Z",
+    "fontes": [
+      "IN MAPA 14/2018 (Lei 7.678/1988)",
+      "Portaria MAPA 723/2024",
+      "Lei 10.970/2004"
+    ],
     "orgao_regulador": "MAPA (Ministério da Agricultura, Pecuária e Abastecimento) + ANVISA",
     "atualizado": "2026-06"
   },
@@ -18,7 +27,7 @@
     },
     "acidez_volatil": {
       "max_meq_L": 20,
-      "max_g_L_acac": 1.20,
+      "max_g_L_acac": 1.2,
       "unidade": "mEq/L",
       "nota": "Igual para todas as cores (tinto, branco, rosé)"
     },
@@ -46,29 +55,59 @@
       "unidade": "mg/L"
     },
     "cinzas": {
-      "tinto": { "min": 1.5, "unidade": "g/L" },
-      "branco_rosado": { "min": 1.0, "unidade": "g/L" }
+      "tinto": {
+        "min": 1.5,
+        "unidade": "g/L"
+      },
+      "branco_rosado": {
+        "min": 1.0,
+        "unidade": "g/L"
+      }
     },
     "extrato_seco_reduzido_esr": {
-      "tinto": { "min": 21.0, "unidade": "g/L" },
-      "branco_rose": { "min": 16.0, "unidade": "g/L" }
+      "tinto": {
+        "min": 21.0,
+        "unidade": "g/L"
+      },
+      "branco_rose": {
+        "min": 16.0,
+        "unidade": "g/L"
+      }
     },
     "metanol": {
-      "tinto": { "max": 400, "unidade": "mg/L" },
-      "branco_rosado": { "max": 300, "unidade": "mg/L" }
+      "tinto": {
+        "max": 400,
+        "unidade": "mg/L"
+      },
+      "branco_rosado": {
+        "max": 300,
+        "unidade": "mg/L"
+      }
     }
   },
   "categorias_de_vinho": {
     "vinho_de_mesa": {
-      "graduacao_alcoolica": { "min": 8.6, "max": 14.0, "unidade": "% v/v" },
+      "graduacao_alcoolica": {
+        "min": 8.6,
+        "max": 14.0,
+        "unidade": "% v/v"
+      },
       "nota": "Produzido com uvas V. labrusca, híbridos ou americanas"
     },
     "vinho_fino": {
-      "graduacao_alcoolica": { "min": 8.6, "max": 14.0, "unidade": "% v/v" },
+      "graduacao_alcoolica": {
+        "min": 8.6,
+        "max": 14.0,
+        "unidade": "% v/v"
+      },
       "nota": "Produzido com uvas V. vinifera L."
     },
     "reservado": {
-      "graduacao_alcoolica": { "min": 9.0, "max": 13.0, "unidade": "% v/v" },
+      "graduacao_alcoolica": {
+        "min": 9.0,
+        "max": 13.0,
+        "unidade": "% v/v"
+      },
       "chapitalizacao_permitida": true,
       "limite_chapitalizacao_pct_vol": 2.0,
       "nota": "Vinho fino com maturação mínima 12 meses"
@@ -89,10 +128,20 @@
   },
   "chapitalizacao": {
     "_nota": "Autorizada no Brasil com restrições por categoria (diferente de Portugal/UE onde é proibida na Zona C)",
-    "reservado": { "permitida": true, "limite_adicao_pct_vol": 2.0 },
-    "reserva": { "permitida": true, "limite_adicao_pct_vol": 1.0 },
-    "gran_reserva": { "permitida": false },
-    "nobre": { "permitida": false },
+    "reservado": {
+      "permitida": true,
+      "limite_adicao_pct_vol": 2.0
+    },
+    "reserva": {
+      "permitida": true,
+      "limite_adicao_pct_vol": 1.0
+    },
+    "gran_reserva": {
+      "permitida": false
+    },
+    "nobre": {
+      "permitida": false
+    },
     "fator_sacarose": {
       "g_L_por_pct_vol_tintos": 18,
       "g_L_por_pct_vol_brancos": 17,
@@ -100,16 +149,31 @@
     }
   },
   "acidificacao": {
-    "acidos_autorizados": ["tartarico", "malico", "lactico", "citrico"],
+    "acidos_autorizados": [
+      "tartarico",
+      "malico",
+      "lactico",
+      "citrico"
+    ],
     "nota": "Ácido cítrico AUTORIZADO no Brasil (máx. 1,0 g/L) — diferente da UE",
     "regra_exclusividade": "Não existe regra de exclusividade explícita no Brasil (diferente da UE)"
   },
   "desacidificacao": {
-    "agentes_autorizados": ["bicarbonato_potassio", "carbonato_calcio", "tartarato_neutro_k", "fml"]
+    "agentes_autorizados": [
+      "bicarbonato_potassio",
+      "carbonato_calcio",
+      "tartarato_neutro_k",
+      "fml"
+    ]
   },
   "clarificacao_colagem": {
     "carvao_ativado_oenologico": {
-      "fase": ["mosto", "vinho tinto", "vinho branco", "vinho rosé"],
+      "fase": [
+        "mosto",
+        "vinho tinto",
+        "vinho branco",
+        "vinho rosé"
+      ],
       "obs": "AUTORIZADO em vinhos tintos no Brasil — diferente da UE (proibido em tintos)"
     },
     "bentonite": {
@@ -120,17 +184,28 @@
     }
   },
   "so2_conversoes": {
-    "k2s2o5_para_so2": { "fator": 0.572 },
-    "khso3_para_so2": { "fator": 0.538 },
-    "so2_gasoso": { "fator": 1.000 }
+    "k2s2o5_para_so2": {
+      "fator": 0.572
+    },
+    "khso3_para_so2": {
+      "fator": 0.538
+    },
+    "so2_gasoso": {
+      "fator": 1.0
+    }
   },
   "acido_ascorbico": {
     "max_mg_L": 150,
     "obs": "Limite no Brasil; na UE o limite é 250 mg/L"
   },
   "ferro_cobre_limites": {
-    "ferro_max_mg_L": { "nota": "Não especificado explicitamente; limite prático <5 mg/L" },
-    "cobre_max_mg_L": { "legal": 1, "fonte": "IN MAPA 14/2018" }
+    "ferro_max_mg_L": {
+      "nota": "Não especificado explicitamente; limite prático <5 mg/L"
+    },
+    "cobre_max_mg_L": {
+      "legal": 1,
+      "fonte": "IN MAPA 14/2018"
+    }
   },
   "diferencas_chave_ue": {
     "_titulo": "Diferenças principais Brasil vs. Portugal/UE",

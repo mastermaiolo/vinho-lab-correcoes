@@ -1,0 +1,82 @@
+[
+  {
+    "id": "DEF-01",
+    "nome": "Acidez Volátil Elevada"
+  },
+  {
+    "id": "DEF-02",
+    "nome": "Brettanomyces"
+  },
+  {
+    "id": "DEF-03",
+    "nome": "Gosto de Rolha (TCA)"
+  },
+  {
+    "id": "DEF-04",
+    "nome": "Oxidação / Acetaldeído"
+  },
+  {
+    "id": "DEF-05",
+    "nome": "Redução (H₂S / Mercaptanos)"
+  },
+  {
+    "id": "DEF-06",
+    "nome": "Gosto de Rato (Mousiness)"
+  },
+  {
+    "id": "DEF-07",
+    "nome": "Gosto de Gerânio"
+  },
+  {
+    "id": "DEF-08",
+    "nome": "Refermentação na Garrafa"
+  },
+  {
+    "id": "DEF-09",
+    "nome": "Lightstrike (Golpe de Luz)"
+  },
+  {
+    "id": "DEF-10",
+    "nome": "Casse Proteica"
+  },
+  {
+    "id": "DEF-11",
+    "nome": "Casse Férrica"
+  },
+  {
+    "id": "DEF-12",
+    "nome": "Casse Cúprica"
+  },
+  {
+    "id": "DEF-13",
+    "nome": "Excesso de SO₂ / Dióxido de Enxofre"
+  },
+  {
+    "id": "DEF-14",
+    "nome": "Precipitação Tartárica (Casse Tartárica)"
+  },
+  {
+    "id": "DEF-15",
+    "nome": "Amargor / Amertume Excessivo"
+  },
+  {
+    "id": "DEF-16",
+    "nome": "Filante / Graisse (Vinho Viscoso)"
+  },
+  {
+    "id": "DEF-17",
+    "nome": "Picada Láctica / Acedamento Láctico"
+  },
+  {
+    "id": "DEF-18",
+    "nome": "Sobre-Extração de Carvalho / Defeito de Barrica"
+  },
+  {
+    "id": "DEF-19",
+    "nome": "Brunissement / Escurecimento Oxidativo (Brancos e Rosés)"
+  },
+  {
+    "id": "DEF-20",
+    "nome": "Contaminação por Ocratoxina A (OTA)"
+  }
+]

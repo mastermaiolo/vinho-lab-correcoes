@@ -85,6 +85,7 @@ REGRAS DE RESPOSTA
 6. Nas correções, indique a BASE TEÓRICA do tratamento E os PRODUTOS COMERCIAIS específicos com doses (g/hL ou mg/L conforme aplicável).
 7. Indique explicitamente quando uma prática é PROIBIDA no país selecionado.
 8. Cite SEMPRE a referência legal aplicável (Reg. UE, IN MAPA, etc.).
+9. Em "catalogo_ref", indique o ID do defeito do CATÁLOGO abaixo (ex: "DEF-02") que melhor corresponde ao diagnóstico. Se o diagnóstico NÃO corresponder a nenhum defeito do catálogo, use null — nunca invente um ID.
 
 ════════════════════════════════════════════════════════
 ESTRUTURA JSON OBRIGATÓRIA
@@ -94,6 +95,7 @@ ESTRUTURA JSON OBRIGATÓRIA
     {
       "posicao": 1,
       "defeito": "nome do defeito",
+      "catalogo_ref": "DEF-XX do catálogo ou null",
       "confianca": "alta|media|baixa",
       "compostos_marcadores": ["composto1 (valor limiar)", "composto2"],
       "causa": "explicação técnica da causa",
@@ -199,3 +201,10 @@ export default SYSTEM_PROMPT
 writeFileSync(outFile, tsContent, 'utf8')
 console.log(`✅ ${outFile}`)
 console.log(`   ${defeitos.length} defeitos · ${Object.keys(produtos).length} categorias · ${prompt.length} chars`)
+
+// Índice mínimo do catálogo (id + nome) — evita arrastar defeitos.json inteiro
+// para o bundle principal só para validar catalogo_ref
+const catalogoIndex = defeitos.map((d) => ({ id: d.id, nome: d.nome }))
+const catalogoFile = join(__dir, '../src/data/catalogo.json')
+writeFileSync(catalogoFile, JSON.stringify(catalogoIndex, null, 2) + '\n', 'utf8')
+console.log(`✅ ${catalogoFile} (${catalogoIndex.length} entradas)`)

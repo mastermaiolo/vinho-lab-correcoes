@@ -9,6 +9,7 @@ export interface AIConfig {
 export interface DiagnosticoItem {
   posicao: number
   defeito: string
+  catalogo_ref?: string | null  // ID do catálogo (DEF-xx) ou null se fora do catálogo
   confianca: 'alta' | 'media' | 'baixa'
   compostos_marcadores: string[]
   causa: string

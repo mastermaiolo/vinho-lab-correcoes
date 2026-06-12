@@ -1,5 +1,7 @@
-// Versão dos dados legais/de domínio (defeitos, produtos, limites).
-// Carimbada em cada diagnóstico (histórico + export) para auditabilidade.
-// Atualizar manualmente quando os JSON em src/data/ mudarem; quando a
-// unificação com a fonte canónica (vinho-lab/) avançar, passa a vir do _meta.
-export const DATA_VERSION = '2026-06-12'
+// Versão dos dados legais — proveniente da fonte canónica (vinho-lab/).
+// version.json é gerado por: python tools/export_correcoes.py (no repo vinho-lab).
+// NÃO editar à mão; regenerar a partir da fonte.
+import versionData from './version.json'
+
+export const DATA_VERSION: string = versionData.version
+export const DATA_GENERATED_UTC: string = versionData.generated_utc
