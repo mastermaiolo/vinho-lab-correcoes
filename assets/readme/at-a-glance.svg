@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 240" width="1200" height="240">
+<defs>
+  <pattern id="grid" width="24" height="24" patternUnits="userSpaceOnUse"><path d="M24 0H0V24" fill="none" stroke="#FFFFFF" stroke-opacity=".03" stroke-width="1"/></pattern>
+</defs>
+<rect x="2" y="2" width="1196" height="236" rx="14" fill="#0B0D0F" stroke="#2A2D31" stroke-width="1"/>
+<rect x="3" y="3" width="1194" height="234" fill="url(#grid)"/>
+
+<!-- Card 1: AI Differential Diagnosis -->
+<g transform="translate(30, 24)">
+  <rect x="0" y="0" width="268" height="192" rx="10" fill="#13161A" stroke="#2A2D31" stroke-width="1"/>
+  <rect x="0" y="0" width="268" height="3" rx="1.5" fill="#AD283B"/>
+  <text x="20" y="32" font-family="JetBrains Mono, monospace" font-size="10px" font-weight="600" fill="#8E8A82" letter-spacing="1.5">DIAGNÓSTICO ENOLÓGICO IA</text>
+  <text x="20" y="68" font-family="Inter, sans-serif" font-size="22px" font-weight="700" fill="#E9E5DC">4 Modelos de IA</text>
+  <text x="20" y="96" font-family="Inter, sans-serif" font-size="12px" fill="#8E8A82">OpenRouter, Gemini, Claude</text>
+  <text x="20" y="116" font-family="Inter, sans-serif" font-size="12px" fill="#8E8A82">e OpenAI chamados no browser.</text>
+  <text x="20" y="136" font-family="Inter, sans-serif" font-size="12px" fill="#8E8A82">Chaves em sessionStorage.</text>
+  <text x="20" y="172" font-family="JetBrains Mono, monospace" font-size="10px" fill="#AD283B">DIAGNÓSTICO DIFERENCIAL</text>
+</g>
+
+<!-- Card 2: Companheiro Ingestion -->
+<g transform="translate(318, 24)">
+  <rect x="0" y="0" width="268" height="192" rx="10" fill="#13161A" stroke="#2A2D31" stroke-width="1"/>
+  <rect x="0" y="0" width="268" height="3" rx="1.5" fill="#C86D51"/>
+  <text x="20" y="32" font-family="JetBrains Mono, monospace" font-size="10px" font-weight="600" fill="#8E8A82" letter-spacing="1.5">INTEGRAÇÃO ECOSSISTEMA</text>
+  <text x="20" y="68" font-family="Inter, sans-serif" font-size="22px" font-weight="700" fill="#E9E5DC">Importar Boletim</text>
+  <text x="20" y="96" font-family="Inter, sans-serif" font-size="12px" fill="#8E8A82">Lê sessões .json e laudos .md</text>
+  <text x="20" y="116" font-family="Inter, sans-serif" font-size="12px" fill="#8E8A82">do Vinho-Lab Companheiro.</text>
+  <text x="20" y="136" font-family="Inter, sans-serif" font-size="12px" fill="#8E8A82">Pré-preenche dados sem digitação.</text>
+  <text x="20" y="172" font-family="JetBrains Mono, monospace" font-size="10px" fill="#C86D51">ZERO RETRABALHO</text>
+</g>
+
+<!-- Card 3: Oenological Calculations -->
+<g transform="translate(606, 24)">
+  <rect x="0" y="0" width="268" height="192" rx="10" fill="#13161A" stroke="#2A2D31" stroke-width="1"/>
+  <rect x="0" y="0" width="268" height="3" rx="1.5" fill="#B62B32"/>
+  <text x="20" y="32" font-family="JetBrains Mono, monospace" font-size="10px" font-weight="600" fill="#8E8A82" letter-spacing="1.5">CÁLCULOS ENOLÓGICOS</text>
+  <text x="20" y="68" font-family="Inter, sans-serif" font-size="22px" font-weight="700" fill="#E9E5DC">Sudraud-Chauvet</text>
+  <text x="20" y="96" font-family="Inter, sans-serif" font-size="12px" fill="#8E8A82">SO₂ molecular alvo (0.8 ppm).</text>
+  <text x="20" y="116" font-family="Inter, sans-serif" font-size="12px" fill="#8E8A82">Acidificação &amp; desacidificação.</text>
+  <text x="20" y="136" font-family="Inter, sans-serif" font-size="12px" fill="#8E8A82">Chaptalização &amp; limites legais.</text>
+  <text x="20" y="172" font-family="JetBrains Mono, monospace" font-size="10px" fill="#B62B32">DOSAGENS DE PRECISÃO</text>
+</g>
+
+<!-- Card 4: Defect Atlas & Products -->
+<g transform="translate(894, 24)">
+  <rect x="0" y="0" width="276" height="192" rx="10" fill="#13161A" stroke="#2A2D31" stroke-width="1"/>
+  <rect x="0" y="0" width="276" height="3" rx="1.5" fill="#E9E5DC"/>
+  <text x="20" y="32" font-family="JetBrains Mono, monospace" font-size="10px" font-weight="600" fill="#8E8A82" letter-spacing="1.5">ATLAS &amp; PRODUTOS</text>
+  <text x="20" y="68" font-family="Inter, sans-serif" font-size="22px" font-weight="700" fill="#E9E5DC">20 Defeitos / 19 Produtos</text>
+  <text x="20" y="96" font-family="Inter, sans-serif" font-size="12px" fill="#8E8A82">Compostos marcadores &amp; causas.</text>
+  <text x="20" y="116" font-family="Inter, sans-serif" font-size="12px" fill="#8E8A82">Catálogo de 19 produtos enológicos.</text>
+  <text x="20" y="136" font-family="Inter, sans-serif" font-size="12px" fill="#8E8A82">Comparação legal PT/UE ↔ Brasil.</text>
+  <text x="20" y="172" font-family="JetBrains Mono, monospace" font-size="10px" fill="#E9E5DC">JURISDIÇÕES HOMOLOGADAS</text>
+</g>
+</svg>

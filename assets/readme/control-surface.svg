@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 340" width="1200" height="340">
+<defs>
+  <pattern id="grid" width="24" height="24" patternUnits="userSpaceOnUse"><path d="M24 0H0V24" fill="none" stroke="#FFFFFF" stroke-opacity=".03" stroke-width="1"/></pattern>
+</defs>
+<rect x="2" y="2" width="1196" height="336" rx="16" fill="#0B0D0F" stroke="#2A2D31" stroke-width="1"/>
+<rect x="3" y="3" width="1194" height="334" fill="url(#grid)"/>
+
+<!-- Header -->
+<text x="40" y="44" font-family="JetBrains Mono, monospace" font-size="12px" font-weight="600" fill="#C86D51" letter-spacing="2">CONTROL SURFACE &amp; DIAGNOSTIC WORKFLOW</text>
+<text x="1160" y="44" font-family="JetBrains Mono, monospace" font-size="12px" font-weight="600" fill="#8E8A82" text-anchor="end">USER INTERFACE ERGONOMICS</text>
+<line x1="40" y1="58" x2="1160" y2="58" stroke="#2A2D31" stroke-width="1"/>
+
+<!-- Left Box: Tabs & Ingestion -->
+<g transform="translate(40, 78)">
+  <rect x="0" y="0" width="540" height="234" rx="10" fill="#13161A" stroke="#2A2D31" stroke-width="1"/>
+  <rect x="0" y="0" width="4" height="234" fill="#AD283B" rx="2"/>
+  <text x="24" y="32" font-family="JetBrains Mono, monospace" font-size="11px" font-weight="600" fill="#AD283B">01 / NAVEGAÇÃO &amp; INGESTÃO DO COMPANHEIRO</text>
+  
+  <!-- Tabs simulator -->
+  <g transform="translate(24, 52)">
+    <rect x="0" y="0" width="76" height="28" rx="5" fill="#1C1F24" stroke="#2A2D31" stroke-width="1"/>
+    <text x="38" y="18" font-family="Inter, sans-serif" font-size="10.5px" font-weight="600" fill="#E9E5DC" text-anchor="middle">Correções</text>
+    
+    <rect x="82" y="0" width="102" height="28" rx="5" fill="#1C1F24" stroke="#2A2D31" stroke-width="1"/>
+    <text x="133" y="18" font-family="Inter, sans-serif" font-size="10.5px" font-weight="600" fill="#C86D51" text-anchor="middle">Diagnóstico IA</text>
+    
+    <rect x="190" y="0" width="94" height="28" rx="5" fill="#1C1F24" stroke="#2A2D31" stroke-width="1"/>
+    <text x="237" y="18" font-family="Inter, sans-serif" font-size="10.5px" font-weight="600" fill="#E9E5DC" text-anchor="middle">Calculadoras</text>
+    
+    <rect x="290" y="0" width="88" height="28" rx="5" fill="#1C1F24" stroke="#2A2D31" stroke-width="1"/>
+    <text x="334" y="18" font-family="Inter, sans-serif" font-size="10.5px" font-weight="600" fill="#E9E5DC" text-anchor="middle">Comparação</text>
+    
+    <rect x="384" y="0" width="105" height="28" rx="5" fill="#1C1F24" stroke="#2A2D31" stroke-width="1"/>
+    <text x="436" y="18" font-family="Inter, sans-serif" font-size="10.5px" font-weight="600" fill="#E9E5DC" text-anchor="middle">Fichas / Prods</text>
+  </g>
+
+  <!-- Ingestion Features -->
+  <g transform="translate(24, 102)">
+    <text x="0" y="16" font-family="Inter, sans-serif" font-size="12.5px" fill="#E9E5DC">• <tspan font-weight="600">Importação Direta:</tspan> Carregue .json ou .md gerado no Vinho-Lab Companheiro</text>
+    <text x="0" y="38" font-family="Inter, sans-serif" font-size="12.5px" fill="#E9E5DC">• <tspan font-weight="600">Auto-preenchimento:</tspan> Extrai pH, TAV, SO₂, AV, AT, ESR e tipo de vinho</text>
+    <text x="0" y="60" font-family="Inter, sans-serif" font-size="12.5px" fill="#E9E5DC">• <tspan font-weight="600">Seleção de Sintomas:</tspan> Matriz de observações sensoriais e visuais de adega</text>
+    <text x="0" y="82" font-family="Inter, sans-serif" font-size="12.5px" fill="#E9E5DC">• <tspan font-weight="600">Comutação Legal:</tspan> Alternância de regras Portugal/UE (IVV) vs Brasil (MAPA)</text>
+  </g>
+  
+  <text x="24" y="214" font-family="JetBrains Mono, monospace" font-size="10px" fill="#8E8A82">&gt; Sincronização direta com a suite de medição de campo</text>
+</g>
+
+<!-- Right Box: AI Settings & Privacy -->
+<g transform="translate(620, 78)">
+  <rect x="0" y="0" width="540" height="234" rx="10" fill="#13161A" stroke="#2A2D31" stroke-width="1"/>
+  <rect x="0" y="0" width="4" height="234" fill="#C86D51" rx="2"/>
+  <text x="24" y="32" font-family="JetBrains Mono, monospace" font-size="11px" font-weight="600" fill="#C86D51">02 / CONFIGURAÇÃO DE IA &amp; PRIVACIDADE RGPD</text>
+  
+  <!-- AI Provider pills -->
+  <g transform="translate(24, 52)">
+    <rect x="0" y="0" width="128" height="28" rx="5" fill="#1C1F24" stroke="#2A2D31" stroke-width="1"/>
+    <text x="64" y="18" font-family="JetBrains Mono, monospace" font-size="10px" font-weight="600" fill="#C86D51" text-anchor="middle">OpenRouter (free)</text>
+    
+    <rect x="134" y="0" width="115" height="28" rx="5" fill="#1C1F24" stroke="#2A2D31" stroke-width="1"/>
+    <text x="191" y="18" font-family="JetBrains Mono, monospace" font-size="10px" font-weight="600" fill="#E9E5DC" text-anchor="middle">Google Gemini</text>
+    
+    <rect x="255" y="0" width="122" height="28" rx="5" fill="#1C1F24" stroke="#2A2D31" stroke-width="1"/>
+    <text x="316" y="18" font-family="JetBrains Mono, monospace" font-size="10px" font-weight="600" fill="#E9E5DC" text-anchor="middle">Anthropic Claude</text>
+    
+    <rect x="383" y="0" width="95" height="28" rx="5" fill="#1C1F24" stroke="#2A2D31" stroke-width="1"/>
+    <text x="430" y="18" font-family="JetBrains Mono, monospace" font-size="10px" font-weight="600" fill="#E9E5DC" text-anchor="middle">OpenAI</text>
+  </g>
+
+  <!-- Security Details -->
+  <g transform="translate(24, 102)">
+    <text x="0" y="16" font-family="Inter, sans-serif" font-size="12.5px" fill="#E9E5DC">• <tspan font-weight="600">Chave em Memória:</tspan> Guardada apenas em sessionStorage (morre ao fechar o tab)</text>
+    <text x="0" y="38" font-family="Inter, sans-serif" font-size="12.5px" fill="#E9E5DC">• <tspan font-weight="600">Consentimento RGPD:</tspan> Alerta explícito (Art. 6.º al. a) antes do primeiro envio</text>
+    <text x="0" y="60" font-family="Inter, sans-serif" font-size="12.5px" fill="#E9E5DC">• <tspan font-weight="600">Sigilo de Origem:</tspan> Nome da adega, lote e produtor nunca saem do browser</text>
+    <text x="0" y="82" font-family="Inter, sans-serif" font-size="12.5px" fill="#E9E5DC">• <tspan font-weight="600">Língua do Diagnóstico:</tspan> A resposta da IA acompanha o idioma ativo (PT/EN/ES/ZH)</text>
+  </g>
+  
+  <text x="24" y="214" font-family="JetBrains Mono, monospace" font-size="10px" fill="#8E8A82">&gt; Zero chamadas por proxy; comunicação direta browser ↔ IA</text>
+</g>
+</svg>

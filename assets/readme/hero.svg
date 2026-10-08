@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 360" width="1200" height="360">
+<defs>
+  <linearGradient id="fade" x1="0" x2="1"><stop offset="0" stop-color="#111419"/><stop offset="1" stop-color="#050607"/></linearGradient>
+  <radialGradient id="glow" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#9E2A2B" stop-opacity=".32"/><stop offset="1" stop-color="#9E2A2B" stop-opacity="0"/></radialGradient>
+  <radialGradient id="copperglow" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#C86D51" stop-opacity=".25"/><stop offset="1" stop-color="#C86D51" stop-opacity="0"/></radialGradient>
+  <radialGradient id="redglow" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#B62B32" stop-opacity=".30"/><stop offset="1" stop-color="#B62B32" stop-opacity="0"/></radialGradient>
+  <linearGradient id="wine" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#AD283B"/><stop offset="100%" stop-color="#5C0612"/></linearGradient>
+  <filter id="blur"><feGaussianBlur stdDeviation="18"/></filter>
+  <pattern id="grid" width="24" height="24" patternUnits="userSpaceOnUse"><path d="M24 0H0V24" fill="none" stroke="#FFFFFF" stroke-opacity=".035" stroke-width="1"/></pattern>
+</defs>
+<rect x="2" y="2" width="1196" height="356" rx="18" fill="#0B0D0F" stroke="#2A2D31" stroke-width="1"/>
+<rect x="3" y="3" width="1194" height="354" fill="url(#grid)"/>
+
+<!-- Glowing Auras -->
+<ellipse cx="960" cy="140" rx="260" ry="160" fill="url(#glow)" filter="url(#blur)"/>
+<ellipse cx="880" cy="200" rx="180" ry="120" fill="url(#copperglow)" filter="url(#blur)"/>
+
+<!-- Diagnostic AI Neural Nodes & Molecular Chemistry Lattice -->
+<g stroke="#C86D51" stroke-opacity="0.35" stroke-width="1.2" fill="none">
+  <circle cx="880" cy="120" r="4"/>
+  <circle cx="940" cy="80" r="4.5"/>
+  <circle cx="1020" cy="110" r="4"/>
+  <circle cx="960" cy="170" r="6" fill="#C86D51" fill-opacity="0.6"/>
+  <circle cx="890" cy="210" r="4"/>
+  <circle cx="1030" cy="220" r="4.5"/>
+  <circle cx="970" cy="260" r="4"/>
+  
+  <line x1="880" y1="120" x2="940" y2="80"/>
+  <line x1="940" y1="80" x2="1020" y2="110"/>
+  <line x1="880" y1="120" x2="960" y2="170"/>
+  <line x1="940" y1="80" x2="960" y2="170"/>
+  <line x1="1020" y1="110" x2="960" y2="170"/>
+  <line x1="960" y1="170" x2="890" y2="210"/>
+  <line x1="960" y1="170" x2="1030" y2="220"/>
+  <line x1="890" y1="210" x2="970" y2="260"/>
+  <line x1="1030" y1="220" x2="970" y2="260"/>
+</g>
+
+<!-- Molecular SO2 Curve & Laboratory Cure Graphic -->
+<path d="M840,240 Q940,140 1060,250" fill="none" stroke="#E9E5DC" stroke-opacity="0.15" stroke-width="2" stroke-dasharray="4 4"/>
+
+<!-- Badge: Sudraud-Chauvet SO2 Formula -->
+<rect x="740" y="275" width="280" height="34" rx="6" fill="#13161A" stroke="#2A2D31" stroke-width="1"/>
+<text x="754" y="297" font-family="JetBrains Mono, monospace" font-size="11px" fill="#C86D51" font-weight="600">SO₂ mol = SO₂ L / (1 + 10^(pH - 1.81))</text>
+
+<!-- Framing Marks -->
+<line x1="38" y1="35" x2="112" y2="35" stroke="#4D5156" stroke-width="1"/>
+<line x1="38" y1="35" x2="38" y2="76" stroke="#4D5156" stroke-width="1"/>
+<line x1="1088" y1="35" x2="1162" y2="35" stroke="#4D5156" stroke-width="1"/>
+<line x1="1162" y1="35" x2="1162" y2="76" stroke="#4D5156" stroke-width="1"/>
+<line x1="38" y1="325" x2="112" y2="325" stroke="#4D5156" stroke-width="1"/>
+<line x1="38" y1="284" x2="38" y2="325" stroke="#4D5156" stroke-width="1"/>
+
+<!-- Header Serial & Branding -->
+<text x="58" y="77" font-family="JetBrains Mono, monospace" font-size="13px" font-weight="600" fill="#8E8A82" letter-spacing="3">VL-COR / 01</text>
+<text x="58" y="146" font-family="Inter, Segoe UI, sans-serif" font-size="40px" font-weight="700" fill="#E9E5DC" letter-spacing="4">VINHO - LAB   CORREÇÕES</text>
+<text x="60" y="176" font-family="JetBrains Mono, monospace" font-size="13px" font-weight="600" fill="#C86D51" letter-spacing="2">AI-ASSISTED ENOLOGICAL DEFECT DIAGNOSTICIAN &amp; REMEDY ENGINE</text>
+<text x="60" y="224" font-family="JetBrains Mono, monospace" font-size="12px" font-weight="400" fill="#E9E5DC" letter-spacing="1">SISTER APP TO VINHO-LAB COMPANHEIRO  ·  SUDRAUD-CHAUVET SO₂  ·  20 DEFECT ATLAS</text>
+<text x="60" y="252" font-family="JetBrains Mono, monospace" font-size="11px" font-weight="400" fill="#8E8A82" letter-spacing="1">4 CLIENT-SIDE AI PROVIDERS  /  ZERO BACKEND  /  PT/EU &amp; BR REGULATORY JURISDICTIONS</text>
+<text x="60" y="310" font-family="JetBrains Mono, monospace" font-size="11px" font-weight="600" fill="#8E8A82" letter-spacing="2">MAIOLO / SYSTEMS LAB</text>
+
+<!-- Signature Seal & Kanji -->
+<text x="1115" y="308" font-family="Georgia, Times New Roman, serif" font-size="24px" font-weight="700" fill="#B62B32" text-anchor="middle">診</text>
+<text x="1115" y="328" font-family="JetBrains Mono, monospace" font-size="9px" font-weight="500" fill="#8E8A82" text-anchor="middle" letter-spacing="2">DIAGNOSIS</text>
+
+<!-- System Status Indicator Dots -->
+<circle cx="805" cy="63" r="2.6" fill="#C86D51" opacity="0.9"/>
+<circle cx="830" cy="63" r="2.6" fill="#B62B32" opacity="0.9"/>
+<circle cx="855" cy="63" r="2.6" fill="#8E8A82" opacity="0.4"/>
+</svg>

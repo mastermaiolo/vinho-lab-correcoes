@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 240" width="1200" height="240">
+<defs>
+  <pattern id="grid" width="24" height="24" patternUnits="userSpaceOnUse"><path d="M24 0H0V24" fill="none" stroke="#FFFFFF" stroke-opacity=".03" stroke-width="1"/></pattern>
+</defs>
+<rect x="2" y="2" width="1196" height="236" rx="14" fill="#0B0D0F" stroke="#2A2D31" stroke-width="1"/>
+<rect x="3" y="3" width="1194" height="234" fill="url(#grid)"/>
+
+<!-- Card 1: Sister App Ecosystem -->
+<g transform="translate(30, 24)">
+  <rect x="0" y="0" width="268" height="192" rx="10" fill="#13161A" stroke="#2A2D31" stroke-width="1"/>
+  <rect x="0" y="0" width="268" height="3" rx="1.5" fill="#AD283B"/>
+  <text x="20" y="32" font-family="JetBrains Mono, monospace" font-size="10px" font-weight="600" fill="#8E8A82" letter-spacing="1.5">ECOSSISTEMA DE ADEGA</text>
+  <text x="20" y="66" font-family="Inter, sans-serif" font-size="18px" font-weight="700" fill="#E9E5DC">Aplicação-Irmã</text>
+  <text x="20" y="96" font-family="Inter, sans-serif" font-size="12px" fill="#8E8A82">Companheiro mede e valida;</text>
+  <text x="20" y="116" font-family="Inter, sans-serif" font-size="12px" fill="#8E8A82">Correções diagnostica defeitos</text>
+  <text x="20" y="136" font-family="Inter, sans-serif" font-size="12px" fill="#8E8A82">e prescreve intervenções.</text>
+  <text x="20" y="172" font-family="JetBrains Mono, monospace" font-size="10px" fill="#AD283B">VINHO-LAB COMPANHEIRO</text>
+</g>
+
+<!-- Card 2: Legal Corpus -->
+<g transform="translate(318, 24)">
+  <rect x="0" y="0" width="268" height="192" rx="10" fill="#13161A" stroke="#2A2D31" stroke-width="1"/>
+  <rect x="0" y="0" width="268" height="3" rx="1.5" fill="#C86D51"/>
+  <text x="20" y="32" font-family="JetBrains Mono, monospace" font-size="10px" font-weight="600" fill="#8E8A82" letter-spacing="1.5">QUADRO LEGAL</text>
+  <text x="20" y="66" font-family="Inter, sans-serif" font-size="18px" font-weight="700" fill="#E9E5DC">UE &amp; MAPA</text>
+  <text x="20" y="96" font-family="Inter, sans-serif" font-size="12px" fill="#8E8A82">PT/UE: Regs. 1308/2013, 2019/934</text>
+  <text x="20" y="116" font-family="Inter, sans-serif" font-size="12px" fill="#8E8A82">e atualização Reg. 2024/3085.</text>
+  <text x="20" y="136" font-family="Inter, sans-serif" font-size="12px" fill="#8E8A82">BR: IN 14/2018 e Portaria 723/2024.</text>
+  <text x="20" y="172" font-family="JetBrains Mono, monospace" font-size="10px" fill="#C86D51">COMPLIANCE ADUANEIRO</text>
+</g>
+
+<!-- Card 3: Author & Lab -->
+<g transform="translate(606, 24)">
+  <rect x="0" y="0" width="268" height="192" rx="10" fill="#13161A" stroke="#2A2D31" stroke-width="1"/>
+  <rect x="0" y="0" width="268" height="3" rx="1.5" fill="#B62B32"/>
+  <text x="20" y="32" font-family="JetBrains Mono, monospace" font-size="10px" font-weight="600" fill="#8E8A82" letter-spacing="1.5">ORGANIZAÇÃO &amp; AUTORIA</text>
+  <text x="20" y="66" font-family="Inter, sans-serif" font-size="18px" font-weight="700" fill="#E9E5DC">Master Maiolo</text>
+  <text x="20" y="96" font-family="Inter, sans-serif" font-size="12px" fill="#8E8A82">MAIOLO / SYSTEMS LAB</text>
+  <text x="20" y="116" font-family="Inter, sans-serif" font-size="12px" fill="#8E8A82">Inteligência aplicada à enologia</text>
+  <text x="20" y="136" font-family="Inter, sans-serif" font-size="12px" fill="#8E8A82">e biotecnologia de fermentação.</text>
+  <text x="20" y="172" font-family="JetBrains Mono, monospace" font-size="10px" fill="#B62B32">VL-COR / 01 ARCHITECTURE</text>
+</g>
+
+<!-- Card 4: Production & Licence -->
+<g transform="translate(894, 24)">
+  <rect x="0" y="0" width="276" height="192" rx="10" fill="#13161A" stroke="#2A2D31" stroke-width="1"/>
+  <rect x="0" y="0" width="276" height="3" rx="1.5" fill="#E9E5DC"/>
+  <text x="20" y="32" font-family="JetBrains Mono, monospace" font-size="10px" font-weight="600" fill="#8E8A82" letter-spacing="1.5">PRODUÇÃO &amp; LICENÇA</text>
+  <text x="20" y="66" font-family="Inter, sans-serif" font-size="18px" font-weight="700" fill="#E9E5DC">vinholabcor.vercel.app</text>
+  <text x="20" y="96" font-family="Inter, sans-serif" font-size="12px" fill="#8E8A82">Deploy estático na Vercel.</text>
+  <text x="20" y="116" font-family="Inter, sans-serif" font-size="12px" fill="#8E8A82">Licença MIT de código aberto.</text>
+  <text x="20" y="136" font-family="Inter, sans-serif" font-size="12px" fill="#8E8A82">Suíte padrão de 5 idiomas.</text>
+  <text x="20" y="172" font-family="JetBrains Mono, monospace" font-size="10px" fill="#E9E5DC">2026 MASTER MAIOLO</text>
+</g>
+</svg>

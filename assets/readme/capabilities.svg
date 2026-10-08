@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 320" width="1200" height="320">
+<defs>
+  <pattern id="grid" width="24" height="24" patternUnits="userSpaceOnUse"><path d="M24 0H0V24" fill="none" stroke="#FFFFFF" stroke-opacity=".03" stroke-width="1"/></pattern>
+</defs>
+<rect x="2" y="2" width="1196" height="316" rx="16" fill="#0B0D0F" stroke="#2A2D31" stroke-width="1"/>
+<rect x="3" y="3" width="1194" height="314" fill="url(#grid)"/>
+
+<!-- Section Header -->
+<text x="40" y="44" font-family="JetBrains Mono, monospace" font-size="12px" font-weight="600" fill="#C86D51" letter-spacing="2">DIAGNOSTIC ENGINE &amp; ENOLOGICAL REMEDIES</text>
+<text x="1160" y="44" font-family="JetBrains Mono, monospace" font-size="12px" font-weight="600" fill="#8E8A82" text-anchor="end">ALGORITHMIC &amp; SCIENTIFIC CAPABILITIES</text>
+<line x1="40" y1="58" x2="1160" y2="58" stroke="#2A2D31" stroke-width="1"/>
+
+<!-- Column 1: AI Differential Diagnosis -->
+<g transform="translate(40, 80)">
+  <rect x="0" y="0" width="354" height="210" rx="10" fill="#13161A" stroke="#2A2D31" stroke-width="1"/>
+  <rect x="0" y="0" width="4" height="210" fill="#AD283B" rx="2"/>
+  <text x="24" y="32" font-family="JetBrains Mono, monospace" font-size="11px" font-weight="600" fill="#AD283B">01 / DIAGNÓSTICO DIFERENCIAL IA</text>
+  <text x="24" y="60" font-family="Inter, sans-serif" font-size="15px" font-weight="600" fill="#E9E5DC">Cruzamento Sintoma &amp; Laudo</text>
+  <text x="24" y="86" font-family="Inter, sans-serif" font-size="12px" fill="#8E8A82">Cruza parâmetros de bancada com sintomas organoléticos.</text>
+  <text x="24" y="106" font-family="Inter, sans-serif" font-size="12px" fill="#8E8A82">Compilação estática de prompt com defeitos e limites.</text>
+  <text x="24" y="126" font-family="Inter, sans-serif" font-size="12px" fill="#8E8A82">Gera causa provável, teste analítico confirmatório</text>
+  <text x="24" y="146" font-family="Inter, sans-serif" font-size="12px" fill="#8E8A82">e intervenção enológica homologada por jurisdição.</text>
+  
+  <rect x="24" y="166" width="306" height="26" rx="4" fill="#0B0D0F" stroke="#2A2D31" stroke-width="1"/>
+  <text x="34" y="183" font-family="JetBrains Mono, monospace" font-size="10px" fill="#AD283B">JSON estruturado direto no browser</text>
+</g>
+
+<!-- Column 2: Molecular SO2 Calculations -->
+<g transform="translate(423, 80)">
+  <rect x="0" y="0" width="354" height="210" rx="10" fill="#13161A" stroke="#2A2D31" stroke-width="1"/>
+  <rect x="0" y="0" width="4" height="210" fill="#C86D51" rx="2"/>
+  <text x="24" y="32" font-family="JetBrains Mono, monospace" font-size="11px" font-weight="600" fill="#C86D51">02 / CÁLCULO DE SO₂ MOLECULAR</text>
+  <text x="24" y="60" font-family="Inter, sans-serif" font-size="15px" font-weight="600" fill="#E9E5DC">Equação Sudraud-Chauvet</text>
+  <text x="24" y="86" font-family="Inter, sans-serif" font-size="12px" fill="#8E8A82">Determina a fração antissética ativa em função do pH.</text>
+  <text x="24" y="106" font-family="Inter, sans-serif" font-size="12px" fill="#8E8A82">Target padrão de 0.8 mg/L para proteção biológica.</text>
+  <text x="24" y="126" font-family="Inter, sans-serif" font-size="12px" fill="#8E8A82">Calcula dose em gramas de K₂S₂O₅ ou solução líquida.</text>
+  <text x="24" y="146" font-family="Inter, sans-serif" font-size="12px" fill="#8E8A82">Avisa se o teto regulatório de SO₂ total for atingido.</text>
+  
+  <rect x="24" y="166" width="306" height="26" rx="4" fill="#0B0D0F" stroke="#2A2D31" stroke-width="1"/>
+  <text x="34" y="183" font-family="JetBrains Mono, monospace" font-size="10px" fill="#C86D51">SO₂ mol = SO₂L / (1 + 10^(pH - 1.81))</text>
+</g>
+
+<!-- Column 3: Companheiro Ingestion & Privacy -->
+<g transform="translate(806, 80)">
+  <rect x="0" y="0" width="354" height="210" rx="10" fill="#13161A" stroke="#2A2D31" stroke-width="1"/>
+  <rect x="0" y="0" width="4" height="210" fill="#B62B32" rx="2"/>
+  <text x="24" y="32" font-family="JetBrains Mono, monospace" font-size="11px" font-weight="600" fill="#B62B32">03 / INGESTÃO &amp; PRIVACIDADE RGPD</text>
+  <text x="24" y="60" font-family="Inter, sans-serif" font-size="15px" font-weight="600" fill="#E9E5DC">Parser Companheiro &amp; Sigilo</text>
+  <text x="24" y="86" font-family="Inter, sans-serif" font-size="12px" fill="#8E8A82">Importa sessões .json e laudos .md do Companheiro.</text>
+  <text x="24" y="106" font-family="Inter, sans-serif" font-size="12px" fill="#8E8A82">Higienização local: nome da adega e lote NUNCA saem.</text>
+  <text x="24" y="126" font-family="Inter, sans-serif" font-size="12px" fill="#8E8A82">Consentimento explícito prévio (RGPD Art. 6.º al. a).</text>
+  <text x="24" y="146" font-family="Inter, sans-serif" font-size="12px" fill="#8E8A82">Chaves de API morrem no fecho do tab (sessionStorage).</text>
+  
+  <rect x="24" y="166" width="306" height="26" rx="4" fill="#0B0D0F" stroke="#2A2D31" stroke-width="1"/>
+  <text x="34" y="183" font-family="JetBrains Mono, monospace" font-size="10px" fill="#E9E5DC">Higienização estrita de dados</text>
+</g>
+</svg>

@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 340" width="1200" height="340">
+<defs>
+  <pattern id="grid" width="24" height="24" patternUnits="userSpaceOnUse"><path d="M24 0H0V24" fill="none" stroke="#FFFFFF" stroke-opacity=".03" stroke-width="1"/></pattern>
+</defs>
+<rect x="2" y="2" width="1196" height="336" rx="16" fill="#0B0D0F" stroke="#2A2D31" stroke-width="1"/>
+<rect x="3" y="3" width="1194" height="334" fill="url(#grid)"/>
+
+<!-- Header -->
+<text x="40" y="44" font-family="JetBrains Mono, monospace" font-size="12px" font-weight="600" fill="#B62B32" letter-spacing="2">DIAGNOSTIC FAILURE MODES &amp; RESILIENCE GUARDS</text>
+<text x="1160" y="44" font-family="JetBrains Mono, monospace" font-size="12px" font-weight="600" fill="#8E8A82" text-anchor="end">EDGE CASES &amp; MITIGATIONS</text>
+<line x1="40" y1="58" x2="1160" y2="58" stroke="#2A2D31" stroke-width="1"/>
+
+<!-- Box 1: Rate Limiting & Retry -->
+<g transform="translate(40, 78)">
+  <rect x="0" y="0" width="268" height="234" rx="10" fill="#13161A" stroke="#2A2D31" stroke-width="1"/>
+  <rect x="0" y="0" width="268" height="3" fill="#AD283B" rx="1.5"/>
+  <text x="20" y="28" font-family="JetBrains Mono, monospace" font-size="10px" font-weight="600" fill="#AD283B">01 / RATE LIMIT &amp; RETRY</text>
+  <text x="20" y="56" font-family="Inter, sans-serif" font-size="14px" font-weight="600" fill="#E9E5DC">Erro 429 ou Rede</text>
+  <text x="20" y="80" font-family="Inter, sans-serif" font-size="11px" fill="#8E8A82">Sintoma: Falhas transitórias</text>
+  <text x="20" y="98" font-family="Inter, sans-serif" font-size="11px" fill="#8E8A82">em modelos gratuitos de IA.</text>
+  <text x="20" y="122" font-family="Inter, sans-serif" font-size="11px" fill="#E9E5DC">Tratamento Resiliente:</text>
+  <text x="20" y="140" font-family="Inter, sans-serif" font-size="11px" fill="#8E8A82">Backoff exponencial até</text>
+  <text x="20" y="158" font-family="Inter, sans-serif" font-size="11px" fill="#8E8A82">3 tentativas e limpeza JSON.</text>
+  
+  <rect x="18" y="180" width="232" height="36" rx="4" fill="#0B0D0F" stroke="#2A2D31" stroke-width="1"/>
+  <text x="26" y="202" font-family="JetBrains Mono, monospace" font-size="9px" fill="#AD283B">extractJSON() strip markdown</text>
+</g>
+
+<!-- Box 2: CORS Preflight -->
+<g transform="translate(328, 78)">
+  <rect x="0" y="0" width="268" height="234" rx="10" fill="#13161A" stroke="#2A2D31" stroke-width="1"/>
+  <rect x="0" y="0" width="268" height="3" fill="#C86D51" rx="1.5"/>
+  <text x="20" y="28" font-family="JetBrains Mono, monospace" font-size="10px" font-weight="600" fill="#C86D51">02 / PREFLIGHT CORS BROWSER</text>
+  <text x="20" y="56" font-family="Inter, sans-serif" font-size="14px" font-weight="600" fill="#E9E5DC">Cabeçalhos Não Padrão</text>
+  <text x="20" y="80" font-family="Inter, sans-serif" font-size="11px" fill="#8E8A82">Sintoma: Chamada bloqueada</text>
+  <text x="20" y="98" font-family="Inter, sans-serif" font-size="11px" fill="#8E8A82">em requisição OPTIONS.</text>
+  <text x="20" y="122" font-family="Inter, sans-serif" font-size="11px" fill="#E9E5DC">Filtragem Estrita:</text>
+  <text x="20" y="140" font-family="Inter, sans-serif" font-size="11px" fill="#8E8A82">Envia apenas Content-Type</text>
+  <text x="20" y="158" font-family="Inter, sans-serif" font-size="11px" fill="#8E8A82">e Authorization necessários.</text>
+  
+  <rect x="18" y="180" width="232" height="36" rx="4" fill="#0B0D0F" stroke="#2A2D31" stroke-width="1"/>
+  <text x="26" y="202" font-family="JetBrains Mono, monospace" font-size="9px" fill="#C86D51">Zero cabeçalhos rejeitados</text>
+</g>
+
+<!-- Box 3: High pH / SO2 Traps -->
+<g transform="translate(616, 78)">
+  <rect x="0" y="0" width="268" height="234" rx="10" fill="#13161A" stroke="#2A2D31" stroke-width="1"/>
+  <rect x="0" y="0" width="268" height="3" fill="#B62B32" rx="1.5"/>
+  <text x="20" y="28" font-family="JetBrains Mono, monospace" font-size="10px" font-weight="600" fill="#B62B32">03 / INEFICÁCIA DE SO₂ EM pH ALTO</text>
+  <text x="20" y="56" font-family="Inter, sans-serif" font-size="14px" font-weight="600" fill="#E9E5DC">Armadilha Físico-Química</text>
+  <text x="20" y="80" font-family="Inter, sans-serif" font-size="11px" fill="#8E8A82">Sintoma: pH &gt; 3.7 exige dose</text>
+  <text x="20" y="98" font-family="Inter, sans-serif" font-size="11px" fill="#8E8A82">que excede SO₂ total legal.</text>
+  <text x="20" y="122" font-family="Inter, sans-serif" font-size="11px" fill="#E9E5DC">Alerta Enológico:</text>
+  <text x="20" y="140" font-family="Inter, sans-serif" font-size="11px" fill="#8E8A82">Recomenda acidificação antes</text>
+  <text x="20" y="158" font-family="Inter, sans-serif" font-size="11px" fill="#8E8A82">ou quitosano alternativo.</text>
+  
+  <rect x="18" y="180" width="232" height="36" rx="4" fill="#0B0D0F" stroke="#2A2D31" stroke-width="1"/>
+  <text x="26" y="202" font-family="JetBrains Mono, monospace" font-size="9px" fill="#B62B32">Trava de segurança legal</text>
+</g>
+
+<!-- Box 4: Jurisdiction Conflicts -->
+<g transform="translate(904, 78)">
+  <rect x="0" y="0" width="256" height="234" rx="10" fill="#13161A" stroke="#2A2D31" stroke-width="1"/>
+  <rect x="0" y="0" width="256" height="3" fill="#E9E5DC" rx="1.5"/>
+  <text x="20" y="28" font-family="JetBrains Mono, monospace" font-size="10px" font-weight="600" fill="#E9E5DC">04 / PROIBIÇÃO REGULAMENTAR</text>
+  <text x="20" y="56" font-family="Inter, sans-serif" font-size="14px" font-weight="600" fill="#E9E5DC">Conflito PT/UE ↔ BR</text>
+  <text x="20" y="80" font-family="Inter, sans-serif" font-size="11px" fill="#8E8A82">Sintoma: Produto enológico</text>
+  <text x="20" y="98" font-family="Inter, sans-serif" font-size="11px" fill="#8E8A82">autorizado num país e banido noutro.</text>
+  <text x="20" y="122" font-family="Inter, sans-serif" font-size="11px" fill="#E9E5DC">Filtro Regulatório:</text>
+  <text x="20" y="140" font-family="Inter, sans-serif" font-size="11px" fill="#8E8A82">Bloqueia recomendações</text>
+  <text x="20" y="158" font-family="Inter, sans-serif" font-size="11px" fill="#8E8A82">ilegais na jurisdição alvo.</text>
+  
+  <rect x="18" y="180" width="220" height="36" rx="4" fill="#0B0D0F" stroke="#2A2D31" stroke-width="1"/>
+  <text x="24" y="202" font-family="JetBrains Mono, monospace" font-size="9px" fill="#E9E5DC">Comparação PT/UE vs MAPA</text>
+</g>
+</svg>
